@@ -1,14 +1,13 @@
 {
-  "name": "react-slingshot",
-  "version": "7.0.1",
-  "description": "Starter kit for creating apps with React and Redux",
+  "name": "saveio",
+  "version": "0.1.0",
+  "description": "",
   "engines": {
     "node": ">=8",
     "npm": ">=3"
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
-    "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
     "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm run start-message",
@@ -29,7 +28,7 @@
     "open:cover": "npm run test:cover && open-cli ./coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
-  "author": "Cory House",
+  "author": "Guilherme Latrova",
   "license": "MIT",
   "dependencies": {
     "@hot-loader/react-dom": "16.10.2",
@@ -83,7 +82,7 @@
     "json-loader": "0.5.7",
     "mini-css-extract-plugin": "0.8.0",
     "mockdate": "2.0.5",
-    "node-sass": "4.13.0",
+    "node-sass": "4.14.0",
     "open-cli": "5.0.0",
     "postcss-loader": "3.0.0",
     "prompt": "1.0.0",
@@ -103,24 +102,10 @@
     "webpack-dev-middleware": "3.7.2",
     "webpack-hot-middleware": "2.25.0"
   },
-  "keywords": [
-    "react",
-    "reactjs",
-    "react-router",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack",
-    "redux",
-    "flux",
-    "boilerplate",
-    "starter"
-  ],
+  "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/coryhouse/react-slingshot"
+    "url": ""
   },
   "jest": {
     "moduleNameMapper": {
