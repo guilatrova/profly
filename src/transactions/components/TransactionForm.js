@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import StrikePrice from './StrikePrice';
+import StrikeActionToggle from './StrikeActionToggle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,18 +16,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const prepareEntity = (raw, action) => {
+  if (action === 'sell') {
+    return {...raw, units: -raw.units};
+  }
+
+  return raw;
+}
+
 // TODO: Implement i18n
 const TransactionForm = ({onSubmit}) => {
   const classes = useStyles();
   const [entity, setEntity] = useState({ ticker: "", strikePrice: "", units: ""});
+  const [strikeAction, setStrikeAction] = useState();
+
   const handleChange = e => setEntity({ ...entity, [e.target.id]: e.target.value });
   const handlePriceChange = strikePrice => setEntity({ ...entity, strikePrice})
-  const handleSubmit = () => onSubmit(entity);
+  const handleActionChange = action => setStrikeAction(action);
+  const handleSubmit = () => onSubmit(prepareEntity(entity, strikeAction));
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
 
       <TextField id="ticker" label="Ticker" value={entity.ticker} onChange={handleChange} />
+      <StrikeActionToggle onChange={handleActionChange} />
       <TextField id="units" label="Units" value={entity.units} onChange={handleChange} />
       {entity.ticker && <StrikePrice
         ticker={entity.ticker}
