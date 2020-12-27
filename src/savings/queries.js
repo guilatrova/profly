@@ -20,6 +20,7 @@ const listTransactions = gql`
       }
       strikePrice
       units
+      value
       performedAt
     }
   }

@@ -38,7 +38,7 @@ const TransactionsTable = () => {
               <TableCell>{formatDateTimeOutput(row.performedAt)}</TableCell>
               <TableCell align="right">{getCurrencyFormattedNumber(row.strikePrice)}</TableCell>
               <TableCell align="right">{row.units}</TableCell>
-              <TableCell align="right">{getCurrencyFormattedNumber(row.units * row.strikePrice)}</TableCell>
+              <TableCell align="right">{getCurrencyFormattedNumber(row.value)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
