@@ -7,6 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 import queries from './queries';
 import { useQuery } from '@apollo/client';
+import { formatDateTimeOutput } from "../utils/dates";
 
 // TODO: Use i18n
 // TODO: Implement pagination and order by
@@ -33,7 +34,7 @@ const TransactionsTable = () => {
           {transactionsData.transactions.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.stock.name}</TableCell>
-              <TableCell>{row.performedAt}</TableCell>
+              <TableCell>{formatDateTimeOutput(row.performedAt)}</TableCell>
               <TableCell align="right">{row.strikePrice}</TableCell>
               <TableCell align="right">{row.units}</TableCell>
               <TableCell align="right">{row.value}</TableCell>
