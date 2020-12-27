@@ -8,6 +8,7 @@ import Title from './Title';
 import queries from './queries';
 import { useQuery } from '@apollo/client';
 import { formatDateTimeOutput } from "../utils/dates";
+import { getCurrencyFormattedNumber } from '../utils/numberFormat';
 
 // TODO: Use i18n
 // TODO: Implement pagination and order by
@@ -35,9 +36,9 @@ const TransactionsTable = () => {
             <TableRow key={row.id}>
               <TableCell>{row.stock.name}</TableCell>
               <TableCell>{formatDateTimeOutput(row.performedAt)}</TableCell>
-              <TableCell align="right">{row.strikePrice}</TableCell>
+              <TableCell align="right">{getCurrencyFormattedNumber(row.strikePrice)}</TableCell>
               <TableCell align="right">{row.units}</TableCell>
-              <TableCell align="right">{row.value}</TableCell>
+              <TableCell align="right">{getCurrencyFormattedNumber(row.units * row.strikePrice)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

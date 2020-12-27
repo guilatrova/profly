@@ -5,7 +5,7 @@ export function getCurrencyFormattedNumber(value) {
     return '';
   }
 
-  return '$' + getFormattedNumber(value); // eslint-disable-line prefer-template
+  return 'R$' + getFormattedNumber(value); // eslint-disable-line prefer-template
 }
 
 export function getFormattedNumber(value) {
