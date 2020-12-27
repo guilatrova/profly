@@ -10,6 +10,23 @@ const listStocks = gql`
   }
 `
 
+const listTransactions = gql`
+  query listTransactions {
+    transactions {
+      id
+      stock {
+        id
+        name
+      }
+      strikePrice
+      units
+      value
+      performedAt
+    }
+  }
+`
+
 export default {
-  listStocks
+  listStocks,
+  listTransactions
 }
