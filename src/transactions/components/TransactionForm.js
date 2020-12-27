@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import StrikePrice from './StrikePrice';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -16,17 +18,21 @@ const useStyles = makeStyles((theme) => ({
 // TODO: Implement i18n
 const TransactionForm = ({onSubmit}) => {
   const classes = useStyles();
-  const [entity, setEntity] = useState({ stock: "", strikePrice: "", units: "", value: ""});
+  const [entity, setEntity] = useState({ ticker: "", strikePrice: "", units: ""});
   const handleChange = e => setEntity({ ...entity, [e.target.id]: e.target.value });
+  const handlePriceChange = strikePrice => setEntity({ ...entity, strikePrice})
   const handleSubmit = () => onSubmit(entity);
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
 
-      <TextField id="stock" label="Stock" value={entity.stock} onChange={handleChange} />
-      <TextField id="strikePrice" label="Strike Price" value={entity.strikePrice} onChange={handleChange} />
+      <TextField id="ticker" label="Ticker" value={entity.ticker} onChange={handleChange} />
       <TextField id="units" label="Units" value={entity.units} onChange={handleChange} />
-      <TextField id="value" label="Value" variant="filled" value={entity.value} onChange={handleChange} />
+      {entity.ticker && <StrikePrice
+        ticker={entity.ticker}
+        value={entity.strikePrice}
+        onPriceChange={handlePriceChange}
+      />}
 
       <Button variant="contained" onClick={handleSubmit} color="primary">
         Add
