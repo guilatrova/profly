@@ -16,7 +16,7 @@ const listTransactions = gql`
       id
       stock {
         id
-        name
+        ticker
       }
       strikePrice
       units

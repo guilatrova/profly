@@ -34,7 +34,7 @@ const TransactionsTable = () => {
         <TableBody>
           {transactionsData.transactions.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.stock.name}</TableCell>
+              <TableCell>{row.stock.ticker}</TableCell>
               <TableCell>{formatDateTimeOutput(row.performedAt)}</TableCell>
               <TableCell align="right">{getCurrencyFormattedNumber(row.strikePrice)}</TableCell>
               <TableCell align="right">{row.units}</TableCell>
