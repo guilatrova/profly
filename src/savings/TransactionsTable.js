@@ -9,8 +9,8 @@ import queries from './queries';
 import { useQuery } from '@apollo/client';
 
 // TODO: Use i18n
-// TODO: Implement pagination
-export default function Orders() {
+// TODO: Implement pagination and order by
+const TransactionsTable = () => {
   const { loading, error, data: transactionsData} = useQuery(queries.listTransactions);
 
   if (loading) return <p>Loading...</p>;
@@ -44,3 +44,5 @@ export default function Orders() {
     </>
   );
 }
+
+export default TransactionsTable;
