@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { hot } from "react-hot-loader";
 import Dashboard from '../../savings/Dashboard';
+import TransactionForm from '../../transactions/containers/TransactionFormContainer';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -16,6 +17,7 @@ class App extends React.Component {
     return (
       <Switch>
         <Route exact path="/" component={Dashboard} />
+        <Route path="/transactions" component={TransactionForm} />
         <Route component={NotFoundPage} />
       </Switch>
     );
