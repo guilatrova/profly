@@ -22,6 +22,7 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import Stocks from './Stocks';
 
 function Copyright() {
   return (
@@ -200,6 +201,13 @@ export default function Dashboard() {
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <h1>STOCKS</h1>
+                <Stocks />
               </Paper>
             </Grid>
           </Grid>
