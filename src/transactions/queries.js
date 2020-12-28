@@ -1,5 +1,21 @@
 import {gql} from '@apollo/client';
 
+const listTransactions = gql`
+  query transactions {
+    transactions {
+      id
+      stock {
+        id
+        ticker
+      }
+      strikePrice
+      units
+      value
+      performedAt
+    }
+  }
+`
+
 const addTransaction = gql`
   mutation addTransaction($entity: TransactionMutationInput!) {
     transactions(input: $entity) {
@@ -23,5 +39,6 @@ const getStockInfo = gql`
 
 export default {
   addTransaction,
-  getStockInfo
+  getStockInfo,
+  listTransactions
 }

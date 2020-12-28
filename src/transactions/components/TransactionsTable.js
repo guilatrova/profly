@@ -4,11 +4,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Title from './Title';
-import queries from './queries';
+import Title from '../../savings/Title';
+import queries from '../../savings/queries';
 import { useQuery } from '@apollo/client';
-import { formatDateTimeOutput } from "../utils/dates";
-import { getCurrencyFormattedNumber } from '../utils/numberFormat';
+import { formatDateTimeOutput } from "../../utils/dates";
+import { getCurrencyFormattedNumber } from '../../utils/numberFormat';
 
 // TODO: Use i18n
 // TODO: Implement pagination and order by
