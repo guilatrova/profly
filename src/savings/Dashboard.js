@@ -20,7 +20,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Deposits from './Deposits';
-import TransactionsTable from '../transactions/components/TransactionsTable';
+import RecentTransactions from '../transactions/containers/RecentTransactions';
 import Stocks from './Stocks';
 import ValueSpreadPieChart from '../charts/components/ValueSpreadPieChart';
 
@@ -200,7 +200,7 @@ export default function Dashboard() {
             {/* Recent Transactions */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <TransactionsTable />
+                <RecentTransactions />
               </Paper>
             </Grid>
 
