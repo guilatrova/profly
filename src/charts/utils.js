@@ -17,7 +17,10 @@ const buildPoints = transactions => {
     const date = getDateEpochFromISO(cur.performedAt);
     const entryDate = {...cur, performedAt: strToDate(cur.performedAt)};
 
-    acc[date] = acc[date] || [];
+    if (!acc[date]) {
+      acc[date] = [];
+    }
+
     acc[date].push(entryDate);
 
     return acc;

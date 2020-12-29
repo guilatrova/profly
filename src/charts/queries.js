@@ -19,6 +19,7 @@ const stockLineChart = gql`
         high
       }
       transactions {
+        id
         performedAt
         units
         value
