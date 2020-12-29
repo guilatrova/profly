@@ -11,11 +11,18 @@ const chartStocksValues = gql`
 
 const stockLineChart = gql`
   query stockLineChart($ticker: String!, $period: String!, $interval: String!) {
-    history: stockValueHistory(ticker: $ticker, period: $period, interval: $interval) {
-      date
-      open
-      close
-      high
+    stockHistory: stockTransactionsValueHistory(ticker: $ticker, period: $period, interval: $interval) {
+      history {
+        date
+        open
+        close
+        high
+      }
+      transactions {
+        performedAt
+        units
+        value
+      }
     }
   }
 `
