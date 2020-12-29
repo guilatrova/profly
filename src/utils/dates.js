@@ -5,6 +5,7 @@ import { ptBR } from "date-fns/locale";
 const timeZone = 'America/Sao_Paulo';
 
 export const formatDateTimeOutput = input => format(new Date(input), "dd/LLL/yy HH:mm", {locale: ptBR});
+export const formatShortTimeOutput = input => format(new Date(input), "HH:mm");
 
 export const timeToLocal = datetime => utcToZonedTime(zonedTimeToUtc(datetime, 'utc'), timeZone);
 

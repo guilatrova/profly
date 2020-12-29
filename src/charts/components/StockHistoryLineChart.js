@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { useQuery } from '@apollo/client';
 import queries from '../queries';
-import { epochToDateOutput, epochToShortDateOutput } from '../../utils/dates';
+import { epochToDateOutput, epochToShortDateOutput, formatShortTimeOutput } from '../../utils/dates';
 import { getCurrencyFormattedNumber, getCurrencyRoundedNumber } from '../../utils/numberFormat';
 import { prepareHistoryLineChartData } from '../utils';
 import SellIcon from '@material-ui/icons/MoneyOff';
@@ -40,6 +41,47 @@ const CustomizedAxisTick = ({ x, y, stroke, payload }) => {
       </g>
     );
   }
+
+const TransactionEventEntry = ({ transaction: t }) => {
+  let eventDesc = "bought";
+  let units = t.units;
+  if (t.units <= 0) {
+    eventDesc = "sold";
+    units = -t.units;
+  }
+  const atTime = formatShortTimeOutput(t.performedAt);
+  const value = getCurrencyFormattedNumber(t.value);
+
+  return (
+    <p>You {eventDesc} {units} units at {atTime} ({value})</p>
+  )
+};
+
+const CustomTooltip = ({ active, label, labelFormatter, formatter, payload , ...props }) => {
+  if (active) {
+    const transactions = payload[0].payload.transactions;
+    const hasTransactions = !!transactions.length;
+    if (hasTransactions) {
+      console.log("transactions", transactions);
+    }
+
+    return (
+      <div className="custom-tooltip">
+        <h4 className="label">{`${labelFormatter(label)}`}</h4>
+        <p>{`${formatter(payload[0].value)}`}</p>
+
+        {hasTransactions &&
+          <>
+            <h5>Transactions</h5>
+            {transactions.map(t => <TransactionEventEntry key={t.id} transaction={t} />)}
+          </>
+        }
+      </div>
+    );
+  }
+
+  return null;
+};
 
 const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1d"}) => {
   const { loading, error, data } = useQuery(queries.stockLineChart, { variables: { ticker, period, interval }});
@@ -79,6 +121,7 @@ const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1d"}) => {
       />
 
       <Tooltip
+        content={<CustomTooltip />}
         labelFormatter={epochToDateOutput}
         formatter={getCurrencyFormattedNumber}
       />
