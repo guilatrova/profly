@@ -21,8 +21,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Deposits from './Deposits';
 import RecentTransactions from '../transactions/containers/RecentTransactions';
-import Stocks from './Stocks';
+import StockHistoryLineChart from '../charts/components/StockHistoryLineChart';
 import ValueSpreadPieChart from '../charts/components/ValueSpreadPieChart';
+import Chart from './Chart';
 
 function Copyright() {
   return (
@@ -207,7 +208,9 @@ export default function Dashboard() {
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <h1>STOCKS</h1>
-                <Stocks />
+                <div height={800}>
+                  <StockHistoryLineChart ticker="MGLU3.SA" />
+                </div>
               </Paper>
             </Grid>
           </Grid>

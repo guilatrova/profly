@@ -1,12 +1,16 @@
 import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 const timeZone = 'America/Sao_Paulo';
 
-export const formatDateTimeOutput = input => format(new Date(input), "dd/LLL/yy HH:mm", {locale: ptBR})
+export const formatDateTimeOutput = input => format(new Date(input), "dd/LLL/yy HH:mm", {locale: ptBR});
 
 export const timeToLocal = datetime => utcToZonedTime(zonedTimeToUtc(datetime, 'utc'), timeZone);
+
+export const strToDate = raw => parseISO(raw);
+
+export const epochToDateOutput = input => format(new Date(input), "dd/LL/yy", {locale: ptBR });
 
 export function getFormattedDateTime(date = new Date()) {
   return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${padLeadingZero(date.getMinutes())}:${padLeadingZero(date.getSeconds())}`;
