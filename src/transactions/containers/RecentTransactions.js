@@ -9,7 +9,7 @@ const RecentTransactions = () => {
   const { loading, error, data: transactionsData} = useQuery(queries.listTransactions);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error <pre>{JSON.stringify(error)}</pre></p>;
+  if (error) return <pre>{JSON.stringify(error)}</pre>;
 
   return (
     <>
