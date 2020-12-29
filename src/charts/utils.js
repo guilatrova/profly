@@ -2,7 +2,7 @@ import { strToDate } from '../utils/dates';
 
 
 // TODO: Move it to util dates
-const getDateEpochFromISO = (raw) => raw.split("T")[0].valueOf();
+const getDateEpochFromISO = (raw) => strToDate(raw.split("T")[0]).valueOf();
 
 const buildDomain = (arr, minKey, maxKey) => {
   maxKey = maxKey || minKey;
@@ -32,7 +32,7 @@ const buildData = queryData => {
     return {
       ...entry,
       date,
-      transactions: points[date] || null
+      transactions: points[date] || []
     };
   });
 
