@@ -2,7 +2,7 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { useQuery } from '@apollo/client';
 import queries from '../queries';
-import { epochToDateOutput } from '../../utils/dates';
+import { epochToDateOutput, epochToShortDateOutput } from '../../utils/dates';
 import { getCurrencyRoundedNumber } from '../../utils/numberFormat';
 import { prepareLineChartData } from '../utils';
 
@@ -32,7 +32,7 @@ const CustomizedDot = ({ cx, cy, stroke, payload, value }) => {
 const CustomizedAxisTick = ({ x, y, stroke, payload }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={16} textAnchor="end" fill="#666" transform="rotate(-35)">{epochToDateOutput(payload.value)}</text>
+        <text x={0} y={0} dy={16} textAnchor="end" fill="#666" transform="rotate(-35)">{epochToShortDateOutput(payload.value)}</text>
       </g>
     );
   }

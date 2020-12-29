@@ -10,7 +10,8 @@ export const timeToLocal = datetime => utcToZonedTime(zonedTimeToUtc(datetime, '
 
 export const strToDate = raw => parseISO(raw);
 
-export const epochToDateOutput = input => format(new Date(input), "dd/LL/yy", {locale: ptBR });
+export const epochToShortDateOutput = input => format(new Date(input), "dd/LL/yy");
+export const epochToDateOutput = input => format(new Date(input), "dd/LL/yyyy");
 
 export function getFormattedDateTime(date = new Date()) {
   return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${padLeadingZero(date.getMinutes())}:${padLeadingZero(date.getSeconds())}`;
