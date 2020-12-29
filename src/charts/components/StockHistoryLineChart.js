@@ -3,10 +3,17 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import { useQuery } from '@apollo/client';
 import queries from '../queries';
 import { epochToDateOutput } from '../../utils/dates';
+import { getCurrencyRoundedNumber } from '../../utils/numberFormat';
 import { prepareLineChartData } from '../utils';
 
 
 const CustomizedDot = ({ cx, cy, stroke, payload, value }) => {
+  if (!value) {
+    return null;
+  }
+
+  return null;
+
   if (value > 2500) {
     return (
       <svg x={cx - 10} y={cy - 10} width={20} height={20} fill="red" viewBox="0 0 1024 1024">
@@ -22,10 +29,6 @@ const CustomizedDot = ({ cx, cy, stroke, payload, value }) => {
   );
 };
 
-const formatXAxis = (epoch) => {
-  return epochToDateOutput(epoch);
-}
-
 const CustomizedAxisTick = ({ x, y, stroke, payload }) => {
     return (
       <g transform={`translate(${x},${y})`}>
@@ -34,7 +37,7 @@ const CustomizedAxisTick = ({ x, y, stroke, payload }) => {
     );
   }
 
-const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1mo"}) => {
+const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1d"}) => {
   const { loading, error, data } = useQuery(queries.stockLineChart, { variables: { ticker, period, interval }});
 
   if (loading) {
@@ -47,6 +50,7 @@ const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1mo"}) => {
 
   const history = data?.history || [];
   const chart = prepareLineChartData(history);
+  console.log("chart", chart);
 
   return (
     <LineChart
@@ -65,11 +69,14 @@ const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1mo"}) => {
         scale="time"
         type="number"
         tick={CustomizedAxisTick}
-        tickFormatter={formatXAxis}
       />
-      <YAxis />
+      <YAxis
+        tickFormatter={getCurrencyRoundedNumber}
+        tickCount={5}
+        domain={chart.yDomain}
+      />
 
-      <Tooltip />
+      <Tooltip labelFormatter={epochToDateOutput} />
       <Legend />
 
       <Line type="monotone" dataKey="close" stroke="#8884d8" dot={<CustomizedDot />} />

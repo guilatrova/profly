@@ -1,9 +1,11 @@
+import { min } from 'date-fns';
 import { strToDate } from '../utils/dates';
 
 
-const buildDomain = (arr, key) => {
-  const minDomain = Math.min(...arr.map(entry => entry[key]));
-  const maxDomain = Math.max(...arr.map(entry => entry[key]));
+const buildDomain = (arr, minKey, maxKey) => {
+  maxKey = maxKey || minKey;
+  const minDomain = Math.min(...arr.map(entry => entry[minKey]));
+  const maxDomain = Math.max(...arr.map(entry => entry[maxKey]));
 
   return [minDomain, maxDomain];
 }
@@ -11,9 +13,11 @@ const buildDomain = (arr, key) => {
 export const prepareLineChartData = (queryData = []) => {
   const data = queryData.map(entry => ({...entry, date: strToDate(entry.date).valueOf()}));
   const xDomain = buildDomain(data, "date");
+  const yDomain = buildDomain(data, "open", "high");
 
   return {
     data,
-    xDomain
+    xDomain,
+    yDomain
   }
 };
