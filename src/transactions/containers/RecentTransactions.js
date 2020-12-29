@@ -3,6 +3,7 @@ import Title from '../../savings/Title';
 import queries from '../../savings/queries';
 import { useQuery } from '@apollo/client';
 import TransactionsTable from '../components/TransactionsTable';
+import TransactionForm from './TransactionFormContainer';
 
 const RecentTransactions = () => {
   const { loading, error, data: transactionsData} = useQuery(queries.listTransactions);
@@ -14,6 +15,7 @@ const RecentTransactions = () => {
     <>
       <Title>Recent Transactions</Title>
       <TransactionsTable data={transactionsData.transactions} />
+      <TransactionForm />
     </>
   );
 }
