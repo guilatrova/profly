@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import { useQuery } from '@apollo/client';
 import queries from '../queries';
 import { epochToDateOutput, epochToShortDateOutput } from '../../utils/dates';
-import { getCurrencyRoundedNumber } from '../../utils/numberFormat';
+import { getCurrencyFormattedNumber, getCurrencyRoundedNumber } from '../../utils/numberFormat';
 import { prepareLineChartData } from '../utils';
 
 
@@ -76,7 +76,10 @@ const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1d"}) => {
         domain={chart.yDomain}
       />
 
-      <Tooltip labelFormatter={epochToDateOutput} />
+      <Tooltip
+        labelFormatter={epochToDateOutput}
+        formatter={getCurrencyFormattedNumber}
+      />
       <Legend />
 
       <Line type="monotone" dataKey="close" stroke="#8884d8" dot={<CustomizedDot />} />
