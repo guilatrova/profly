@@ -12,7 +12,18 @@ const useStyles = makeStyles((theme) => ({
 
 const PeriodToggle = ({ onChange }) => {
   const classes = useStyles();
-  const periodOptions = ['1d', '5d', '1mo', '3mo', '6mo', '1y', 'ytd', '2y', '5y', 'max'];
+  const periodOptions = [
+    '1d',
+    '5d',
+    '1mo',
+    '3mo',
+    '6mo',
+    '1y',
+    'ytd',
+    '2y',
+    '5y',
+    'max',
+  ];
   const [selectedPeriod, setSelectedPeriod] = useState('ytd');
 
   const handleChange = (event, newAction) => {
@@ -31,15 +42,18 @@ const PeriodToggle = ({ onChange }) => {
         exclusive
         onChange={handleChange}
       >
-        {periodOptions.map(period => <ToggleButton key={period} value={period}>{period}</ToggleButton>)}
-
+        {periodOptions.map((period) => (
+          <ToggleButton key={period} value={period}>
+            {period}
+          </ToggleButton>
+        ))}
       </ToggleButtonGroup>
     </div>
   );
-}
+};
 
 PeriodToggle.propTypes = {
-  onChange: PropTypes.func
-}
+  onChange: PropTypes.func,
+};
 
 export default PeriodToggle;
