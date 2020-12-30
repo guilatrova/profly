@@ -7,8 +7,6 @@ import Deposits from './Deposits';
 import RecentTransactions from '../transactions/containers/RecentTransactions';
 import StockHistoryLineChart from '../charts/containers/StockHistoryLineChart';
 import ValueSpreadPieChart from '../charts/containers/ValueSpreadPieChart';
-import AppWrapper from '../core/components/AppWrapper';
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,39 +25,37 @@ const Dashboard = () => {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
-    <AppWrapper>
-      <Grid container spacing={3}>
-        {/* Chart */}
-        <Grid item xs={12} md={8} lg={9}>
-          <Paper className={fixedHeightPaper}>
-            <ValueSpreadPieChart />
-          </Paper>
-        </Grid>
-
-        {/* Recent Deposits */}
-        <Grid item xs={12} md={4} lg={3}>
-          <Paper className={fixedHeightPaper}>
-            <Deposits />
-          </Paper>
-        </Grid>
-
-        {/* Recent Transactions */}
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <RecentTransactions />
-          </Paper>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <h1>STOCKS</h1>
-            <div height={800}>
-              <StockHistoryLineChart ticker="MGLU3.SA" />
-            </div>
-          </Paper>
-        </Grid>
+    <Grid container spacing={3}>
+      {/* Chart */}
+      <Grid item xs={12} md={8} lg={9}>
+        <Paper className={fixedHeightPaper}>
+          <ValueSpreadPieChart />
+        </Paper>
       </Grid>
-    </AppWrapper>
+
+      {/* Recent Deposits */}
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={fixedHeightPaper}>
+          <Deposits />
+        </Paper>
+      </Grid>
+
+      {/* Recent Transactions */}
+      <Grid item xs={12}>
+        <Paper className={classes.paper}>
+          <RecentTransactions />
+        </Paper>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Paper className={classes.paper}>
+          <h1>STOCKS</h1>
+          <div height={800}>
+            <StockHistoryLineChart ticker="MGLU3.SA" />
+          </div>
+        </Paper>
+      </Grid>
+    </Grid>
   );
 };
 
