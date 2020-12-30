@@ -1,34 +1,18 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { useQuery } from '@apollo/client';
-import queries from '../../queries';
 import { epochToDateOutput } from '../../../utils/dates';
 import { getCurrencyFormattedNumber, getCurrencyRoundedNumber } from '../../../utils/numberFormat';
-import { prepareHistoryLineChartData } from '../../utils';
 import TransactionsTooltip from './TransactionsTooltip';
 import DateAxisTick from './DateAxisTick';
 import TransactionDot from './TransactionDot';
 
-const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1d"}) => {
-  const { loading, error, data } = useQuery(queries.stockLineChart, { variables: { ticker, period, interval }});
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <pre>{JSON.stringify(error)}</pre>;
-  }
-
-  const stockHistory = data?.stockHistory;
-  const chart = prepareHistoryLineChartData(stockHistory);
-
+const StockHistoryLineChart = ({ chartData }) => {
   return (
     <LineChart
       width={1000}
       height={300}
-      data={chart.data}
+      data={chartData.data}
       margin={{
         top: 5, right: 30, left: 20, bottom: 5,
       }}
@@ -37,14 +21,14 @@ const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1d"}) => {
 
       <XAxis
         dataKey="date"
-        domain={chart.xDomain}
+        domain={chartData.xDomain}
         scale="time"
         type="number"
         tick={DateAxisTick}
       />
       <YAxis
         tickFormatter={getCurrencyRoundedNumber}
-        domain={chart.yDomain}
+        domain={chartData.yDomain}
       />
 
       <Tooltip
@@ -58,6 +42,14 @@ const StockHistoryLineChart = ({ ticker, period = "ytd", interval = "1d"}) => {
       {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
     </LineChart>
   );
+}
+
+StockHistoryLineChart.propTypes = {
+  chartData: PropTypes.shape({
+    data: PropTypes.array,
+    xDomain: PropTypes.arrayOf(PropTypes.number),
+    yDomain: PropTypes.arrayOf(PropTypes.number)
+  })
 }
 
 export default StockHistoryLineChart;
