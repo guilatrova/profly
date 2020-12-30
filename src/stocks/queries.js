@@ -28,6 +28,7 @@ const transactionsFromStock = gql`
             ticker
           }
           units
+          value
           strikePrice
           performedAt
         }
