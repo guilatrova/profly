@@ -7,6 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { formatDateTimeOutput } from "../../utils/dates";
 import { getCurrencyFormattedNumber } from '../../utils/numberFormat';
 import { transactionsPropType } from '../types';
+import TickerLink from '../../core/components/TickerLink';
 
 // TODO: Use i18n
 // TODO: Implement pagination and order by
@@ -26,7 +27,7 @@ const TransactionsTable = ({ data }) => {
       <TableBody>
         {data.map((row) => (
           <TableRow key={row.id}>
-            <TableCell>{row.stock.ticker}</TableCell>
+            <TableCell><TickerLink>{row.stock.ticker}</TickerLink></TableCell>
             <TableCell>{formatDateTimeOutput(row.performedAt)}</TableCell>
             <TableCell align="right">{getCurrencyFormattedNumber(row.strikePrice)}</TableCell>
             <TableCell align="right">{row.units}</TableCell>
