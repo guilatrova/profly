@@ -5,6 +5,7 @@ import ValueSpreadPieChart from '../components/ValueSpreadPieChart';
 
 const ValueSpreadPieChartContainer = () => {
   const { loading, error, data = [] } = useQuery(queries.chartStocksValues);
+  const chartData = data?.stocks || [];
 
   if (loading) {
     return <p>Loading...</p>;
@@ -13,8 +14,6 @@ const ValueSpreadPieChartContainer = () => {
   if (error) {
     return <pre>{JSON.stringify(error)}</pre>;
   }
-
-  const chartData = data?.stocks || [];
 
   return <ValueSpreadPieChart chartData={chartData} />;
 };
