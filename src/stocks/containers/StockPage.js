@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import StockHistoryLineChart from '../../charts/containers/StockHistoryLineChart';
+import StockAverageSummary from './StockAverageSummary';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,6 +32,10 @@ const StockPage = () => {
         <Paper className={classes.paper}>
           <StockHistoryLineChart ticker={ticker} />
         </Paper>
+      </Grid>
+
+      <Grid item xs={12}>
+        <StockAverageSummary ticker={ticker} />
       </Grid>
     </Grid>
   );
