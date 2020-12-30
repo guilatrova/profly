@@ -4,7 +4,8 @@ import TransactionEventEntry from './TransactionEventEntry';
 
 
 const TransactionsTooltip = ({ active, label, labelFormatter, formatter, payload }) => {
-  if (active) {
+  const hasPayload = !!payload.length;
+  if (active && hasPayload) {
     const transactions = payload[0].payload.transactions;
     const hasTransactions = !!transactions.length;
 
