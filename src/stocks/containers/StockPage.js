@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import StockHistoryLineChart from '../../charts/containers/StockHistoryLineChart';
 import StockAverageSummary from './StockAverageSummary';
 import PeriodToggle from '../components/PeriodToggle';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,7 +29,7 @@ const StockPage = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <h1>{ticker}</h1>
+        <Typography variant="h4">{ticker}</Typography>
       </Grid>
 
       <Grid container alignContent="flex-end">
