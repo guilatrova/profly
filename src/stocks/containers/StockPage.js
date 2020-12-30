@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import StockHistoryLineChart from '../../charts/containers/StockHistoryLineChart';
 import StockAverageSummary from './StockAverageSummary';
+import StockTransactions from './StockTransactions';
 import PeriodToggle from '../components/PeriodToggle';
 import Typography from '@material-ui/core/Typography';
 
@@ -48,6 +49,13 @@ const StockPage = () => {
           <StockHistoryLineChart period={period} interval={interval} ticker={ticker} />
         </Paper>
       </Grid>
+
+      <Grid item xs={12}>
+        <Paper className={classes.paper}>
+          <StockTransactions period={period} ticker={ticker} />
+        </Paper>
+      </Grid>
+
 
     </Grid>
   );

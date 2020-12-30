@@ -11,6 +11,32 @@ const stockSummary = gql`
   }
 `
 
+const transactionsFromStock = gql`
+  query transactionsFromStock(
+    $ticker: String!
+    $start: DateTime,
+  ) {
+    transactionsFilter(
+      stock_Ticker: $ticker
+      performedAt_Gte: $start
+    ) {
+      totalCount
+      found: edges {
+        node {
+          stock {
+            id
+            ticker
+          }
+          units
+          strikePrice
+          performedAt
+        }
+      }
+    }
+  }
+`
+
 export default {
-  stockSummary
+  stockSummary,
+  transactionsFromStock
 };
