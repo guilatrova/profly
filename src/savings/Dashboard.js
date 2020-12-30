@@ -47,14 +47,6 @@ const Dashboard = () => {
         </Paper>
       </Grid>
 
-      <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <h1>STOCKS</h1>
-          <div height={800}>
-            <StockHistoryLineChart ticker="MGLU3.SA" />
-          </div>
-        </Paper>
-      </Grid>
     </Grid>
   );
 };
