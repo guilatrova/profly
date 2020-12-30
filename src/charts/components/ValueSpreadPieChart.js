@@ -1,21 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { PieChart, Pie, Tooltip } from 'recharts';
-import { useQuery } from '@apollo/client';
-import queries from '../queries';
 
-const ValueSpreadPieChart = () => {
-  const { loading, error, data = [] } = useQuery(queries.chartStocksValues);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <pre>{JSON.stringify(error)}</pre>;
-  }
-
-  const chartData = data?.stocks || [];
-
+const ValueSpreadPieChart = ({ chartData }) => {
   return (
     <PieChart width={300} height={250}>
       <Pie
@@ -31,6 +18,10 @@ const ValueSpreadPieChart = () => {
       <Tooltip />
     </PieChart>
   );
+};
+
+ValueSpreadPieChart.propTypes = {
+  chartData: PropTypes.array.isRequired
 };
 
 export default ValueSpreadPieChart;

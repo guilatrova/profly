@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Deposits from './Deposits';
 import RecentTransactions from '../transactions/containers/RecentTransactions';
 import StockHistoryLineChart from '../charts/containers/StockHistoryLineChart';
-import ValueSpreadPieChart from '../charts/components/ValueSpreadPieChart';
+import ValueSpreadPieChart from '../charts/containers/ValueSpreadPieChart';
 import AppWrapper from '../core/components/AppWrapper';
 
 
