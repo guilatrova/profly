@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -41,12 +42,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppDrawer = () => {
+const AppDrawer = ({ open, toggleDrawer }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
 
   return (
     <Drawer
@@ -70,5 +67,10 @@ const AppDrawer = () => {
     </Drawer>
   );
 };
+
+AppDrawer.propTypes = {
+  open: PropTypes.bool.isRequired,
+  toggleDrawer: PropTypes.func.isRequired
+}
 
 export default AppDrawer;

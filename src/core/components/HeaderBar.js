@@ -66,6 +66,7 @@ const HeaderBar = () => {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography
             component="h1"
             variant="h6"
@@ -75,6 +76,7 @@ const HeaderBar = () => {
           >
             Dashboard
           </Typography>
+
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
@@ -83,7 +85,7 @@ const HeaderBar = () => {
         </Toolbar>
       </AppBar>
 
-      <AppDrawer/>
+      <AppDrawer open={open} toggleDrawer={toggleDrawer} />
     </>
   );
 }
