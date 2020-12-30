@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import PERIODS from '../../core/constants/periods';
 
 const useStyles = makeStyles((theme) => ({
   toggleContainer: {
@@ -12,18 +13,6 @@ const useStyles = makeStyles((theme) => ({
 
 const PeriodToggle = ({ onChange }) => {
   const classes = useStyles();
-  const periodOptions = [
-    '1d',
-    '5d',
-    '1mo',
-    '3mo',
-    '6mo',
-    '1y',
-    'ytd',
-    '2y',
-    '5y',
-    'max',
-  ];
   const [selectedPeriod, setSelectedPeriod] = useState('ytd');
 
   const handleChange = (event, newAction) => {
@@ -42,7 +31,7 @@ const PeriodToggle = ({ onChange }) => {
         exclusive
         onChange={handleChange}
       >
-        {periodOptions.map((period) => (
+        {PERIODS.map((period) => (
           <ToggleButton key={period} value={period}>
             {period}
           </ToggleButton>
