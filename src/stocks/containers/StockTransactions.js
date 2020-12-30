@@ -5,9 +5,11 @@ import { useQuery } from '@apollo/client';
 import TransactionsTable from '../../transactions/components/TransactionsTable';
 import TransactionForm from '../../transactions/containers/TransactionFormContainer';
 import { tickerType, periodType } from '../../core/types';
+import { subPeriod } from '../../utils/dates';
+
 
 const StockTransactions = ({ ticker, period }) => {
-  const start = "2020-01-01T00:00";
+  const start = subPeriod(period).toISOString();
   const { loading, error, data } = useQuery(queries.transactionsFromStock, { variables: { ticker, start }});
 
   if (loading) return <p>Loading...</p>;
