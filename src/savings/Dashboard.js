@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Deposits from './Deposits';
 import RecentTransactions from '../transactions/containers/RecentTransactions';
-import StockHistoryLineChart from '../charts/containers/StockHistoryLineChart';
 import ValueSpreadPieChart from '../charts/containers/ValueSpreadPieChart';
 
 const useStyles = makeStyles((theme) => ({
