@@ -31,7 +31,7 @@ const StockPage = () => {
         <h1>{ticker}</h1>
       </Grid>
 
-      <Grid container xs={12} alignContent="flex-end">
+      <Grid container alignContent="flex-end">
         <Grid item xs={12}>
           <StockAverageSummary ticker={ticker} />
         </Grid>

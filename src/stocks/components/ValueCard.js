@@ -28,7 +28,6 @@ const useStyles = makeStyles({
 
 const ValueCard = ({ title, isMoney = false, children = null}) => {
   const classes = useStyles();
-  console.log(children);
   const displayValue = isMoney ? getCurrencyRoundedNumber(children || 0) : children;
 
   return (
