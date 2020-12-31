@@ -4,7 +4,7 @@ import React from 'react';
 // eslint-disable-next-line react/prop-types
 const ApolloErrorHandler = ({ children }) => {
   return (
-    <pre>{children}</pre>
+    <pre>{JSON.stringify(children)}</pre>
   );
 };
 
