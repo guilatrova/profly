@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
 import { stockInfoPropType } from '../../types';
 import DecimalTextField from '../../../core/components/DecimalTextField';
+import { KeyboardDateTimePicker } from '@material-ui/pickers';
 
 import StrikeActionToggle from './StrikeActionToggle';
 
@@ -10,6 +10,7 @@ import StrikeActionToggle from './StrikeActionToggle';
 const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
   const [units, setUnits] = useState('');
   const [price, setPrice] = useState('');
+  const [performedDateTime, setPerformedDateTime] = useState(new Date());
   const [userInput, setUserInput] = useState(false);
   const [, setStrikeAction] = useState();
 
@@ -29,6 +30,10 @@ const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
   const handleChange = (key, setter) => (e) => {
     setter(e.target.value);
     onPropChange({ [key]: e.target.value });
+  };
+  const handleDateChange = performedAt => {
+    setPerformedDateTime(performedAt);
+    onPropChange({ performedAt });
   };
 
   return (
@@ -52,6 +57,16 @@ const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
         value={price}
         onChange={handleChange("strikePrice", setPrice)}
         onKeyDown={handlePriceKeyDown}
+      />
+
+      <KeyboardDateTimePicker
+        id="performedAt"
+        label="Performed at"
+        variant="inline"
+        ampm={false}
+        value={performedDateTime}
+        onChange={handleDateChange}
+        format="dd/MM/yyyy HH:mm"
       />
     </>
   );

@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import App from './core/components/App';
 import { ApolloProvider } from '@apollo/client';
 import apolloClient from "./core/apollo";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 export default class Root extends Component {
   render() {
@@ -13,7 +15,9 @@ export default class Root extends Component {
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
           <ConnectedRouter history={history}>
-            <App />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <App />
+            </MuiPickersUtilsProvider>
           </ConnectedRouter>
         </ApolloProvider>
       </Provider>
