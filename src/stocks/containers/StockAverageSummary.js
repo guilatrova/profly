@@ -16,19 +16,19 @@ const StockAverageSummary = ({ ticker }) => {
 
   return (
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={4} md={2}>
           <ValueCard title="Units">
             {summary.units}
           </ValueCard>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={4} md={2}>
           <ValueCard title="Avg Buy" isMoney>
             {summary.averageBuyPrice}
           </ValueCard>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={4} md={2}>
           <ValueCard title="Avg Sell" isMoney>
             {summary.averageSellPrice}
           </ValueCard>
