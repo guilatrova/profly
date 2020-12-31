@@ -51,7 +51,7 @@ const TransactionsTable = ({
 };
 
 TransactionsTable.propTypes = {
-  data: transactionsPropType.isRequired,
+  data: transactionsPropType,
   loading: PropTypes.bool,
   displayStock: PropTypes.bool,
 };
