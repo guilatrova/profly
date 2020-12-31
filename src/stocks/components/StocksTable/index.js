@@ -5,31 +5,26 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { transactionsPropType } from '../../types';
+import { stocksSummaryPropType } from '../../types';
 import LoadingRows from '../../../core/components/LoadingRows';
 import ContentRow from './ContentRow';
 
 
 // TODO: Use i18n
 // TODO: Implement pagination and order by
-const TransactionsTable = ({
+const StocksTable = ({
   data = [],
-  loading = false,
-  displayStock = true,
+  loading = false
 }) => {
-  const alignUnits = displayStock ? 'right' : 'inherit';
-  const cellsCount = displayStock ? 6 : 5;
+  const cellsCount = 3;
 
   return (
     <Table size="small">
       <TableHead>
         <TableRow>
-          {displayStock && <TableCell>Stock</TableCell>}
-          <TableCell align={alignUnits}>Units</TableCell>
-          <TableCell align="right">Strike Price</TableCell>
+          <TableCell>Stock</TableCell>
+          <TableCell align="right">Units</TableCell>
           <TableCell align="right">Value</TableCell>
-          <TableCell align="right">Date</TableCell>
-          <TableCell align="right">Actions</TableCell>
         </TableRow>
       </TableHead>
 
@@ -38,12 +33,7 @@ const TransactionsTable = ({
           <LoadingRows cellsCount={cellsCount} />
         ) : (
           data.map((row) => (
-            <ContentRow
-              key={row.id}
-              row={row}
-              alignUnits={alignUnits}
-              displayStock={displayStock}
-            />
+            <ContentRow key={row.id} row={row} />
           ))
         )}
       </TableBody>
@@ -51,10 +41,9 @@ const TransactionsTable = ({
   );
 };
 
-TransactionsTable.propTypes = {
-  data: transactionsPropType,
-  loading: PropTypes.bool,
-  displayStock: PropTypes.bool,
+StocksTable.propTypes = {
+  data: stocksSummaryPropType,
+  loading: PropTypes.bool
 };
 
-export default TransactionsTable;
+export default StocksTable;

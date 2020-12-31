@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import RecentTransactions from '../transactions/containers/RecentTransactions';
-import ValueSpreadPieChart from '../charts/containers/ValueSpreadPieChart';
+import RecentTransactions from '../../transactions/containers/RecentTransactions';
+import ValueSpreadPieChart from '../../charts/containers/ValueSpreadPieChart';
+import StocksSummary from './StocksSummary';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,7 +23,7 @@ const Dashboard = () => {
 
       <Grid item xs={12}>
         <Paper className={classes.paper}>
-          <ValueSpreadPieChart />
+          <StocksSummary />
         </Paper>
       </Grid>
 

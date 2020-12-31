@@ -5,7 +5,7 @@ import NotFoundPage from "./NotFoundPage";
 import PropTypes from "prop-types";
 import React from "react";
 import { hot } from "react-hot-loader";
-import Dashboard from '../../savings/Dashboard';
+import Dashboard from '../containers/Dashboard';
 import StockPage from '../../stocks/containers/StockPage';
 import TransactionForm from '../../transactions/containers/TransactionFormContainer';
 import AppWrapper from './AppWrapper';

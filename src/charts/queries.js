@@ -4,6 +4,7 @@ const chartStocksValues = gql`
   query chartStocksValues {
     stocks: stocksUnitsCurrentValue {
       name: ticker
+      units: totalUnits
       value: totalValue
     }
   }
