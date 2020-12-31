@@ -11,9 +11,9 @@ const ValueSpreadPieChart = ({ chartData }) => {
         data={chartData}
         cx={150}
         cy={120}
-        innerRadius={40}
+        innerRadius={60}
         outerRadius={80}
-        // fill="#82ca9d"
+        paddingAngle={5}
         label
       >
         {chartData.map((entry, index) =>
