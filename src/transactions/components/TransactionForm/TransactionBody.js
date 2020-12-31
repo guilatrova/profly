@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { stockInfoPropType } from '../../types';
 import DecimalTextField from '../../../core/components/DecimalTextField';
 import { KeyboardDateTimePicker } from '@material-ui/pickers';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import StrikeActionToggle from './StrikeActionToggle';
 
@@ -38,6 +39,7 @@ const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
 
   return (
     <>
+      {loading && <CircularProgress />}
       <p>{stockInfo?.name}</p>
 
       <StrikeActionToggle disabled={isDisabled} onChange={handleActionChange} />
