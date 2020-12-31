@@ -33,7 +33,6 @@ const ValueSpreadPieChart = ({ chartData }) => {
           <Cell key={`cell-${index}`} fill={colors[index]} />
         ))}
       </Pie>
-
     </PieChart>
   );
 };
