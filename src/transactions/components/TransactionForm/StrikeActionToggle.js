@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import STOCK_ACTIONS from '../../../core/constants/stockActions';
 
 const useStyles = makeStyles((theme) => ({
   toggleContainer: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StrikeActionToggle = ({ onChange, disabled }) => {
-  const [action, setAction] = useState('buy');
+  const [action, setAction] = useState(STOCK_ACTIONS.BUY);
 
   const handleChange = (event, newAction) => {
     if (newAction) {
@@ -29,11 +30,11 @@ const StrikeActionToggle = ({ onChange, disabled }) => {
         exclusive
         onChange={handleChange}
       >
-        <ToggleButton value="buy" disabled={disabled}>
+        <ToggleButton value={STOCK_ACTIONS.BUY} disabled={disabled}>
           Buy
         </ToggleButton>
 
-        <ToggleButton value="sell" disabled={disabled}>
+        <ToggleButton value={STOCK_ACTIONS.SELL} disabled={disabled}>
           Sell
         </ToggleButton>
       </ToggleButtonGroup>

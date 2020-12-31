@@ -6,11 +6,8 @@ import Button from '@material-ui/core/Button';
 import TickerField from './TickerField';
 import StockInfoProvider from './StockInfoProvider';
 import TransactionBody from './TransactionBody';
+import STOCK_ACTIONS from '../../../core/constants/stockActions';
 
-const STOCK_ACTIONS = {
-  BUY: 'buy',
-  SELL: 'sell'
-};
 
 const useStyles = makeStyles((theme) => ({
   root: {
