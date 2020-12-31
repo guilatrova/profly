@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -21,15 +22,16 @@ const useStyles = makeStyles((theme) => ({
 
 // TODO: Use i18n
 // TODO: Implement pagination and order by
-const TransactionsTable = ({ data }) => {
+const TransactionsTable = ({ data, displayStock = true }) => {
   const classes = useStyles();
+  const alignUnits = displayStock ? 'right' : 'inherit';
 
   return (
     <Table size="small">
       <TableHead>
         <TableRow>
-          <TableCell>Stock</TableCell>
-          <TableCell align="right">Units</TableCell>
+          {displayStock && <TableCell>Stock</TableCell>}
+          <TableCell align={alignUnits}>Units</TableCell>
           <TableCell align="right">Strike Price</TableCell>
           <TableCell align="right">Value</TableCell>
           <TableCell align="right">Date</TableCell>
@@ -38,8 +40,10 @@ const TransactionsTable = ({ data }) => {
       <TableBody>
         {data.map((row) => (
           <TableRow key={row.id} hover>
-            <TableCell><TickerLink>{row.stock.ticker}</TickerLink></TableCell>
-            <TableCell align="right" className={row.units >= 0 ? classes.boughtUnits : classes.soldUnits}>{row.units}</TableCell>
+            {displayStock && <TableCell><TickerLink>{row.stock.ticker}</TickerLink></TableCell>}
+            <TableCell align={alignUnits} className={row.units >= 0 ? classes.boughtUnits : classes.soldUnits}>
+              {row.units}
+            </TableCell>
             <TableCell align="right">{formatCurrency(row.strikePrice)}</TableCell>
             <TableCell align="right">{formatCurrency(row.value)}</TableCell>
             <TableCell align="right">{formatDateTimeOutput(row.performedAt)}</TableCell>
@@ -51,7 +55,8 @@ const TransactionsTable = ({ data }) => {
 }
 
 TransactionsTable.propTypes = {
-  data: transactionsPropType
+  data: transactionsPropType.isRequired,
+  displayStock: PropTypes.bool
 };
 
 export default TransactionsTable;

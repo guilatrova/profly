@@ -3,7 +3,6 @@ import Title from '../../savings/Title';
 import queries from '../queries';
 import { useQuery } from '@apollo/client';
 import TransactionsTable from '../../transactions/components/TransactionsTable';
-import TransactionForm from '../../transactions/containers/TransactionFormContainer';
 import { tickerType, periodType } from '../../core/types';
 import { subPeriod } from '../../utils/dates';
 
@@ -18,11 +17,10 @@ const StockTransactions = ({ ticker, period }) => {
   const tableData = data?.transactionsFilter.found.map(item => item.node);
 
   return (
-    <>
+    <div>
       <Title>Transactions</Title>
-      <TransactionsTable data={tableData} />
-      <TransactionForm />
-    </>
+      <TransactionsTable data={tableData} displayStock={false} />
+    </div>
   );
 }
 
