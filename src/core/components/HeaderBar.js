@@ -74,7 +74,7 @@ const HeaderBar = () => {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Profly
           </Typography>
 
           <IconButton color="inherit">
