@@ -15,6 +15,8 @@ import {
   getCurrencyFormattedNumber,
   getCurrencyRoundedNumber,
 } from '../../../utils/numberFormat';
+import { formatCurrency } from '../../../utils/money';
+
 import TransactionsTooltip from './TransactionsTooltip';
 import DateAxisTick from './DateAxisTick';
 import TransactionDot from './TransactionDot';
@@ -48,7 +50,7 @@ const StockHistoryLineChart = ({ chartData }) => {
         <Tooltip
           content={<TransactionsTooltip />}
           labelFormatter={epochToDateOutput}
-          formatter={getCurrencyFormattedNumber}
+          formatter={formatCurrency}
         />
         <Legend />
 

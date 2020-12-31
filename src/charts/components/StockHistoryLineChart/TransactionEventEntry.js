@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { formatShortTimeOutput } from '../../../utils/dates';
-import { getCurrencyFormattedNumber } from '../../../utils/numberFormat';
+import { formatCurrency } from '../../../utils/money';
 
 
 // TODO: Use i18n
 const TransactionEventEntry = ({ transaction: t }) => {
   const atTime = formatShortTimeOutput(t.performedAt);
-  const value = getCurrencyFormattedNumber(t.value);
+  const value = formatCurrency(t.value);
   let eventDesc = "bought";
   let units = t.units;
   if (t.units <= 0) {
