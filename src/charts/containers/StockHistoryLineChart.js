@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client';
 import queries from '../queries';
 import { prepareHistoryLineChartData } from '../utils';
 import StockHistoryLineChart from '../components/StockHistoryLineChart';
+import Title from '../../core/components/Title';
+
 
 const StockHistoryLineChartContainer = ({ ticker, period = "ytd", interval = "1d"}) => {
   const { loading, error, data } = useQuery(queries.stockLineChart, { variables: { ticker, period, interval }});
@@ -19,7 +21,12 @@ const StockHistoryLineChartContainer = ({ ticker, period = "ytd", interval = "1d
   const stockHistory = data?.stockHistory;
   const chart = prepareHistoryLineChartData(stockHistory);
 
-  return <StockHistoryLineChart chartData={chart} />
+  return (
+    <>
+      <Title>History</Title>
+      <StockHistoryLineChart chartData={chart} />
+    </>
+  )
 }
 
 StockHistoryLineChartContainer.propTypes = {

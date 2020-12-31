@@ -1,5 +1,5 @@
 import React from 'react';
-import Title from '../../savings/Title';
+import Title from '../../core/components/Title';
 import queries from '../queries';
 import { useQuery } from '@apollo/client';
 import TransactionsTable from '../components/TransactionsTable';
