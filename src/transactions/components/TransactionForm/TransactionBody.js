@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { stockInfoPropType } from '../../types';
+import DecimalTextField from '../../../core/components/DecimalTextField';
 
 import StrikeActionToggle from './StrikeActionToggle';
 
@@ -25,9 +26,9 @@ const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
     setStrikeAction(action);
     onPropChange({ action });
   };
-  const handleChange = (setter) => (e) => {
+  const handleChange = (key, setter) => (e) => {
     setter(e.target.value);
-    onPropChange({ [e.target.id]: e.target.value });
+    onPropChange({ [key]: e.target.value });
   };
 
   return (
@@ -36,20 +37,20 @@ const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
 
       <StrikeActionToggle disabled={isDisabled} onChange={handleActionChange} />
 
-      <TextField
+      <DecimalTextField
         id="units"
         label="Units"
         disabled={isDisabled}
         value={units}
-        onChange={handleChange(setUnits)}
+        onChange={handleChange("units", setUnits)}
       />
 
-      <TextField
+      <DecimalTextField
         id="strikePrice"
         label="Strike Price"
         disabled={isDisabled}
         value={price}
-        onChange={handleChange(setPrice)}
+        onChange={handleChange("strikePrice", setPrice)}
         onKeyDown={handlePriceKeyDown}
       />
     </>
