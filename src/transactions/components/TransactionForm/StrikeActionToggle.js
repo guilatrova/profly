@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StrikeActionToggle = ({ onChange }) => {
+const StrikeActionToggle = ({ onChange, disabled }) => {
   const [action, setAction] = useState('buy');
 
   const handleChange = (event, newAction) => {
@@ -29,11 +29,11 @@ const StrikeActionToggle = ({ onChange }) => {
         exclusive
         onChange={handleChange}
       >
-        <ToggleButton value="buy">
+        <ToggleButton value="buy" disabled={disabled}>
           Buy
         </ToggleButton>
 
-        <ToggleButton value="sell">
+        <ToggleButton value="sell" disabled={disabled}>
           Sell
         </ToggleButton>
       </ToggleButtonGroup>
@@ -42,7 +42,8 @@ const StrikeActionToggle = ({ onChange }) => {
 }
 
 StrikeActionToggle.propTypes = {
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool
 }
 
 export default StrikeActionToggle;

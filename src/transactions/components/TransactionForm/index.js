@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import StrikePrice from './StrikePrice';
-import StrikeActionToggle from './StrikeActionToggle';
 import TickerField from './TickerField';
+import StockInfoProvider from './StockInfoProvider';
+import TransactionBody from './TransactionBody';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,28 +29,26 @@ const TransactionForm = ({onSubmit}) => {
   const classes = useStyles();
   const [entity, setEntity] = useState({ ticker: "", strikePrice: "", units: ""});
   const [strikeAction, setStrikeAction] = useState();
+  const [ticker, setTicker] = useState();
 
-  const handleChange = e => setEntity({ ...entity, [e.target.id]: e.target.value });
-  const handlePriceChange = strikePrice => setEntity({ ...entity, strikePrice})
-  const handleActionChange = action => setStrikeAction(action);
   const handleSubmit = () => onSubmit(prepareEntity(entity, strikeAction));
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off" onSubmit={(e) => e.preventDefault()}>
 
-      <TickerField />
-      <StrikeActionToggle onChange={handleActionChange} />
-      <TextField id="units" label="Units" value={entity.units} onChange={handleChange} />
-      {entity.ticker && <StrikePrice
-        ticker={entity.ticker}
-        value={entity.strikePrice}
-        onPriceChange={handlePriceChange}
-      />}
+      <TickerField onSubmitTicker={setTicker} />
+      <StockInfoProvider ticker={ticker}>
+        {(stockInfo, loading) => (
+            <>
+              <TransactionBody loading={loading} stockInfo={stockInfo} />
+            </>
+          )
+        }
+      </StockInfoProvider>
 
       <Button variant="contained" onClick={handleSubmit} color="primary">
         Add
       </Button>
-
     </form>
   );
 }
