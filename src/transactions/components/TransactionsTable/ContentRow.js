@@ -34,8 +34,8 @@ const ContentRow = ({ row, alignUnits, displayStock }) => {
       >
         {row.units}
       </TableCell>
-      <TableCell align="right">{formatCurrency(row.strikePrice)}</TableCell>
-      <TableCell align="right">{formatCurrency(row.value)}</TableCell>
+      <TableCell align="right">{formatCurrency(row.strikePrice, row.stock.currency)}</TableCell>
+      <TableCell align="right">{formatCurrency(row.value, row.stock.currency)}</TableCell>
       <TableCell align="right">
         {formatDateTimeOutput(row.performedAt)}
       </TableCell>
