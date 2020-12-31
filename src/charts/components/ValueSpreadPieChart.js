@@ -20,6 +20,7 @@ const ValueSpreadPieChart = ({ chartData }) => {
         activeIndex={activeIndex}
         activeShape={ActiveShape}
         data={chartData}
+        dataKey="value"
         cx={150}
         cy={120}
         innerRadius={60}
