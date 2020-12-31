@@ -7,7 +7,8 @@ import STOCK_ACTIONS from '../../../core/constants/stockActions';
 
 const useStyles = makeStyles((theme) => ({
   toggleContainer: {
-    margin: theme.spacing(2, 0),
+    margin: theme.spacing(0, 2),
+    display: 'inline-block'
   },
 }));
 
@@ -26,6 +27,7 @@ const StrikeActionToggle = ({ onChange, disabled }) => {
   return (
     <div className={classes.toggleContainer}>
       <ToggleButtonGroup
+        size="small"
         value={action}
         exclusive
         onChange={handleChange}
