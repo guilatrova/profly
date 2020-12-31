@@ -1,24 +1,35 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import { stockInfoPropType } from '../../types';
 
 import StrikeActionToggle from './StrikeActionToggle';
 
-
 // TODO: Implement i18n
-const TransactionBody = ({ stockInfo, loading }) => {
+const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
   const isDisabled = !stockInfo || loading;
-  const [units, setUnits] = useState("");
-  const [price, setPrice] = useState("");
+  const [units, setUnits] = useState('');
+  const [price, setPrice] = useState('');
   const [userInput, setUserInput] = useState(false);
   const [, setStrikeAction] = useState();
 
-  if (!userInput && stockInfo?.currentPrice && price !== stockInfo?.currentPrice) {
+  if (
+    !userInput &&
+    stockInfo?.currentPrice &&
+    price !== stockInfo?.currentPrice
+  ) {
     setPrice(stockInfo.currentPrice);
   }
 
-  const handleChange = setter => e => setter(e.target.value);
-  const handleActionChange = action => setStrikeAction(action);
+  const handlePriceKeyDown = () => setUserInput(true);
+  const handleActionChange = (action) => {
+    setStrikeAction(action);
+    onPropChange({ action });
+  };
+  const handleChange = (setter) => (e) => {
+    setter(e.target.value);
+    onPropChange({ [e.target.id]: e.target.value });
+  };
 
   return (
     <>
@@ -26,16 +37,30 @@ const TransactionBody = ({ stockInfo, loading }) => {
 
       <StrikeActionToggle disabled={isDisabled} onChange={handleActionChange} />
 
-      <TextField disabled={isDisabled} id="units" label="Units" value={units} onChange={handleChange(setUnits)} />
+      <TextField
+        id="units"
+        label="Units"
+        disabled={isDisabled}
+        value={units}
+        onChange={handleChange(setUnits)}
+      />
 
-      <TextField disabled={isDisabled} id="strikePrice" label="Strike Price" value={price} onChange={handleChange(setPrice)} onKeyDown={() => setUserInput(true)} />
+      <TextField
+        id="strikePrice"
+        label="Strike Price"
+        disabled={isDisabled}
+        value={price}
+        onChange={handleChange(setPrice)}
+        onKeyDown={handlePriceKeyDown}
+      />
     </>
   );
-}
+};
 
 TransactionBody.propTypes = {
-  stockInfo: PropTypes.shape({}),
-  loading: PropTypes.bool
-}
+  onPropChange: PropTypes.func.isRequired,
+  stockInfo: stockInfoPropType,
+  loading: PropTypes.bool,
+};
 
 export default TransactionBody;

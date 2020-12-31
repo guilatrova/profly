@@ -7,6 +7,11 @@ import TickerField from './TickerField';
 import StockInfoProvider from './StockInfoProvider';
 import TransactionBody from './TransactionBody';
 
+const STOCK_ACTIONS = {
+  BUY: 'buy',
+  SELL: 'sell'
+};
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -16,32 +21,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const prepareEntity = (raw, action) => {
-  if (action === 'sell') {
-    return {...raw, units: -raw.units};
+const prepareEntity = (ticker, entity) => {
+  const prepared = {ticker, ...entity};
+  delete prepared.action;
+
+  if (entity.action === STOCK_ACTIONS.SELL) {
+    prepared.units = -entity.units;
   }
 
-  return raw;
+  return prepared;
 }
 
 // TODO: Implement i18n
-const TransactionForm = ({onSubmit}) => {
+const TransactionForm = ({ onSubmit }) => {
   const classes = useStyles();
-  const [entity, setEntity] = useState({ ticker: "", strikePrice: "", units: ""});
-  const [strikeAction, setStrikeAction] = useState();
+  const [entity, setEntity] = useState({ action: STOCK_ACTIONS.BUY, units: '', strikePrice: '' });
   const [ticker, setTicker] = useState();
 
-  const handleSubmit = () => onSubmit(prepareEntity(entity, strikeAction));
+  const handleSubmit = () => onSubmit(prepareEntity(ticker, entity));
+  const handlePropChange = (modified) => setEntity({ ...entity, ...modified});
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    handleSubmit();
+  };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+    <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
 
       <TickerField onSubmitTicker={setTicker} />
+
       <StockInfoProvider ticker={ticker}>
         {(stockInfo, loading) => (
-            <>
-              <TransactionBody loading={loading} stockInfo={stockInfo} />
-            </>
+            <TransactionBody
+              loading={loading}
+              stockInfo={stockInfo}
+              onPropChange={handlePropChange}
+            />
           )
         }
       </StockInfoProvider>
