@@ -7,18 +7,17 @@ import StrikeActionToggle from './StrikeActionToggle';
 
 // TODO: Implement i18n
 const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
-  const isDisabled = !stockInfo || loading;
   const [units, setUnits] = useState('');
   const [price, setPrice] = useState('');
   const [userInput, setUserInput] = useState(false);
   const [, setStrikeAction] = useState();
 
-  if (
-    !userInput &&
-    stockInfo?.currentPrice &&
-    price !== stockInfo?.currentPrice
-  ) {
+  const isDisabled = !stockInfo || loading;
+  const isPriceUnset = stockInfo?.currentPrice && price !== stockInfo?.currentPrice;
+
+  if (!userInput && isPriceUnset) {
     setPrice(stockInfo.currentPrice);
+    onPropChange({ strikePrice: stockInfo.currentPrice });
   }
 
   const handlePriceKeyDown = () => setUserInput(true);
