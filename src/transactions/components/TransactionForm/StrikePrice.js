@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { useQuery } from '@apollo/client';
-import queries from '../queries';
+import queries from '../../queries';
 
 
 // TODO: Implement i18n

@@ -7,6 +7,7 @@ import React from "react";
 import { hot } from "react-hot-loader";
 import Dashboard from '../../savings/Dashboard';
 import StockPage from '../../stocks/containers/StockPage';
+import TransactionForm from '../../transactions/containers/TransactionFormContainer';
 import AppWrapper from './AppWrapper';
 
 // This is a class-based component because the current
@@ -19,6 +20,7 @@ class App extends React.Component {
       <AppWrapper>
         <Switch>
           <Route exact path="/" component={Dashboard} />
+          <Route path="/transactions" component={TransactionForm} />
           <Route path="/stocks/:ticker" component={StockPage} />
           <Route component={NotFoundPage} />
         </Switch>

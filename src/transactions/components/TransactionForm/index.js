@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 
 import StrikePrice from './StrikePrice';
 import StrikeActionToggle from './StrikeActionToggle';
+import TickerField from './TickerField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +39,7 @@ const TransactionForm = ({onSubmit}) => {
   return (
     <form className={classes.root} noValidate autoComplete="off">
 
-      <TextField id="ticker" label="Ticker" value={entity.ticker} onChange={handleChange} />
+      <TickerField />
       <StrikeActionToggle onChange={handleActionChange} />
       <TextField id="units" label="Units" value={entity.units} onChange={handleChange} />
       {entity.ticker && <StrikePrice
