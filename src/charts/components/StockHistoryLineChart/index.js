@@ -11,10 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { epochToDateOutput } from '../../../utils/dates';
-import {
-  getCurrencyFormattedNumber,
-  getCurrencyRoundedNumber,
-} from '../../../utils/numberFormat';
+import { getCurrencyRoundedNumber } from '../../../utils/numberFormat';
 import { formatCurrency } from '../../../utils/money';
 
 import TransactionsTooltip from './TransactionsTooltip';
