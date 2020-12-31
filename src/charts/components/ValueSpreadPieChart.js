@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { PieChart, Pie, Tooltip, Cell, Sector } from 'recharts';
+import { PieChart, Pie, Cell } from 'recharts';
 import { randomColor } from '../../utils/colors';
 import ActiveShape from './ValueSpreadActiveShape';
 
@@ -34,7 +34,6 @@ const ValueSpreadPieChart = ({ chartData }) => {
         ))}
       </Pie>
 
-      <Tooltip />
     </PieChart>
   );
 };
