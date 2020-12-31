@@ -38,8 +38,17 @@ const getStockInfo = gql`
   }
 `;
 
+const deleteTransaction = gql`
+  mutation deleteTransaction($id: ID!) {
+    deleteTransaction(id: $id) {
+      ok
+    }
+  }
+`;
+
 export default {
   addTransaction,
   getStockInfo,
-  listTransactions
+  listTransactions,
+  deleteTransaction
 }

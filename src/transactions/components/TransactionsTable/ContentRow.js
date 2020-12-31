@@ -7,6 +7,9 @@ import { formatDateTimeOutput } from '../../../utils/dates';
 import { formatCurrency } from '../../../utils/money';
 import { transactionPropType } from '../../types';
 import TickerLink from '../../../core/components/TickerLink';
+import Actions from './Actions';
+import { useMutation } from '@apollo/client';
+import queries from '../../queries';
 
 const useStyles = makeStyles((theme) => ({
   boughtUnits: {
@@ -20,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ContentRow = ({ row, alignUnits, displayStock }) => {
   const classes = useStyles();
+  const [handleDelete] = useMutation(queries.deleteTransaction, { variables: { id: row.id }});
 
   return (
     <TableRow hover>
@@ -38,6 +42,9 @@ const ContentRow = ({ row, alignUnits, displayStock }) => {
       <TableCell align="right">{formatCurrency(row.value, row.stock.currency)}</TableCell>
       <TableCell align="right">
         {formatDateTimeOutput(row.performedAt)}
+      </TableCell>
+      <TableCell>
+        <Actions onDelete={handleDelete} />
       </TableCell>
     </TableRow>
   );
