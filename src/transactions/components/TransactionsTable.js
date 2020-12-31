@@ -18,20 +18,20 @@ const TransactionsTable = ({ data }) => {
       <TableHead>
         <TableRow>
           <TableCell>Stock</TableCell>
-          <TableCell>Date</TableCell>
-          <TableCell align="right">Strike Price</TableCell>
           <TableCell align="right">Units</TableCell>
+          <TableCell align="right">Strike Price</TableCell>
           <TableCell align="right">Value</TableCell>
+          <TableCell align="right">Date</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {data.map((row) => (
           <TableRow key={row.id}>
             <TableCell><TickerLink>{row.stock.ticker}</TickerLink></TableCell>
-            <TableCell>{formatDateTimeOutput(row.performedAt)}</TableCell>
-            <TableCell align="right">{formatCurrency(row.strikePrice)}</TableCell>
             <TableCell align="right">{row.units}</TableCell>
+            <TableCell align="right">{formatCurrency(row.strikePrice)}</TableCell>
             <TableCell align="right">{formatCurrency(row.value)}</TableCell>
+            <TableCell align="right">{formatDateTimeOutput(row.performedAt)}</TableCell>
           </TableRow>
         ))}
       </TableBody>
