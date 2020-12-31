@@ -16,6 +16,12 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
   },
+  paperless: {
+    padding: theme.spacing(2),
+  },
+  rightAligned: {
+    textAlign: 'right'
+  },
   fixedHeight: {
     height: 240,
   },
@@ -33,12 +39,12 @@ const StockPage = () => {
         <Typography variant="h4">{ticker}</Typography>
       </Grid>
 
-      <Grid container alignContent="flex-end">
-        <Grid item xs={12}>
+      <Grid container className={classes.paperless}>
+        <Grid item xs={12} md={6}>
           <StockAverageSummary ticker={ticker} />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} md={6} className={classes.rightAligned}>
           <PeriodToggle onChange={setPeriod} />
         </Grid>
       </Grid>
