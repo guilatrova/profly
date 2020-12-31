@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { formatCurrency } from '../../utils/money';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 
 const useStyles = makeStyles({
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ValueCard = ({ title, isMoney = false, children = null}) => {
+const ValueCard = ({ title, loading = false, isMoney = false, children = null}) => {
   const classes = useStyles();
   const displayValue = isMoney ? formatCurrency(children || 0) : children;
 
@@ -35,7 +36,7 @@ const ValueCard = ({ title, isMoney = false, children = null}) => {
         </Typography>
 
         <Typography variant="h5" component="h2">
-          {displayValue}
+          {loading ? <Skeleton /> : displayValue}
         </Typography>
       </CardContent>
     </Card>
@@ -44,6 +45,7 @@ const ValueCard = ({ title, isMoney = false, children = null}) => {
 
 ValueCard.propTypes = {
   title: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
   isMoney: PropTypes.bool,
   children: PropTypes.number
 }
