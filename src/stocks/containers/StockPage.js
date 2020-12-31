@@ -8,6 +8,8 @@ import StockAverageSummary from './StockAverageSummary';
 import StockTransactions from './StockTransactions';
 import PeriodToggle from '../components/PeriodToggle';
 import Typography from '@material-ui/core/Typography';
+import StockBreadcrumbs from '../components/StockBreadcrumbs';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,6 +39,7 @@ const StockPage = () => {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Typography variant="h4">{ticker}</Typography>
+        <StockBreadcrumbs location={ticker} />
       </Grid>
 
       <Grid container className={classes.paperless}>
