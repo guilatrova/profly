@@ -43,7 +43,7 @@ const ContentRow = ({ row, alignUnits, displayStock }) => {
       <TableCell align="right">
         {formatDateTimeOutput(row.performedAt)}
       </TableCell>
-      <TableCell>
+      <TableCell align="right">
         <Actions onDelete={handleDelete} />
       </TableCell>
     </TableRow>
