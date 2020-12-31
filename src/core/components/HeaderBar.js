@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import AppDrawer, { drawerWidth } from './AppDrawer';
+import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +57,7 @@ const HeaderBar = () => {
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          <IconButton
+          {drawerEnabled && <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
@@ -65,7 +65,7 @@ const HeaderBar = () => {
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton>}
 
           <Typography
             component="h1"

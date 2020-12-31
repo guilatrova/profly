@@ -10,6 +10,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems, secondaryListItems } from './drawerItems';
 
 export const drawerWidth = 240;
+export const drawerEnabled = false;
 
 const useStyles = makeStyles((theme) => ({
   toolbarIcon: {
@@ -44,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
 
 const AppDrawer = ({ open, toggleDrawer }) => {
   const classes = useStyles();
+
+  if (!drawerEnabled) return <></>;
 
   return (
     <Drawer
