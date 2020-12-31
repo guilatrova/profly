@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,9 +10,19 @@ import { formatCurrency } from '../../utils/money';
 import { transactionsPropType } from '../types';
 import TickerLink from '../../core/components/TickerLink';
 
+const useStyles = makeStyles((theme) => ({
+  boughtUnits: {
+    color: theme.palette.success.main,
+  },
+  soldUnits: {
+    color: theme.palette.error.main
+  }
+}));
+
 // TODO: Use i18n
 // TODO: Implement pagination and order by
 const TransactionsTable = ({ data }) => {
+  const classes = useStyles();
 
   return (
     <Table size="small">
@@ -26,9 +37,9 @@ const TransactionsTable = ({ data }) => {
       </TableHead>
       <TableBody>
         {data.map((row) => (
-          <TableRow key={row.id}>
+          <TableRow key={row.id} hover>
             <TableCell><TickerLink>{row.stock.ticker}</TickerLink></TableCell>
-            <TableCell align="right">{row.units}</TableCell>
+            <TableCell align="right" className={row.units >= 0 ? classes.boughtUnits : classes.soldUnits}>{row.units}</TableCell>
             <TableCell align="right">{formatCurrency(row.strikePrice)}</TableCell>
             <TableCell align="right">{formatCurrency(row.value)}</TableCell>
             <TableCell align="right">{formatDateTimeOutput(row.performedAt)}</TableCell>
