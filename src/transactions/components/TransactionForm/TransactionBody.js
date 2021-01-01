@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import DecimalTextField from '../../../core/components/DecimalTextField';
-import { KeyboardDateTimePicker } from '@material-ui/pickers';
+import { DateTimePicker } from '@material-ui/pickers';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useStockInfo } from '../StockInfoProvider/context';
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 import TickerField from './TickerField';
@@ -80,7 +79,7 @@ const TransactionBody = ({
         onChange={handleInputChange('strikePrice')}
       />
 
-      <KeyboardDateTimePicker
+      <DateTimePicker
         id="performedAt"
         label="Performed at"
         variant="inline"
