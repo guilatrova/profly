@@ -27,6 +27,7 @@ const transactionsFromStock = gql`
             id
             ticker
           }
+          id
           units
           value
           strikePrice
