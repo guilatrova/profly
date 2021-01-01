@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { stockInfoPropType } from '../../types';
 import DecimalTextField from '../../../core/components/DecimalTextField';
 import { KeyboardDateTimePicker } from '@material-ui/pickers';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useStockInfo } from '../StockInfoProvider/context';
 
 import StrikeActionToggle from './StrikeActionToggle';
 
 // TODO: Implement i18n
-const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
+const TransactionBody = ({ onPropChange }) => {
+  const { stock: stockInfo, loadingStock: loading } = useStockInfo();
   const [units, setUnits] = useState('');
   const [price, setPrice] = useState('');
   const [performedDateTime, setPerformedDateTime] = useState(new Date());
@@ -75,9 +76,7 @@ const TransactionBody = ({ stockInfo, onPropChange, loading }) => {
 };
 
 TransactionBody.propTypes = {
-  onPropChange: PropTypes.func.isRequired,
-  stockInfo: stockInfoPropType,
-  loading: PropTypes.bool,
+  onPropChange: PropTypes.func.isRequired
 };
 
 export default TransactionBody;

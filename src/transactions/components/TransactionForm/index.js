@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import TickerField from './TickerField';
-import StockInfoProvider from './StockInfoProvider';
+import StockInfoProvider from '../StockInfoProvider';
+// import StockInfoProvider from './StockInfoProvider';
 import TransactionBody from './TransactionBody';
 import STOCK_ACTIONS from '../../../core/constants/stockActions';
 
@@ -45,17 +46,11 @@ const TransactionForm = ({ onSubmit }) => {
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
 
-      <TickerField onSubmitTicker={setTicker} />
-
       <StockInfoProvider ticker={ticker}>
-        {(stockInfo, loading) => (
-            <TransactionBody
-              loading={loading}
-              stockInfo={stockInfo}
-              onPropChange={handlePropChange}
-            />
-          )
-        }
+        <TickerField onSubmitTicker={setTicker} />
+
+        <TransactionBody onPropChange={handlePropChange} />
+
       </StockInfoProvider>
 
       <Button variant="contained" onClick={handleSubmit} color="primary">

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import queries from '../../queries';
 import ErrorHandler from '../../../core/components/ApolloErrorHandler';
+import { StockInfoContext } from './context';
 
 
 
@@ -13,11 +14,16 @@ const StockInfoProvider = ({ ticker, children }) => {
 
   if (error) return <ErrorHandler>{error}</ErrorHandler>;
 
-  return children(data?.stockCurrentInfo, loading);
+  const value = { stock: data?.stockCurrentInfo, loadingStock: loading };
+  return (
+    <StockInfoContext.Provider value={value}>
+      {children}
+    </StockInfoContext.Provider>
+  )
 }
 
 StockInfoProvider.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.node,
   ticker: PropTypes.string,
 }
 
