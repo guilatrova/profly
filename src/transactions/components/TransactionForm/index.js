@@ -29,6 +29,7 @@ const emptyEntity = {
 const TransactionForm = ({ onSubmit }) => {
   const classes = useStyles();
   const [entity, setEntity] = useState({ ...emptyEntity });
+  const [ticker, setTicker] = useState();
 
   const handleSubmit = () => {
     onSubmit(prepareEntity(entity));
@@ -47,9 +48,10 @@ const TransactionForm = ({ onSubmit }) => {
       autoComplete="off"
       onSubmit={handleFormSubmit}
     >
-      <StockInfoProvider ticker={entity.ticker}>
+      <StockInfoProvider ticker={ticker}>
         <TransactionBody
           onPropChange={handlePropChange}
+          onSubmitTicker={setTicker}
           entity={entity}
         />
       </StockInfoProvider>

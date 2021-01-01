@@ -9,7 +9,7 @@ import TickerField from './TickerField';
 import StrikeActionToggle from './StrikeActionToggle';
 
 // TODO: Implement i18n
-const TransactionBody = ({ onPropChange, entity }) => {
+const TransactionBody = ({ onPropChange, onSubmitTicker, entity }) => {
   const { stock: stockInfo, loadingStock: loading } = useStockInfo();
   const [userInput, setUserInput] = useState(false);
   console.log("entity", entity);
@@ -28,7 +28,11 @@ const TransactionBody = ({ onPropChange, entity }) => {
 
   return (
     <>
-      <TickerField onSubmitTicker={handleChange('ticker')} />
+      <TickerField
+        value={entity.ticker}
+        onChange={handleChange('ticker')}
+        onSubmitTicker={onSubmitTicker}
+      />
 
       {loading && <CircularProgress />}
       <p>{stockInfo?.name}</p>

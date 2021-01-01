@@ -5,9 +5,7 @@ import TextField from '@material-ui/core/TextField';
 const ENTER_KEY = 13;
 
 
-const TickerField = ({ onSubmitTicker }) => {
-  const [ticker, setTicker] = useState("");
-
+const TickerField = ({ value, onChange, onSubmitTicker }) => {
   const handleKeyPress = (e) => {
     if (e.keyCode == ENTER_KEY) {
       onSubmitTicker(e.target.value);
@@ -15,19 +13,23 @@ const TickerField = ({ onSubmitTicker }) => {
   };
 
   const handleChange = (e) => {
-    setTicker(e.target.value.toUpperCase());
+    onChange(e.target.value.toUpperCase());
   };
 
-  return <TextField
-    id="ticker"
-    label="Ticker"
-    value={ticker}
-    onChange={handleChange}
-    onKeyDown={handleKeyPress}
-  />;
+  return (
+    <TextField
+      id="ticker"
+      label="Ticker"
+      value={value}
+      onChange={handleChange}
+      onKeyDown={handleKeyPress}
+    />
+  )
 };
 
 TickerField.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   onSubmitTicker: PropTypes.func.isRequired,
 };
 
