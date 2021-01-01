@@ -3,43 +3,34 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import TickerField from './TickerField';
 import StockInfoProvider from '../StockInfoProvider';
-// import StockInfoProvider from './StockInfoProvider';
 import TransactionBody from './TransactionBody';
 import STOCK_ACTIONS from '../../../core/constants/stockActions';
+import { prepareEntity } from './utils';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
+    // '& > *': {
+    //   margin: theme.spacing(1),
+    //   width: '25ch',
+    // },
   },
 }));
 
-const prepareEntity = (ticker, entity) => {
-  const prepared = { ticker, ...entity };
-  delete prepared.action;
+const emptyEntity = {
+  ticker: '',
+  action: STOCK_ACTIONS.BUY,
+  units: '',
+  strikePrice: '',
+  performedAt: new Date()
+}
 
-  if (entity.action === STOCK_ACTIONS.SELL) {
-    prepared.units = -entity.units;
-  }
 
-  return prepared;
-};
-
-// TODO: Implement i18n
 const TransactionForm = ({ onSubmit }) => {
   const classes = useStyles();
-  const [entity, setEntity] = useState({
-    action: STOCK_ACTIONS.BUY,
-    units: '',
-    strikePrice: '',
-  });
-  const [ticker, setTicker] = useState();
+  const [entity, setEntity] = useState({ ...emptyEntity });
 
-  const handleSubmit = () => onSubmit(prepareEntity(ticker, entity));
+  const handleSubmit = () => onSubmit(prepareEntity(entity));
   const handlePropChange = (modified) => setEntity({ ...entity, ...modified });
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -53,10 +44,11 @@ const TransactionForm = ({ onSubmit }) => {
       autoComplete="off"
       onSubmit={handleFormSubmit}
     >
-      <StockInfoProvider ticker={ticker}>
-        <TickerField onSubmitTicker={setTicker} />
-
-        <TransactionBody onPropChange={handlePropChange} />
+      <StockInfoProvider ticker={entity.ticker}>
+        <TransactionBody
+          onPropChange={handlePropChange}
+          entity={entity}
+        />
       </StockInfoProvider>
 
       <Button variant="contained" onClick={handleSubmit} color="primary">

@@ -5,61 +5,55 @@ import { KeyboardDateTimePicker } from '@material-ui/pickers';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useStockInfo } from '../StockInfoProvider/context';
 
+import TickerField from './TickerField';
 import StrikeActionToggle from './StrikeActionToggle';
 
 // TODO: Implement i18n
-const TransactionBody = ({ onPropChange }) => {
+const TransactionBody = ({ onPropChange, entity }) => {
   const { stock: stockInfo, loadingStock: loading } = useStockInfo();
-  const [units, setUnits] = useState('');
-  const [price, setPrice] = useState('');
-  const [performedDateTime, setPerformedDateTime] = useState(new Date());
   const [userInput, setUserInput] = useState(false);
-  const [, setStrikeAction] = useState();
+  console.log("entity", entity);
 
   const isDisabled = !stockInfo || loading;
   const isPriceUnset =
-    stockInfo?.currentPrice && price !== stockInfo?.currentPrice;
+    stockInfo?.currentPrice && entity.strikePrice !== stockInfo.currentPrice;
 
   if (!userInput && isPriceUnset) {
-    setPrice(stockInfo.currentPrice);
     onPropChange({ strikePrice: stockInfo.currentPrice });
   }
 
   const handlePriceKeyDown = () => setUserInput(true);
-  const handleActionChange = (action) => {
-    setStrikeAction(action);
-    onPropChange({ action });
-  };
-  const handleChange = (key, setter) => (e) => {
-    setter(e.target.value);
-    onPropChange({ [key]: e.target.value });
-  };
-  const handleDateChange = (performedAt) => {
-    setPerformedDateTime(performedAt);
-    onPropChange({ performedAt });
-  };
+  const handleActionChange = (action) => onPropChange({ action });
+  const handleChange = (key) => (e) => onPropChange({ [key]: e.target.value });
+  const handleDateChange = (performedAt) => onPropChange({ performedAt });
+  const handleTickerChange = (ticker) => onPropChange({ ticker });
 
   return (
     <>
+      <TickerField onSubmitTicker={handleTickerChange} />
+
       {loading && <CircularProgress />}
       <p>{stockInfo?.name}</p>
 
-      <StrikeActionToggle disabled={isDisabled} onChange={handleActionChange} />
+      <StrikeActionToggle
+        disabled={isDisabled}
+        onChange={handleActionChange}
+      />
 
       <DecimalTextField
         id="units"
         label="Units"
         disabled={isDisabled}
-        value={units}
-        onChange={handleChange('units', setUnits)}
+        value={entity.units}
+        onChange={handleChange('units')}
       />
 
       <DecimalTextField
         id="strikePrice"
         label="Strike Price"
         disabled={isDisabled}
-        value={price}
-        onChange={handleChange('strikePrice', setPrice)}
+        value={entity.strikePrice}
+        onChange={handleChange('strikePrice')}
         onKeyDown={handlePriceKeyDown}
       />
 
@@ -68,9 +62,9 @@ const TransactionBody = ({ onPropChange }) => {
         label="Performed at"
         variant="inline"
         ampm={false}
-        value={performedDateTime}
-        onChange={handleDateChange}
         format="dd/MM/yyyy HH:mm"
+        value={entity.performedAt}
+        onChange={handleDateChange}
       />
     </>
   );
@@ -78,6 +72,7 @@ const TransactionBody = ({ onPropChange }) => {
 
 TransactionBody.propTypes = {
   onPropChange: PropTypes.func.isRequired,
+  entity: PropTypes.any,
 };
 
 export default TransactionBody;
