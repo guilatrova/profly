@@ -34,7 +34,8 @@ TickerField.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmitTicker: PropTypes.func.isRequired,
-  error: PropTypes.any
+  error: PropTypes.any,
+  helperText: PropTypes.string
 };
 
 export default TickerField;
