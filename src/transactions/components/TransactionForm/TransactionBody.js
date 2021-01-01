@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import DecimalTextField from '../../../core/components/DecimalTextField';
 import { KeyboardDateTimePicker } from '@material-ui/pickers';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useStockInfo } from '../StockInfoProvider/context';
+import Box from '@material-ui/core/Box';
 
 import TickerField from './TickerField';
 import StrikeActionToggle from './StrikeActionToggle';
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    margin: theme.spacing(2, 1)
+  }
+}));
+
 const TransactionBody = ({ onPropChange, onSubmitTicker, entity }) => {
+  const classes = useStyles();
   const { stock: stockInfo, loadingStock: loading } = useStockInfo();
   const isDisabled = !stockInfo || loading;
 
@@ -23,46 +32,53 @@ const TransactionBody = ({ onPropChange, onSubmitTicker, entity }) => {
 
   return (
     <>
-      <TickerField
-        value={entity.ticker}
-        onChange={handleChange('ticker')}
-        onSubmitTicker={onSubmitTicker}
-      />
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignContent="center"
+        className={classes.container}
+      >
+        <TickerField
+          value={entity.ticker}
+          onChange={handleChange('ticker')}
+          onSubmitTicker={onSubmitTicker}
+        />
 
-      {loading && <CircularProgress />}
-      <p>{stockInfo?.name}</p>
+        {loading && <CircularProgress />}
+        {/* <p>{stockInfo?.name}</p> */}
 
-      <StrikeActionToggle
-        disabled={isDisabled}
-        value={entity.action}
-        onChange={handleChange('action')}
-      />
+        <StrikeActionToggle
+          disabled={isDisabled}
+          value={entity.action}
+          onChange={handleChange('action')}
+        />
 
-      <DecimalTextField
-        id="units"
-        label="Units"
-        disabled={isDisabled}
-        value={entity.units}
-        onChange={handleInputChange('units')}
-      />
+        <DecimalTextField
+          id="units"
+          label="Units"
+          disabled={isDisabled}
+          value={entity.units}
+          onChange={handleInputChange('units')}
+        />
 
-      <DecimalTextField
-        id="strikePrice"
-        label="Strike Price"
-        disabled={isDisabled}
-        value={entity.strikePrice}
-        onChange={handleInputChange('strikePrice')}
-      />
+        <DecimalTextField
+          id="strikePrice"
+          label="Strike Price"
+          disabled={isDisabled}
+          value={entity.strikePrice}
+          onChange={handleInputChange('strikePrice')}
+        />
 
-      <KeyboardDateTimePicker
-        id="performedAt"
-        label="Performed at"
-        variant="inline"
-        ampm={false}
-        format="dd/MM/yyyy HH:mm"
-        value={entity.performedAt}
-        onChange={handleChange('performedAt')}
-      />
+        <KeyboardDateTimePicker
+          id="performedAt"
+          label="Performed at"
+          variant="inline"
+          ampm={false}
+          format="dd/MM/yyyy HH:mm"
+          value={entity.performedAt}
+          onChange={handleChange('performedAt')}
+        />
+      </Box>
     </>
   );
 };

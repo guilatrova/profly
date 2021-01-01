@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -8,7 +8,8 @@ import STOCK_ACTIONS from '../../../core/constants/stockActions';
 const useStyles = makeStyles((theme) => ({
   toggleContainer: {
     margin: theme.spacing(0, 2),
-    display: 'inline-block'
+    display: 'flex',
+    alignItems: 'center',
   },
 }));
 
