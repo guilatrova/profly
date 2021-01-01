@@ -17,7 +17,8 @@ const TransactionBody = ({ onPropChange }) => {
   const [, setStrikeAction] = useState();
 
   const isDisabled = !stockInfo || loading;
-  const isPriceUnset = stockInfo?.currentPrice && price !== stockInfo?.currentPrice;
+  const isPriceUnset =
+    stockInfo?.currentPrice && price !== stockInfo?.currentPrice;
 
   if (!userInput && isPriceUnset) {
     setPrice(stockInfo.currentPrice);
@@ -33,7 +34,7 @@ const TransactionBody = ({ onPropChange }) => {
     setter(e.target.value);
     onPropChange({ [key]: e.target.value });
   };
-  const handleDateChange = performedAt => {
+  const handleDateChange = (performedAt) => {
     setPerformedDateTime(performedAt);
     onPropChange({ performedAt });
   };
@@ -50,7 +51,7 @@ const TransactionBody = ({ onPropChange }) => {
         label="Units"
         disabled={isDisabled}
         value={units}
-        onChange={handleChange("units", setUnits)}
+        onChange={handleChange('units', setUnits)}
       />
 
       <DecimalTextField
@@ -58,7 +59,7 @@ const TransactionBody = ({ onPropChange }) => {
         label="Strike Price"
         disabled={isDisabled}
         value={price}
-        onChange={handleChange("strikePrice", setPrice)}
+        onChange={handleChange('strikePrice', setPrice)}
         onKeyDown={handlePriceKeyDown}
       />
 
@@ -76,7 +77,7 @@ const TransactionBody = ({ onPropChange }) => {
 };
 
 TransactionBody.propTypes = {
-  onPropChange: PropTypes.func.isRequired
+  onPropChange: PropTypes.func.isRequired,
 };
 
 export default TransactionBody;

@@ -9,7 +9,6 @@ import StockInfoProvider from '../StockInfoProvider';
 import TransactionBody from './TransactionBody';
 import STOCK_ACTIONS from '../../../core/constants/stockActions';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const prepareEntity = (ticker, entity) => {
-  const prepared = {ticker, ...entity};
+  const prepared = { ticker, ...entity };
   delete prepared.action;
 
   if (entity.action === STOCK_ACTIONS.SELL) {
@@ -28,29 +27,36 @@ const prepareEntity = (ticker, entity) => {
   }
 
   return prepared;
-}
+};
 
 // TODO: Implement i18n
 const TransactionForm = ({ onSubmit }) => {
   const classes = useStyles();
-  const [entity, setEntity] = useState({ action: STOCK_ACTIONS.BUY, units: '', strikePrice: '' });
+  const [entity, setEntity] = useState({
+    action: STOCK_ACTIONS.BUY,
+    units: '',
+    strikePrice: '',
+  });
   const [ticker, setTicker] = useState();
 
   const handleSubmit = () => onSubmit(prepareEntity(ticker, entity));
-  const handlePropChange = (modified) => setEntity({ ...entity, ...modified});
+  const handlePropChange = (modified) => setEntity({ ...entity, ...modified });
   const handleFormSubmit = (e) => {
     e.preventDefault();
     handleSubmit();
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
-
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleFormSubmit}
+    >
       <StockInfoProvider ticker={ticker}>
         <TickerField onSubmitTicker={setTicker} />
 
         <TransactionBody onPropChange={handlePropChange} />
-
       </StockInfoProvider>
 
       <Button variant="contained" onClick={handleSubmit} color="primary">
@@ -58,10 +64,10 @@ const TransactionForm = ({ onSubmit }) => {
       </Button>
     </form>
   );
-}
+};
 
 TransactionForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-}
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default TransactionForm;
