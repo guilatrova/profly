@@ -30,12 +30,12 @@ const TransactionForm = ({ onSubmit }) => {
   const [entity, setEntity] = useState({ ...emptyEntity });
   const [ticker, setTicker] = useState();
 
+  const handlePropChange = (modified) => setEntity({ ...entity, ...modified });
   const handleSubmit = () => {
     onSubmit(prepareEntity(entity));
     setTicker();
-    setEntity(emptyEntity);
+    setEntity({ ...emptyEntity });
   };
-  const handlePropChange = (modified) => setEntity({ ...entity, ...modified });
   const handleFormSubmit = (e) => {
     e.preventDefault();
     handleSubmit();
