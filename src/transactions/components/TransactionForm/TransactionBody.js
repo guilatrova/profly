@@ -31,6 +31,7 @@ const TransactionBody = ({
   const classes = useStyles();
   const { stock: stockInfo, loadingStock: loading, error } = useStockInfo();
   const isDisabled = !stockInfo || loading;
+  const tickerHelperText = error ? "Ticker not found" : stockInfo?.name;
 
   useEffect(() => {
     if (stockInfo) {
@@ -52,12 +53,12 @@ const TransactionBody = ({
         className={classes.container}
       >
         <TickerField
+          error={error}
+          helperText={tickerHelperText}
           value={entity.ticker}
           onChange={handleChange('ticker')}
           onSubmitTicker={onSubmitTicker}
         />
-
-        {/* <p>{stockInfo?.name}</p> */}
 
         {error ? (
           <ErrorHandler>{error}</ErrorHandler>
