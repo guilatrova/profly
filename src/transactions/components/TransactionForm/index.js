@@ -30,7 +30,10 @@ const TransactionForm = ({ onSubmit }) => {
   const classes = useStyles();
   const [entity, setEntity] = useState({ ...emptyEntity });
 
-  const handleSubmit = () => onSubmit(prepareEntity(entity));
+  const handleSubmit = () => {
+    onSubmit(prepareEntity(entity));
+    setEntity(emptyEntity);
+  }
   const handlePropChange = (modified) => setEntity({ ...entity, ...modified });
   const handleFormSubmit = (e) => {
     e.preventDefault();
