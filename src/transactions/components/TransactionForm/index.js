@@ -28,10 +28,7 @@ const TransactionForm = ({ onSubmit }) => {
       setEntity({ ...emptyEntity });
     }
   };
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    handleSubmit();
-  };
+  const handleFormSubmit = (e) => e.preventDefault();
 
   return (
     <form
