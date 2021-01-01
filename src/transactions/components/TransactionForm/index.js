@@ -32,6 +32,7 @@ const TransactionForm = ({ onSubmit }) => {
 
   const handleSubmit = () => {
     onSubmit(prepareEntity(entity));
+    setTicker();
     setEntity(emptyEntity);
   };
   const handlePropChange = (modified) => setEntity({ ...entity, ...modified });
