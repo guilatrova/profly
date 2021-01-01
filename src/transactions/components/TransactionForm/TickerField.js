@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
 const ENTER_KEY = 13;
-
 
 const TickerField = ({ value, onChange, onSubmitTicker }) => {
   const handleKeyPress = (e) => {
@@ -24,7 +23,7 @@ const TickerField = ({ value, onChange, onSubmitTicker }) => {
       onChange={handleChange}
       onKeyDown={handleKeyPress}
     />
-  )
+  );
 };
 
 TickerField.propTypes = {

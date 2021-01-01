@@ -22,9 +22,8 @@ const emptyEntity = {
   action: STOCK_ACTIONS.BUY,
   units: '',
   strikePrice: '',
-  performedAt: new Date()
-}
-
+  performedAt: new Date(),
+};
 
 const TransactionForm = ({ onSubmit }) => {
   const classes = useStyles();
@@ -34,7 +33,7 @@ const TransactionForm = ({ onSubmit }) => {
   const handleSubmit = () => {
     onSubmit(prepareEntity(entity));
     setEntity(emptyEntity);
-  }
+  };
   const handlePropChange = (modified) => setEntity({ ...entity, ...modified });
   const handleFormSubmit = (e) => {
     e.preventDefault();

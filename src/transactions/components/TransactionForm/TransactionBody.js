@@ -8,11 +8,10 @@ import { useStockInfo } from '../StockInfoProvider/context';
 import TickerField from './TickerField';
 import StrikeActionToggle from './StrikeActionToggle';
 
-// TODO: Implement i18n
 const TransactionBody = ({ onPropChange, onSubmitTicker, entity }) => {
   const { stock: stockInfo, loadingStock: loading } = useStockInfo();
   const [userInput, setUserInput] = useState(false);
-  console.log("entity", entity);
+  console.log('entity', entity);
 
   const isDisabled = !stockInfo || loading;
   const isPriceUnset =
@@ -23,8 +22,9 @@ const TransactionBody = ({ onPropChange, onSubmitTicker, entity }) => {
   }
 
   const handlePriceKeyDown = () => setUserInput(true);
-  const handleInputChange = (key) => (e) => onPropChange({ [key]: e.target.value });
-  const handleChange = (key) => value => onPropChange({ [key]: value });
+  const handleInputChange = (key) => (e) =>
+    onPropChange({ [key]: e.target.value });
+  const handleChange = (key) => (value) => onPropChange({ [key]: value });
 
   return (
     <>
@@ -75,6 +75,7 @@ const TransactionBody = ({ onPropChange, onSubmitTicker, entity }) => {
 
 TransactionBody.propTypes = {
   onPropChange: PropTypes.func.isRequired,
+  onSubmitTicker: PropTypes.func.isRequired,
   entity: PropTypes.any,
 };
 
