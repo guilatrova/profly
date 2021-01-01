@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import DecimalTextField from '../../../core/components/DecimalTextField';
 import { DateTimePicker } from '@material-ui/pickers';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { useStockInfo } from '../StockInfoProvider/context';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import TickerField from './TickerField';
 import StrikeActionToggle from './StrikeActionToggle';
@@ -41,60 +41,62 @@ const TransactionBody = ({
   const handleChange = (key) => (value) => onPropChange({ [key]: value });
 
   return (
-    <Box
-      display="flex"
-      flexWrap="wrap"
-      justifyContent="space-between"
-      alignContent="center"
-      className={classes.container}
-    >
-      <TickerField
-        value={entity.ticker}
-        onChange={handleChange('ticker')}
-        onSubmitTicker={onSubmitTicker}
-      />
+    <>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="space-between"
+        alignContent="center"
+        className={classes.container}
+      >
+        <TickerField
+          value={entity.ticker}
+          onChange={handleChange('ticker')}
+          onSubmitTicker={onSubmitTicker}
+        />
 
-      {loading && <CircularProgress />}
-      {/* <p>{stockInfo?.name}</p> */}
+        {/* <p>{stockInfo?.name}</p> */}
 
-      <StrikeActionToggle
-        disabled={isDisabled}
-        value={entity.action}
-        onChange={handleChange('action')}
-      />
+        <StrikeActionToggle
+          disabled={isDisabled}
+          value={entity.action}
+          onChange={handleChange('action')}
+        />
 
-      <DecimalTextField
-        id="units"
-        label="Units"
-        disabled={isDisabled}
-        value={entity.units}
-        onChange={handleInputChange('units')}
-      />
+        <DecimalTextField
+          id="units"
+          label="Units"
+          disabled={isDisabled}
+          value={entity.units}
+          onChange={handleInputChange('units')}
+        />
 
-      <DecimalTextField
-        id="strikePrice"
-        label="Strike Price"
-        disabled={isDisabled}
-        value={entity.strikePrice}
-        onChange={handleInputChange('strikePrice')}
-      />
+        <DecimalTextField
+          id="strikePrice"
+          label="Strike Price"
+          disabled={isDisabled}
+          value={entity.strikePrice}
+          onChange={handleInputChange('strikePrice')}
+        />
 
-      <DateTimePicker
-        id="performedAt"
-        label="Performed at"
-        variant="inline"
-        ampm={false}
-        format="dd/MM/yyyy HH:mm"
-        value={entity.performedAt}
-        onChange={handleChange('performedAt')}
-      />
+        <DateTimePicker
+          id="performedAt"
+          label="Performed at"
+          variant="inline"
+          ampm={false}
+          format="dd/MM/yyyy HH:mm"
+          value={entity.performedAt}
+          onChange={handleChange('performedAt')}
+        />
 
-      <Box>
-        <Button variant="contained" onClick={onSubmit} color="primary">
-          Add
-        </Button>
+        <Box>
+          <Button variant="contained" onClick={onSubmit} color="primary">
+            Add
+          </Button>
+        </Box>
       </Box>
-    </Box>
+      {loading && <LinearProgress color="secondary" />}
+    </>
   );
 };
 
