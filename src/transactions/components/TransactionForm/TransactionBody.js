@@ -35,6 +35,7 @@ const TransactionBody = ({ onPropChange, entity }) => {
 
       <StrikeActionToggle
         disabled={isDisabled}
+        value={entity.action}
         onChange={handleChange('action')}
       />
 

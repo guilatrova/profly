@@ -12,23 +12,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StrikeActionToggle = ({ onChange, disabled }) => {
-  const [action, setAction] = useState(STOCK_ACTIONS.BUY);
+const StrikeActionToggle = ({ onChange, disabled, value = STOCK_ACTIONS.BUY }) => {
+  const classes = useStyles();
 
   const handleChange = (event, newAction) => {
     if (newAction) {
-      setAction(newAction);
       onChange(newAction);
     }
   };
-
-  const classes = useStyles();
 
   return (
     <div className={classes.toggleContainer}>
       <ToggleButtonGroup
         size="small"
-        value={action}
+        value={value}
         exclusive
         onChange={handleChange}
       >
@@ -46,7 +43,8 @@ const StrikeActionToggle = ({ onChange, disabled }) => {
 
 StrikeActionToggle.propTypes = {
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  value: PropTypes.oneOf(Object.values(STOCK_ACTIONS))
 }
 
 export default StrikeActionToggle;
