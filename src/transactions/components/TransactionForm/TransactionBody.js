@@ -7,6 +7,7 @@ import { useStockInfo } from '../StockInfoProvider/context';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import ErrorHandler from '../../../core/components/ApolloErrorHandler';
 
 import TickerField from './TickerField';
 import StrikeActionToggle from './StrikeActionToggle';
@@ -25,9 +26,10 @@ const TransactionBody = ({
   onPropChange,
   onSubmitTicker,
   onSubmit,
+  enableSubmit
 }) => {
   const classes = useStyles();
-  const { stock: stockInfo, loadingStock: loading } = useStockInfo();
+  const { stock: stockInfo, loadingStock: loading, error } = useStockInfo();
   const isDisabled = !stockInfo || loading;
 
   useEffect(() => {
@@ -57,43 +59,49 @@ const TransactionBody = ({
 
         {/* <p>{stockInfo?.name}</p> */}
 
-        <StrikeActionToggle
-          disabled={isDisabled}
-          value={entity.action}
-          onChange={handleChange('action')}
-        />
+        {error ? (
+          <ErrorHandler>{error}</ErrorHandler>
+        ) : (
+          <>
+            <StrikeActionToggle
+              disabled={isDisabled}
+              value={entity.action}
+              onChange={handleChange('action')}
+            />
 
-        <DecimalTextField
-          id="units"
-          label="Units"
-          disabled={isDisabled}
-          value={entity.units}
-          onChange={handleInputChange('units')}
-        />
+            <DecimalTextField
+              id="units"
+              label="Units"
+              disabled={isDisabled}
+              value={entity.units}
+              onChange={handleInputChange('units')}
+            />
 
-        <DecimalTextField
-          id="strikePrice"
-          label="Strike Price"
-          disabled={isDisabled}
-          value={entity.strikePrice}
-          onChange={handleInputChange('strikePrice')}
-        />
+            <DecimalTextField
+              id="strikePrice"
+              label="Strike Price"
+              disabled={isDisabled}
+              value={entity.strikePrice}
+              onChange={handleInputChange('strikePrice')}
+            />
 
-        <DateTimePicker
-          id="performedAt"
-          label="Performed at"
-          variant="inline"
-          ampm={false}
-          format="dd/MM/yyyy HH:mm"
-          value={entity.performedAt}
-          onChange={handleChange('performedAt')}
-        />
+            <DateTimePicker
+              id="performedAt"
+              label="Performed at"
+              variant="inline"
+              ampm={false}
+              format="dd/MM/yyyy HH:mm"
+              value={entity.performedAt}
+              onChange={handleChange('performedAt')}
+            />
 
-        <Box>
-          <Button variant="contained" onClick={onSubmit} color="primary">
-            Add
-          </Button>
-        </Box>
+            <Box>
+              <Button disabled={!enableSubmit} variant="contained" onClick={onSubmit} color="primary">
+                Add
+              </Button>
+            </Box>
+          </>
+        )}
       </Box>
       {loading && <LinearProgress color="secondary" />}
     </>
@@ -104,6 +112,7 @@ TransactionBody.propTypes = {
   onPropChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onSubmitTicker: PropTypes.func.isRequired,
+  enableSubmit: PropTypes.bool.isRequired,
   entity: PropTypes.any,
 };
 

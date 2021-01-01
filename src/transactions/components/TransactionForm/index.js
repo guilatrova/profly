@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import StockInfoProvider from '../StockInfoProvider';
 import TransactionBody from './TransactionBody';
 import STOCK_ACTIONS from '../../../core/constants/stockActions';
-import { prepareEntity } from './utils';
+import { prepareEntity, isSubmitEnabled } from './utils';
 
 
 const emptyEntity = {
@@ -18,12 +18,15 @@ const emptyEntity = {
 const TransactionForm = ({ onSubmit }) => {
   const [entity, setEntity] = useState({ ...emptyEntity });
   const [ticker, setTicker] = useState();
+  const isEntityValid = isSubmitEnabled(entity);
 
   const handlePropChange = (modified) => setEntity({ ...entity, ...modified });
   const handleSubmit = () => {
-    onSubmit(prepareEntity(entity));
-    setTicker();
-    setEntity({ ...emptyEntity });
+    if (isEntityValid) {
+      onSubmit(prepareEntity(entity));
+      setTicker();
+      setEntity({ ...emptyEntity });
+    }
   };
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +45,7 @@ const TransactionForm = ({ onSubmit }) => {
           onPropChange={handlePropChange}
           onSubmitTicker={setTicker}
           onSubmit={handleSubmit}
+          enableSubmit={isEntityValid}
         />
       </StockInfoProvider>
 

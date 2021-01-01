@@ -11,3 +11,8 @@ export const prepareEntity = (entity) => {
 
   return prepared;
 };
+
+export const isSubmitEnabled = (entity) => {
+  const requiredFields = ['ticker', 'units', 'strikePrice', 'performedAt'];
+  return requiredFields.reduce((acc, cur) => acc && !!entity[cur], true);
+};
