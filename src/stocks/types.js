@@ -1,7 +1,7 @@
 import { shape, string, number, arrayOf } from 'prop-types';
 
 export const stockSummaryPropType = shape({
-  ticker: string.isRequired,
+  name: string.isRequired,
   units: number,
   averageBuyPrice: number,
   averageSellPrice: number

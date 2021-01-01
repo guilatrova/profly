@@ -33,7 +33,7 @@ const StocksTable = ({
           <LoadingRows cellsCount={cellsCount} />
         ) : (
           data.map((row) => (
-            <ContentRow key={row.id} row={row} />
+            <ContentRow key={row.name} row={row} />
           ))
         )}
       </TableBody>
