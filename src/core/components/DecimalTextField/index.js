@@ -10,7 +10,6 @@ const DecimalTextField = ({ ...props }) => {
       InputProps={{
         inputComponent: DecimalInput,
       }}
-      type="number"
     />
   )
 }
