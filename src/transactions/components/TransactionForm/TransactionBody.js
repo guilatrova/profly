@@ -23,21 +23,19 @@ const TransactionBody = ({ onPropChange, entity }) => {
   }
 
   const handlePriceKeyDown = () => setUserInput(true);
-  const handleActionChange = (action) => onPropChange({ action });
-  const handleChange = (key) => (e) => onPropChange({ [key]: e.target.value });
-  const handleDateChange = (performedAt) => onPropChange({ performedAt });
-  const handleTickerChange = (ticker) => onPropChange({ ticker });
+  const handleInputChange = (key) => (e) => onPropChange({ [key]: e.target.value });
+  const handleChange = (key) => value => onPropChange({ [key]: value });
 
   return (
     <>
-      <TickerField onSubmitTicker={handleTickerChange} />
+      <TickerField onSubmitTicker={handleChange('ticker')} />
 
       {loading && <CircularProgress />}
       <p>{stockInfo?.name}</p>
 
       <StrikeActionToggle
         disabled={isDisabled}
-        onChange={handleActionChange}
+        onChange={handleChange('action')}
       />
 
       <DecimalTextField
@@ -45,7 +43,7 @@ const TransactionBody = ({ onPropChange, entity }) => {
         label="Units"
         disabled={isDisabled}
         value={entity.units}
-        onChange={handleChange('units')}
+        onChange={handleInputChange('units')}
       />
 
       <DecimalTextField
@@ -53,7 +51,7 @@ const TransactionBody = ({ onPropChange, entity }) => {
         label="Strike Price"
         disabled={isDisabled}
         value={entity.strikePrice}
-        onChange={handleChange('strikePrice')}
+        onChange={handleInputChange('strikePrice')}
         onKeyDown={handlePriceKeyDown}
       />
 
@@ -64,7 +62,7 @@ const TransactionBody = ({ onPropChange, entity }) => {
         ampm={false}
         format="dd/MM/yyyy HH:mm"
         value={entity.performedAt}
-        onChange={handleDateChange}
+        onChange={handleChange('performedAt')}
       />
     </>
   );
