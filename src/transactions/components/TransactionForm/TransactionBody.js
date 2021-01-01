@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import DecimalTextField from '../../../core/components/DecimalTextField';
 import { KeyboardDateTimePicker } from '@material-ui/pickers';
@@ -10,20 +10,15 @@ import StrikeActionToggle from './StrikeActionToggle';
 
 const TransactionBody = ({ onPropChange, onSubmitTicker, entity }) => {
   const { stock: stockInfo, loadingStock: loading } = useStockInfo();
-  const [userInput, setUserInput] = useState(false);
-  console.log('entity', entity);
-
   const isDisabled = !stockInfo || loading;
-  const isPriceUnset =
-    stockInfo?.currentPrice && entity.strikePrice !== stockInfo.currentPrice;
 
-  if (!userInput && isPriceUnset) {
-    onPropChange({ strikePrice: stockInfo.currentPrice });
-  }
+  useEffect(() => {
+    if (stockInfo) {
+      onPropChange({ strikePrice: stockInfo.currentPrice });
+    }
+  }, [stockInfo]);
 
-  const handlePriceKeyDown = () => setUserInput(true);
-  const handleInputChange = (key) => (e) =>
-    onPropChange({ [key]: e.target.value });
+  const handleInputChange = (key) => (e) => onPropChange({ [key]: e.target.value });
   const handleChange = (key) => (value) => onPropChange({ [key]: value });
 
   return (
@@ -57,7 +52,6 @@ const TransactionBody = ({ onPropChange, onSubmitTicker, entity }) => {
         disabled={isDisabled}
         value={entity.strikePrice}
         onChange={handleInputChange('strikePrice')}
-        onKeyDown={handlePriceKeyDown}
       />
 
       <KeyboardDateTimePicker
