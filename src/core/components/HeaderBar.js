@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -76,7 +75,7 @@ const HeaderBar = () => {
             Profly
           </Typography>
 
-          <IconButton onClick={handleAuthorLink}>
+          <IconButton color="inherit" onClick={handleAuthorLink}>
             <PersonIcon />
           </IconButton>
         </Toolbar>
