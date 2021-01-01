@@ -82,6 +82,7 @@ const TransactionBody = ({
               id="strikePrice"
               label="Strike Price"
               disabled={isDisabled}
+              currency={stockInfo?.currency}
               value={entity.strikePrice}
               onChange={handleInputChange('strikePrice')}
             />
