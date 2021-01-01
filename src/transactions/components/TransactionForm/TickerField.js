@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const ENTER_KEY = 13;
 
 const TickerField = ({ value, onChange, onSubmitTicker, error, helperText }) => {
   const hasError = !!error;
-  // const helperText = hasError ? "Ticker not found" : "";
+
+  const handleSubmit = () => onSubmitTicker(value);
+
   const handleKeyPress = (e) => {
     if (e.keyCode == ENTER_KEY) {
-      onSubmitTicker(e.target.value);
+      handleSubmit();
     }
   };
 
@@ -26,6 +31,19 @@ const TickerField = ({ value, onChange, onSubmitTicker, error, helperText }) => 
       helperText={helperText}
       onChange={handleChange}
       onKeyDown={handleKeyPress}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="find ticker"
+              color="secondary"
+              onClick={handleSubmit}
+            >
+              <ArrowForwardIcon />
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
     />
   );
 };
