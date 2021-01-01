@@ -6,11 +6,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import PersonIcon from '@material-ui/icons/Person';
 import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
-
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -45,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
 const HeaderBar = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
+  const toggleDrawer = () => setOpen(!open);
+  const handleAuthorLink = () => window.open('https://guilatrova.dev', '_blank');
+
 
   return (
     <>
@@ -77,10 +76,8 @@ const HeaderBar = () => {
             Profly
           </Typography>
 
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+          <IconButton onClick={handleAuthorLink}>
+            <PersonIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
