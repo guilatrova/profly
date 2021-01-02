@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +46,7 @@ const HeaderBar = () => {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => setOpen(!open);
   const handleAuthorLink = () => window.open('https://guilatrova.dev', '_blank');
+  const handleDownloadCSV = () => window.open('http://localhost:8000/csv/', '_blank');
 
 
   return (
@@ -74,6 +76,10 @@ const HeaderBar = () => {
           >
             Profly
           </Typography>
+
+          <IconButton color="inherit" onClick={handleDownloadCSV}>
+            <GetAppIcon />
+          </IconButton>
 
           <IconButton color="inherit" onClick={handleAuthorLink}>
             <PersonIcon />
