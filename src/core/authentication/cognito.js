@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
+import { useApolloClient } from '@apollo/client';
 import { func } from 'prop-types';
 import Auth from '@aws-amplify/auth';
 
@@ -21,6 +22,7 @@ export const useCognito = () => useContext(CognitoContext);
 
 // eslint-disable-next-line react/prop-types
 export const CognitoProvider = ({ children, onRedirectCallback }) => {
+  const apolloClient = useApolloClient();
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
@@ -28,6 +30,7 @@ export const CognitoProvider = ({ children, onRedirectCallback }) => {
   const handleLogout = () => {
     Auth.signOut().then(() => {
       onRedirectCallback();
+      apolloClient.resetStore();
     });
   }
 

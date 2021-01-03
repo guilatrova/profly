@@ -4,7 +4,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import App from './core/components/App';
 import { ApolloProvider } from '@apollo/client';
-import apolloClient from "./core/apollo";
+import apolloClient from './core/apollo';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { AuthenticationProvider } from './core/authentication';
@@ -17,17 +17,17 @@ export default class Root extends Component {
   render() {
     const { store, history } = this.props;
     return (
-      <AuthenticationProvider onRedirectCallback={onRedirectCallback}>
-        <Provider store={store}>
-          <ApolloProvider client={apolloClient}>
+      <Provider store={store}>
+        <ApolloProvider client={apolloClient}>
+          <AuthenticationProvider onRedirectCallback={onRedirectCallback}>
             <ConnectedRouter history={history}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <App />
               </MuiPickersUtilsProvider>
             </ConnectedRouter>
-          </ApolloProvider>
-        </Provider>
-      </AuthenticationProvider>
+          </AuthenticationProvider>
+        </ApolloProvider>
+      </Provider>
     );
   }
 }
