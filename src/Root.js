@@ -7,20 +7,27 @@ import { ApolloProvider } from '@apollo/client';
 import apolloClient from "./core/apollo";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { AuthenticationProvider } from './core/authentication';
+
+const onRedirectCallback = appState => {
+  history.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname);
+};
 
 export default class Root extends Component {
   render() {
     const { store, history } = this.props;
     return (
-      <Provider store={store}>
-        <ApolloProvider client={apolloClient}>
-          <ConnectedRouter history={history}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <App />
-            </MuiPickersUtilsProvider>
-          </ConnectedRouter>
-        </ApolloProvider>
-      </Provider>
+      <AuthenticationProvider onRedirectCallback={onRedirectCallback}>
+        <Provider store={store}>
+          <ApolloProvider client={apolloClient}>
+            <ConnectedRouter history={history}>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <App />
+              </MuiPickersUtilsProvider>
+            </ConnectedRouter>
+          </ApolloProvider>
+        </Provider>
+      </AuthenticationProvider>
     );
   }
 }
