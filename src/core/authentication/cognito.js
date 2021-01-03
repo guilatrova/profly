@@ -8,7 +8,13 @@ import { setSessionToken } from '../../utils/localStorage';
 
 const getToken = session => session.idToken.jwtToken;
 
-export const CognitoContext = createContext();
+const initialState = {
+  isAuthenticated: false,
+  user: null,
+  loading: true
+};
+
+export const CognitoContext = createContext(initialState);
 
 export const useCognito = () => useContext(CognitoContext);
 
