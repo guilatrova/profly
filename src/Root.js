@@ -9,8 +9,8 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { AuthenticationProvider } from './core/authentication';
 
-const onRedirectCallback = appState => {
-  history.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname);
+const onRedirectCallback = () => {
+  window.location.href = window.location.origin;
 };
 
 export default class Root extends Component {

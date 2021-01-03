@@ -7,9 +7,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import PersonIcon from '@material-ui/icons/Person';
+import PersonIcon from '@material-ui/icons/GitHub';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
+import LoggedUser from './LoggedUser';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -84,6 +85,8 @@ const HeaderBar = () => {
           <IconButton color="inherit" onClick={handleAuthorLink}>
             <PersonIcon />
           </IconButton>
+
+          <LoggedUser />
         </Toolbar>
       </AppBar>
 

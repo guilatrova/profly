@@ -11,7 +11,8 @@ const getToken = session => session.idToken.jwtToken;
 const initialState = {
   isAuthenticated: false,
   user: null,
-  loading: true
+  loading: true,
+  logout: () => {}
 };
 
 export const CognitoContext = createContext(initialState);
@@ -23,6 +24,12 @@ export const CognitoProvider = ({ children, onRedirectCallback }) => {
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+
+  const handleLogout = () => {
+    Auth.signOut().then(() => {
+      onRedirectCallback();
+    });
+  }
 
   useEffect(() => {
     const initCognito = async () => {
@@ -53,8 +60,7 @@ export const CognitoProvider = ({ children, onRedirectCallback }) => {
         isAuthenticated,
         user,
         loading,
-        loginWithRedirect: (...p) => Auth.confirmSignIn({ provider: 'Google', ...p }),
-        logout: (...p) => Auth.signOut(...p)
+        logout: handleLogout
       }}
     >
       {children}
