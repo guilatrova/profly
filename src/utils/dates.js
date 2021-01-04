@@ -1,11 +1,20 @@
 import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
-import { format, parseISO, subDays, subMonths, subYear, startOfToday, subYears } from 'date-fns';
+import {
+  format,
+  parseISO,
+  subDays,
+  subMonths,
+  startOfToday,
+  subYears,
+} from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 const timeZone = 'America/Sao_Paulo';
 
 export const formatDateTimeOutput = (input) =>
   format(new Date(input), 'dd/LLL/yy HH:mm', { locale: ptBR });
+export const formatShortDateTimeOutput = (input) =>
+  format(new Date(input), 'dd/LL/yyyy HH:mm');
 export const formatShortTimeOutput = (input) =>
   format(new Date(input), 'HH:mm');
 
@@ -37,12 +46,10 @@ export const subPeriod = (period) => {
   let years = 0;
 
   if (period.endsWith('y')) {
-    years = period.replace("y", "");
-  }
-  else if (period == 'ytd') {
+    years = period.replace('y', '');
+  } else if (period == 'ytd') {
     years = 1;
-  }
-  else if (period == 'max') {
+  } else if (period == 'max') {
     years = 10;
   }
 

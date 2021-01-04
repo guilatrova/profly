@@ -11,6 +11,7 @@ import PersonIcon from '@material-ui/icons/GitHub';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
 import LoggedUser from './LoggedUser';
+import { DownloadCSV } from '../../utils/downloader';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -39,16 +40,16 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-  }
+  },
 }));
 
 const HeaderBar = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => setOpen(!open);
-  const handleAuthorLink = () => window.open('https://guilatrova.dev', '_blank');
-  const handleDownloadCSV = () => window.open('http://localhost:8000/csv/', '_blank');
-
+  const handleAuthorLink = () =>
+    window.open('https://guilatrova.dev', '_blank');
+  const handleDownloadCSV = () => DownloadCSV();
 
   return (
     <>
@@ -58,15 +59,20 @@ const HeaderBar = () => {
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          {drawerEnabled && <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>}
+          {drawerEnabled && (
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              className={clsx(
+                classes.menuButton,
+                open && classes.menuButtonHidden
+              )}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
 
           <Typography
             component="h1"
@@ -93,6 +99,6 @@ const HeaderBar = () => {
       <AppDrawer open={open} toggleDrawer={toggleDrawer} />
     </>
   );
-}
+};
 
 export default HeaderBar;
