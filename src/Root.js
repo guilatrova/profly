@@ -13,13 +13,17 @@ const onRedirectCallback = () => {
   window.location.href = window.location.origin;
 };
 
+const onLogoutCallback = () => {
+  window.location.href = `${window.location.origin}/login`;
+};
+
 export default class Root extends Component {
   render() {
     const { store, history } = this.props;
     return (
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
-          <AuthenticationProvider onRedirectCallback={onRedirectCallback}>
+          <AuthenticationProvider onRedirectCallback={onRedirectCallback} onLogoutCallback={onLogoutCallback}>
             <ConnectedRouter history={history}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <App />

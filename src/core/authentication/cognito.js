@@ -13,7 +13,8 @@ const initialState = {
   isAuthenticated: false,
   user: null,
   loading: true,
-  logout: () => {}
+  logout: () => {},
+  refresh: () => {},
 };
 
 export const CognitoContext = createContext(initialState);
@@ -21,15 +22,29 @@ export const CognitoContext = createContext(initialState);
 export const useCognito = () => useContext(CognitoContext);
 
 // eslint-disable-next-line react/prop-types
-export const CognitoProvider = ({ children, onRedirectCallback }) => {
+export const CognitoProvider = ({ children, onRedirectCallback, onLogoutCallback }) => {
   const apolloClient = useApolloClient();
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  const retrieveLoggedSession = async () => {
+    try {
+      const loggedUser = await Auth.currentAuthenticatedUser();
+      const session = await Auth.currentSession();
+      const token = getToken(session);
+
+      setIsAuthenticated(true);
+      setSessionToken(token);
+      setUser(loggedUser);
+    } catch (err) {
+      setIsAuthenticated(false);
+    }
+  }
+
   const handleLogout = () => {
     Auth.signOut().then(() => {
-      onRedirectCallback();
+      onLogoutCallback();
       apolloClient.resetStore();
     });
   }
@@ -40,17 +55,7 @@ export const CognitoProvider = ({ children, onRedirectCallback }) => {
         onRedirectCallback();
       }
 
-      try {
-        const loggedUser = await Auth.currentAuthenticatedUser();
-        const session = await Auth.currentSession();
-        const token = getToken(session);
-
-        setIsAuthenticated(true);
-        setSessionToken(token);
-        setUser(loggedUser);
-      } catch (err) {
-        setIsAuthenticated(false);
-      }
+      await retrieveLoggedSession();
 
       setLoading(false);
     };
@@ -63,7 +68,8 @@ export const CognitoProvider = ({ children, onRedirectCallback }) => {
         isAuthenticated,
         user,
         loading,
-        logout: handleLogout
+        logout: handleLogout,
+        refresh: retrieveLoggedSession
       }}
     >
       {children}
@@ -74,7 +80,8 @@ export const CognitoProvider = ({ children, onRedirectCallback }) => {
 export const getSessionToken = async () => (await Auth.currentSession())?.idToken?.jwtToken;
 
 CognitoProvider.propTypes = {
-  onRedirectCallback: func.isRequired
+  onRedirectCallback: func.isRequired,
+  onLogoutCallback: func.isRequired
 };
 
 export default {
