@@ -1,7 +1,8 @@
 import { getSessionToken } from './localStorage';
 import { formatShortDateTimeOutput } from './dates';
+import { API_ENDPOINT } from '../core/constants/api';
 
-const ENDPOINT = 'http://localhost:8000/csv/';
+const ENDPOINT = `${API_ENDPOINT}/csv/`;
 
 const getAuthorizationHeaders = () => {
   const token = getSessionToken();
