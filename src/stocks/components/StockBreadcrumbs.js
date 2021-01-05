@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Link as RouterLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   anchor: {

@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import RecentTransactions from '../../transactions/containers/RecentTransactions';
-import ValueSpreadPieChart from '../../charts/containers/ValueSpreadPieChart';
 import StocksSummary from './StocksSummary';
 
 const useStyles = makeStyles((theme) => ({
