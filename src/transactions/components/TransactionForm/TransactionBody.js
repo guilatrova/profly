@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import ErrorHandler from '../../../core/components/ApolloErrorHandler';
 
+import Emotion from './Emotion';
 import TickerField from './TickerField';
 import StrikeActionToggle from './StrikeActionToggle';
 
@@ -86,6 +87,8 @@ const TransactionBody = ({
               value={entity.strikePrice}
               onChange={handleInputChange('strikePrice')}
             />
+
+            <Emotion />
 
             <DateTimePicker
               id="performedAt"

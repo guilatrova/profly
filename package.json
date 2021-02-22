@@ -44,6 +44,7 @@
     "connected-react-router": "6.5.2",
     "date-fns": "2.16.1",
     "date-fns-tz": "1.0.12",
+    "emoji-mart": "3.0.0",
     "graphql": "15.4.0",
     "object-assign": "4.1.1",
     "react": "16.11.0",
