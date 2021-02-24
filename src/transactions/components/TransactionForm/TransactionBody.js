@@ -96,6 +96,7 @@ const TransactionBody = ({
 
             <DateTimePicker
               id="performedAt"
+              disabled={isDisabled}
               label="Performed at"
               variant="inline"
               ampm={false}
