@@ -18,7 +18,7 @@ const TransactionsTable = ({
   displayStock = true,
 }) => {
   const alignUnits = displayStock ? 'right' : 'inherit';
-  const cellsCount = displayStock ? 6 : 5;
+  const cellsCount = displayStock ? 7 : 6;
 
   return (
     <Table size="small">
@@ -26,6 +26,7 @@ const TransactionsTable = ({
         <TableRow>
           {displayStock && <TableCell>Stock</TableCell>}
           <TableCell align={alignUnits}>Units</TableCell>
+          <TableCell align="center">Emotion</TableCell>
           <TableCell align="right">Strike Price</TableCell>
           <TableCell align="right">Value</TableCell>
           <TableCell align="right">Date</TableCell>

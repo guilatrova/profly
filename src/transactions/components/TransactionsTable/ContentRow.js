@@ -11,6 +11,8 @@ import Actions from './Actions';
 import { useMutation } from '@apollo/client';
 import queries from '../../queries';
 
+import { Emoji } from 'emoji-mart'
+
 const useStyles = makeStyles((theme) => ({
   boughtUnits: {
     color: theme.palette.success.main,
@@ -19,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.error.main,
   },
 }));
+
+const DEFAULT_EMOTION = 'neutral_face';
 
 
 const ContentRow = ({ row, alignUnits, displayStock }) => {
@@ -37,6 +41,9 @@ const ContentRow = ({ row, alignUnits, displayStock }) => {
         className={row.units >= 0 ? classes.boughtUnits : classes.soldUnits}
       >
         {row.units}
+      </TableCell>
+      <TableCell align="center">
+        <Emoji emoji={row.emotion || DEFAULT_EMOTION} size={24} set="twitter" />
       </TableCell>
       <TableCell align="right">{formatCurrency(row.strikePrice, row.stock.currency)}</TableCell>
       <TableCell align="right">{formatCurrency(row.value, row.stock.currency)}</TableCell>

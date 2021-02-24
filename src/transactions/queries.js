@@ -9,6 +9,7 @@ const listTransactions = gql`
         ticker
         currency
       }
+      emotion
       strikePrice
       units
       value
