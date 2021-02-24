@@ -32,6 +32,7 @@ const transactionsFromStock = gql`
           value
           strikePrice
           performedAt
+          emotion
         }
       }
     }
