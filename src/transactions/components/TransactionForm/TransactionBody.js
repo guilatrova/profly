@@ -88,7 +88,7 @@ const TransactionBody = ({
               onChange={handleInputChange('strikePrice')}
             />
 
-            <Emotion />
+            <Emotion disabled={isDisabled} />
 
             <DateTimePicker
               id="performedAt"

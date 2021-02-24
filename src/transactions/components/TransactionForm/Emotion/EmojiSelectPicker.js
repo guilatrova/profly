@@ -7,7 +7,7 @@ import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 
 
-const EmojiSelectPicker = ({ open, emoji, onEmojiSelect, onPickerStateChange }) => {
+const EmojiSelectPicker = ({ open, emoji, disabled, onEmojiSelect, onPickerStateChange }) => {
 
   const handleOnSelect = (emoji) => {
     onEmojiSelect(emoji);
@@ -29,7 +29,7 @@ const EmojiSelectPicker = ({ open, emoji, onEmojiSelect, onPickerStateChange }) 
   }
 
   return (
-    <Button variant="outlined" onClick={onPickerStateChange}>
+    <Button variant="outlined" disabled={disabled} onClick={onPickerStateChange}>
       {emoji.native}
     </Button>
   )
@@ -37,6 +37,7 @@ const EmojiSelectPicker = ({ open, emoji, onEmojiSelect, onPickerStateChange }) 
 
 EmojiSelectPicker.propTypes = {
   open: PropTypes.bool,
+  disabled: PropTypes.bool,
 
   onPickerStateChange: PropTypes.func.isRequired,
   onEmojiSelect: PropTypes.func.isRequired,

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import FormLabel from '@material-ui/core/FormLabel';
+import PropTypes from 'prop-types';
+// import FormLabel from '@material-ui/core/FormLabel';
+import Label from '@material-ui/core/InputLabel';
 
 import EmojiSelectPicker from './EmojiSelectPicker'
 
@@ -8,7 +10,7 @@ const INITIAL_EMOJI = {
   native: '😐'
 };
 
-const Emotion = () => {
+const Emotion = ({ disabled }) => {
   const [selectedEmoji, setEmoji] = useState(INITIAL_EMOJI);
   const [isPickerOpen, setPickerOpen] = useState(false);
 
@@ -17,17 +19,21 @@ const Emotion = () => {
 
   return (
     <div>
-      <FormLabel>Emoji</FormLabel>
-      <br />
+      <Label shrink disabled={disabled}>Emotion</Label>
 
       <EmojiSelectPicker
         open={isPickerOpen}
         emoji={selectedEmoji}
+        disabled={disabled}
         onPickerStateChange={handlePickerState}
         onEmojiSelect={handleOnSelect}
       />
     </div>
   );
 };
+
+Emotion.propTypes = {
+  disabled: PropTypes.bool
+}
 
 export default Emotion;
