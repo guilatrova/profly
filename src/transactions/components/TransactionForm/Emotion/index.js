@@ -10,12 +10,15 @@ const INITIAL_EMOJI = {
   native: '😐'
 };
 
-const Emotion = ({ disabled }) => {
+const Emotion = ({ disabled, onChange }) => {
   const [selectedEmoji, setEmoji] = useState(INITIAL_EMOJI);
   const [isPickerOpen, setPickerOpen] = useState(false);
 
   const handlePickerState = () => setPickerOpen(!isPickerOpen);
-  const handleOnSelect = emoji => setEmoji(emoji);
+  const handleOnSelect = emoji => {
+    setEmoji(emoji);
+    onChange(emoji);
+  }
 
   return (
     <div>
@@ -33,7 +36,8 @@ const Emotion = ({ disabled }) => {
 };
 
 Emotion.propTypes = {
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func.isRequired
 }
 
 export default Emotion;

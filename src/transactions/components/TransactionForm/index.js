@@ -12,6 +12,7 @@ const emptyEntity = {
   action: STOCK_ACTIONS.BUY,
   units: '',
   strikePrice: '',
+  emotion: 'neutral_face',
   performedAt: new Date(),
 };
 

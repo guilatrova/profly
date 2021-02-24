@@ -43,6 +43,7 @@ const TransactionBody = ({
   const handleInputChange = (key) => (e) =>
     onPropChange({ [key]: e.target.value });
   const handleChange = (key) => (value) => onPropChange({ [key]: value });
+  const handleEmotionChange = (emoji) => onPropChange({ emotion: emoji.id });
 
   return (
     <>
@@ -88,7 +89,10 @@ const TransactionBody = ({
               onChange={handleInputChange('strikePrice')}
             />
 
-            <Emotion disabled={isDisabled} />
+            <Emotion
+              onChange={handleEmotionChange}
+              disabled={isDisabled}
+            />
 
             <DateTimePicker
               id="performedAt"
