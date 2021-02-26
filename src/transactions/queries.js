@@ -22,6 +22,10 @@ const addTransaction = gql`
   mutation addTransaction($entity: TransactionMutationInput!) {
     transactions(input: $entity) {
       id
+      errors {
+        field
+        messages
+      }
     }
   }
 `
