@@ -21,7 +21,7 @@ const StockHistoryLineChartContainer = ({ ticker, period = "ytd", interval = "1d
   return (
     <>
       <Title>History</Title>
-      {loading ? <Skeleton variant="rect" height={300} /> : <StockHistoryLineChart chartData={chart} />}
+      {loading ? <Skeleton variant="rect" height={300} /> : <StockHistoryLineChart currency={stockHistory?.currency} chartData={chart} />}
     </>
   )
 }

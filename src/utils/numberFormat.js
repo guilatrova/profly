@@ -8,8 +8,9 @@ export function getCurrencyFormattedNumber(value) {
   return 'R$' + getFormattedNumber(value); // eslint-disable-line prefer-template
 }
 
-export function getCurrencyRoundedNumber(number) {
-  return 'R$ ' + getFormattedNumber(number.toFixed());
+export function getCurrencyRoundedNumber(number, currency) {
+  const prefix = currency == 'USD' ? '$' : 'R$';
+  return prefix + ' ' + getFormattedNumber(number.toFixed());
 }
 
 export function getFormattedNumber(value) {

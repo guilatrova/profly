@@ -14,6 +14,7 @@ const chartStocksValues = gql`
 const stockLineChart = gql`
   query stockLineChart($ticker: String!, $period: String!, $interval: String!) {
     stockHistory: stockTransactionsValueHistory(ticker: $ticker, period: $period, interval: $interval) {
+      currency
       history {
         date
         open
