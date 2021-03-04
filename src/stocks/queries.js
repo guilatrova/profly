@@ -27,6 +27,7 @@ const transactionsFromStock = gql`
           stock {
             id
             ticker
+            currency
           }
           id
           units
