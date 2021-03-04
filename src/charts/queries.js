@@ -4,6 +4,7 @@ const chartStocksValues = gql`
   query chartStocksValues {
     stocks: stocksUnitsCurrentValue {
       name: ticker
+      currency,
       units: totalUnits
       value: totalValue
     }
@@ -29,7 +30,21 @@ const stockLineChart = gql`
   }
 `
 
+const currencyRate = gql`
+  query (
+    $from: String!,
+    $to: String!
+  ) {
+    currencyRate(fromCurrency: $from, toCurrency: $to) {
+      fromCurrency
+      toCurrency
+      rate
+    }
+  }
+`
+
 export default {
   chartStocksValues,
-  stockLineChart
+  stockLineChart,
+  currencyRate
 }
