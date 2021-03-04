@@ -24,9 +24,9 @@ const useStyles = makeStyles({
   },
 });
 
-const ValueCard = ({ title, loading = false, isMoney = false, children = null}) => {
+const ValueCard = ({ title, loading = false, currency = 'BRL', isMoney = false, children = null}) => {
   const classes = useStyles();
-  const displayValue = isMoney ? formatCurrency(children || 0) : children;
+  const displayValue = isMoney ? formatCurrency(children || 0, currency) : children;
 
   return (
     <Card className={classes.root}>
@@ -45,6 +45,7 @@ const ValueCard = ({ title, loading = false, isMoney = false, children = null}) 
 
 ValueCard.propTypes = {
   title: PropTypes.string.isRequired,
+  currency: PropTypes.string,
   loading: PropTypes.bool,
   isMoney: PropTypes.bool,
   children: PropTypes.number
