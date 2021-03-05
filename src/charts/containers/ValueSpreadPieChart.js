@@ -26,9 +26,6 @@ const ValueSpreadPieChartContainer = () => {
   const rateValue = dataRate?.currencyRate?.rate || 1;
   const error = errorStocks ? errorStocks : errorRate;
 
-  console.log("chartData", chartData);
-  console.log("rateValue", rateValue);
-
   if (error) return <ErrorHandler>{error}</ErrorHandler>;
 
   if (loading || loadingRate) {
@@ -36,7 +33,6 @@ const ValueSpreadPieChartContainer = () => {
   }
 
   const finalChartData = unifyCurrency(chartData, rateValue);
-  console.log("finalChartData", finalChartData);
 
   return <ValueSpreadPieChart chartData={finalChartData} />;
 };
