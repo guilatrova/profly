@@ -18,7 +18,7 @@ import TransactionsTooltip from './TransactionsTooltip';
 import DateAxisTick from './DateAxisTick';
 import TransactionDot from './TransactionDot';
 
-const StockHistoryLineChart = ({ chartData }) => {
+const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
   return (
     <ResponsiveContainer height={300} width="100%">
       <LineChart
@@ -40,14 +40,14 @@ const StockHistoryLineChart = ({ chartData }) => {
           tick={DateAxisTick}
         />
         <YAxis
-          tickFormatter={getCurrencyRoundedNumber}
+          tickFormatter={val => getCurrencyRoundedNumber(val, currency)}
           domain={chartData.yDomain}
         />
 
         <Tooltip
           content={<TransactionsTooltip />}
           labelFormatter={epochToDateOutput}
-          formatter={formatCurrency}
+          formatter={val => formatCurrency(val, currency)}
         />
         <Legend />
 
@@ -63,6 +63,7 @@ const StockHistoryLineChart = ({ chartData }) => {
 };
 
 StockHistoryLineChart.propTypes = {
+  currency: PropTypes.string,
   chartData: PropTypes.shape({
     data: PropTypes.array,
     xDomain: PropTypes.arrayOf(PropTypes.number),

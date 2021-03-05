@@ -12,7 +12,7 @@ const ContentRow = ({ row }) => {
         <TickerLink>{row.name}</TickerLink>
       </TableCell>
       <TableCell align="right">{row.units}</TableCell>
-      <TableCell align="right">{formatCurrency(row.value)}</TableCell>
+      <TableCell align="right">{formatCurrency(row.value, row.currency)}</TableCell>
     </TableRow>
   );
 };

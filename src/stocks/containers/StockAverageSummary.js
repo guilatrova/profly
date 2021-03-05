@@ -23,13 +23,13 @@ const StockAverageSummary = ({ ticker }) => {
         </Grid>
 
         <Grid item xs={4} md={3}>
-          <ValueCard title="Avg Buy" loading={loading} isMoney>
+          <ValueCard title="Avg Buy" loading={loading} currency={summary?.currency} isMoney>
             {summary?.averageBuyPrice}
           </ValueCard>
         </Grid>
 
         <Grid item xs={4} md={3}>
-          <ValueCard title="Avg Sell" loading={loading} isMoney>
+          <ValueCard title="Avg Sell" loading={loading} currency={summary?.currency} isMoney>
             {summary?.averageSellPrice}
           </ValueCard>
         </Grid>

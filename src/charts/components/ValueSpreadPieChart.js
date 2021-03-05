@@ -26,7 +26,6 @@ const ValueSpreadPieChart = ({ chartData }) => {
           outerRadius={80}
           paddingAngle={5}
           onMouseEnter={(data, idx) => setActiveIndex(idx)}
-          onMouseLeave={() => setActiveIndex()}
         >
           {chartData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[index]} />
