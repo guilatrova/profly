@@ -14,6 +14,21 @@ const theme = createMuiTheme({
     h6: {
       fontWeight: 700
     },
+    h2: {
+      fontWeight: 700
+    },
+    subtitle2: {
+      color: '#9eaac0',
+      fontWeight: 900,
+      textTransform: 'uppercase'
+    }
+  },
+  overrides: {
+    MuiPaper: {
+      rounded: {
+        borderRadius: 15
+      }
+    }
   }
 });
 

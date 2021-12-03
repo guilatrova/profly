@@ -8,4 +8,4 @@ const moneyFormatter = (currency) => new Intl.NumberFormat(currencyLangMap[curre
   currency,
 });
 
-export const formatCurrency = (value, currency='BRL') => moneyFormatter(currency).format(value);
+export const formatCurrency = (value, currency='USD') => moneyFormatter(currency).format(value);
