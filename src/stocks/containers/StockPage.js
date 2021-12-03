@@ -53,17 +53,16 @@ const StockPage = () => {
         <Grid item xs={12} md={6}>
           <StockAverageSummary ticker={ticker} />
         </Grid>
-
-        <Grid item xs={12} md={6} className={classes.rightAligned}>
-          <PeriodToggle onChange={setPeriod} />
-        </Grid>
       </Grid>
-
 
       <Grid item xs={12}>
         <Paper className={classes.paperChart}>
           <StockHistoryLineChart period={period} interval={interval} ticker={ticker} />
         </Paper>
+      </Grid>
+
+      <Grid item xs={12} className={classes.rightAligned}>
+        <PeriodToggle onChange={setPeriod} />
       </Grid>
 
       <Grid item xs={12}>

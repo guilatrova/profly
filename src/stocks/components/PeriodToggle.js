@@ -5,11 +5,15 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import PERIODS from '../../core/constants/periods';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   toggleContainer: {
-    margin: theme.spacing(2, 0),
+    textAlign: 'center'
   },
-}));
+  root: {
+    border: 'none',
+    fontWeight: 900
+  }
+});
 
 const PeriodToggle = ({ onChange }) => {
   const classes = useStyles();
@@ -30,9 +34,10 @@ const PeriodToggle = ({ onChange }) => {
         value={selectedPeriod}
         exclusive
         onChange={handleChange}
+        size="large"
       >
         {PERIODS.map((period) => (
-          <ToggleButton key={period} value={period}>
+          <ToggleButton key={period} value={period} className={classes.root}>
             {period}
           </ToggleButton>
         ))}
