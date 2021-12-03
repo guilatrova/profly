@@ -3,10 +3,12 @@ import {gql} from '@apollo/client';
 const chartStocksValues = gql`
   query chartStocksValues {
     stocks: stocksUnitsCurrentValue {
-      name: ticker
+      ticker,
+      name,
       currency,
       units: totalUnits
       value: totalValue
+      logoUrl
     }
   }
 `
