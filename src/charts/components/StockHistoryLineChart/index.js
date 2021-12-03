@@ -18,7 +18,7 @@ import TransactionsTooltip from './TransactionsTooltip';
 import DateAxisTick from './DateAxisTick';
 import TransactionDot from './TransactionDot';
 
-const COLORS = {
+export const COLORS = {
   activeLine: '#fff',
   unactiveLine: '#a9c8f5',
   activeArea: '#649bed',
@@ -49,10 +49,10 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
       <AreaChart
         data={chartData.data}
         margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
+          top: 15,
+          right: 10,
+          left: 0,
+          bottom: -30,
         }}
         onMouseMove={onMouseMove}
         onMouseOut={onMouseOut}
@@ -83,9 +83,15 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
           domain={chartData.xDomain}
           scale="time"
           type="number"
-          tick={DateAxisTick}
-        />
+          tickLine={false}
+          tick={false}
+          // tick={DateAxisTick}
+          />
         <YAxis
+          orientation="right"
+          axisLine={false}
+          tickLine={false}
+          tick={{stroke:'#fff'}}
           tickFormatter={val => getCurrencyRoundedNumber(val, currency)}
           domain={chartData.yDomain}
         />
@@ -95,7 +101,6 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
           labelFormatter={epochToDateOutput}
           formatter={val => formatCurrency(val, currency)}
         />
-        <Legend />
 
         <Area
           type="monotone"

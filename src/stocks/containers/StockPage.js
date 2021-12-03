@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import StockHistoryLineChart from '../../charts/containers/StockHistoryLineChart';
+import { COLORS } from '../../charts/components/StockHistoryLineChart';
 import StockAverageSummary from './StockAverageSummary';
 import StockTransactions from './StockTransactions';
 import PeriodToggle from '../components/PeriodToggle';
@@ -17,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+  },
+  paperChart: {
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+    background: COLORS.background
   },
   paperless: {
     padding: theme.spacing(2),
@@ -54,7 +61,7 @@ const StockPage = () => {
 
 
       <Grid item xs={12}>
-        <Paper className={classes.paper}>
+        <Paper className={classes.paperChart}>
           <StockHistoryLineChart period={period} interval={interval} ticker={ticker} />
         </Paper>
       </Grid>

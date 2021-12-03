@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/client';
 import queries from '../queries';
 import { prepareHistoryLineChartData } from '../utils';
 import StockHistoryLineChart from '../components/StockHistoryLineChart';
-import Title from '../../core/components/Title';
 import Skeleton from '@material-ui/lab/Skeleton';
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
 
@@ -20,7 +19,6 @@ const StockHistoryLineChartContainer = ({ ticker, period = "ytd", interval = "1d
 
   return (
     <>
-      <Title>History</Title>
       {loading ? <Skeleton variant="rect" height={300} /> : <StockHistoryLineChart currency={stockHistory?.currency} chartData={chart} />}
     </>
   )
