@@ -16,7 +16,7 @@ const StocksSummary = () => {
     <Grid container spacing={3}>
 
       <Grid item xs={12} md={6}>
-        <Typography variant="h6">Stocks</Typography>
+        <Typography component="h2" variant="h6">Stocks</Typography>
 
         <StocksTable data={data?.stocks} loading={loading} />
       </Grid>

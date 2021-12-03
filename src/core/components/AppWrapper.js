@@ -10,7 +10,10 @@ const theme = createMuiTheme({
       'Urbanist',
       'Roboto',
       'sans-serif'
-    ].join(',')
+    ].join(','),
+    h6: {
+      fontWeight: 700
+    },
   }
 });
 
