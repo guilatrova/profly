@@ -7,10 +7,7 @@ import Container from '@material-ui/core/Container';
 const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
-    backgroundColor:
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[900]
-        : theme.palette.grey[100],
+    backgroundColor: '#f7f9fb',
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
