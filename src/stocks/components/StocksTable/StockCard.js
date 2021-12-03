@@ -14,6 +14,18 @@ const useStyles = makeStyles({
     fontWeight: 900,
     fontSize: 16
   },
+  card: {
+    position: 'relative',
+    '&:before': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      left: '70px',
+      right: '5px',
+      bottom: 0,
+      borderBottom: '1px solid #ccc',
+    }
+  }
 });
 
 
@@ -38,7 +50,7 @@ const StockCard = ({ data }) => {
   const classes = useStyles();
 
   return (
-      <Card>
+      <Card elevation={0} className={classes.card}>
         <CardHeader
           avatar={
             <StockAvatar url={data.logoUrl} ticker={data.ticker} name={data.name} />
