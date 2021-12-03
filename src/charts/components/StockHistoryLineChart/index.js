@@ -21,7 +21,8 @@ export const COLORS = {
   unactiveLine: '#a9c8f5',
   activeArea: '#649bed',
   unactiveArea: '#3079e7',
-  background: '#1b6ae5'
+  background: '#1b6ae5',
+  tooltipCursor: '#fff'
 };
 
 const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
@@ -100,6 +101,7 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
         />
 
         <Tooltip
+          cursor={{ stroke: COLORS.tooltipCursor, strokeWidth: 2 }}
           content={<TransactionsTooltip />}
           labelFormatter={epochToDateOutput}
           formatter={val => formatCurrency(val, currency)}
