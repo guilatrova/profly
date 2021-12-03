@@ -32,7 +32,7 @@ const useStyles = makeStyles({
       left: '50px',
       right: '5px',
       bottom: 0,
-      borderBottom: '1px solid #ccc',
+      borderBottom: '1px solid #dadada',
     }
   },
   cardHeader: {
