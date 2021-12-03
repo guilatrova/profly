@@ -1,16 +1,28 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import TransactionEventEntry from './TransactionEventEntry';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+  root: {
+    background: '#fff',
+    padding: "2px 10px",
+    borderRadius: 15
+  },
+});
 
 
 const TransactionsTooltip = ({ active, label, labelFormatter, formatter, payload }) => {
+  const classes = useStyles();
+
   const hasPayload = !!payload.length;
   if (active && hasPayload) {
     const transactions = payload[0].payload.transactions;
     const hasTransactions = !!transactions.length;
 
     return (
-      <div className="custom-tooltip">
+      <div className={classes.root}>
         <h4 className="label">{`${labelFormatter(label)}`}</h4>
         <p>{`${formatter(payload[0].value)}`}</p>
 

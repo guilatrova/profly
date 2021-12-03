@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts';
 import { epochToDateOutput } from '../../../utils/dates';
@@ -15,7 +14,6 @@ import { getCurrencyRoundedNumber } from '../../../utils/numberFormat';
 import { formatCurrency } from '../../../utils/money';
 
 import TransactionsTooltip from './TransactionsTooltip';
-import DateAxisTick from './DateAxisTick';
 import TransactionDot from './TransactionDot';
 
 export const COLORS = {
@@ -31,7 +29,6 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
 
   const onMouseMove = hoveredData => {
     if (hoveredData && hoveredData.activePayload) {
-      console.log(hoveredData)
       const index = hoveredData.activeTooltipIndex;
       const total = chartData.data.length;
 
@@ -45,9 +42,8 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
     setCursorPos(100);
   };
 
-  console.log(chartData);
   const yTicks = [
-    // Math.min(...chartData.data.map(d => d.close)),
+    Math.min(...chartData.data.map(d => d.close)),
     chartData.data.at(-1).close,
     Math.max(...chartData.data.map(d => d.close)),
   ]
