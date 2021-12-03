@@ -31,6 +31,7 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
 
   const onMouseMove = hoveredData => {
     if (hoveredData && hoveredData.activePayload) {
+      console.log(hoveredData)
       const index = hoveredData.activeTooltipIndex;
       const total = chartData.data.length;
 
@@ -44,6 +45,12 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
     setCursorPos(100);
   };
 
+  console.log(chartData);
+  const yTicks = [
+    // Math.min(...chartData.data.map(d => d.close)),
+    chartData.data.at(-1).close,
+    Math.max(...chartData.data.map(d => d.close)),
+  ]
   return (
     <ResponsiveContainer height={300} width="100%">
       <AreaChart
@@ -59,7 +66,7 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
       >
         <CartesianGrid
           vertical={false}
-          strokeDasharray="4 4"
+          strokeDasharray="8 8"
           fill={COLORS.background}
         />
 
@@ -85,12 +92,12 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
           type="number"
           tickLine={false}
           tick={false}
-          // tick={DateAxisTick}
           />
         <YAxis
           orientation="right"
           axisLine={false}
           tickLine={false}
+          ticks={yTicks}
           tick={{stroke:'#fff'}}
           tickFormatter={val => getCurrencyRoundedNumber(val, currency)}
           domain={chartData.yDomain}
