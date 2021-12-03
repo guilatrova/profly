@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   AreaChart,
@@ -18,7 +18,32 @@ import TransactionsTooltip from './TransactionsTooltip';
 import DateAxisTick from './DateAxisTick';
 import TransactionDot from './TransactionDot';
 
+const COLORS = {
+  activeLine: '#fff',
+  unactiveLine: '#a9c8f5',
+  activeArea: '#649bed',
+  unactiveArea: '#3079e7',
+  background: '#1b6ae5'
+};
+
 const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
+  const [cursorPos, setCursorPos] = useState(0);
+
+  const onMouseMove = hoveredData => {
+    if (hoveredData && hoveredData.activePayload) {
+      const index = hoveredData.activeTooltipIndex;
+      const total = chartData.data.length;
+
+      const percentage = ((total - index) * 100) / total;
+
+      setCursorPos(100 - percentage);
+    }
+  };
+
+  const onMouseOut = () => {
+    setCursorPos(100);
+  };
+
   return (
     <ResponsiveContainer height={300} width="100%">
       <AreaChart
@@ -29,12 +54,29 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
           left: 20,
           bottom: 5,
         }}
+        onMouseMove={onMouseMove}
+        onMouseOut={onMouseOut}
       >
         <CartesianGrid
           vertical={false}
           strokeDasharray="4 4"
-          fill="#1b6ae5"
+          fill={COLORS.background}
         />
+
+      <defs>
+        <linearGradient id="colorClose" x1="0%" y1="0" x2="100%" y2="0">
+          <stop offset="0%" stopColor={COLORS.activeArea} />
+          <stop offset={`${cursorPos}%`} stopColor={COLORS.activeArea} />
+          <stop offset={`${cursorPos}%`} stopColor={COLORS.unactiveArea} />
+          <stop offset={`${100}%`} stopColor={COLORS.unactiveArea} />
+        </linearGradient>
+        <linearGradient id="colorStroke" x1="0%" y1="0" x2="100%" y2="0">
+          <stop offset="0%" stopColor={COLORS.activeLine} />
+          <stop offset={`${cursorPos}%`} stopColor={COLORS.activeLine} />
+          <stop offset={`${cursorPos}%`} stopColor={COLORS.unactiveLine} />
+          <stop offset={`${100}%`} stopColor={COLORS.unactiveLine} />
+        </linearGradient>
+      </defs>
 
         <XAxis
           dataKey="date"
@@ -58,8 +100,8 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
         <Area
           type="monotone"
           dataKey="close"
-          stroke="#fff"
-          fill="#649bed"
+          stroke="url(#colorStroke)"
+          fill="url(#colorClose)"
           strokeWidth={2}
           dot={<TransactionDot />}
         />
