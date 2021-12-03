@@ -4,9 +4,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { formatCurrency } from '../../../utils/money';
-import { stocksSummaryPropType } from '../../types';
+import { stockSummaryPropType } from '../../types';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -14,9 +15,16 @@ const useStyles = makeStyles({
     fontWeight: 900,
     fontSize: 16
   },
+  link: {
+    textDecoration: 'none',
+  },
   card: {
+    cursor: 'pointer',
     background: 'inherit',
     position: 'relative',
+    '&:hover': {
+      background: '#eaeaea'
+    },
     '&:before': {
       content: '""',
       display: 'block',
@@ -28,7 +36,7 @@ const useStyles = makeStyles({
     }
   },
   cardHeader: {
-    paddingLeft: 0
+    paddingLeft: 5
   }
 });
 
@@ -54,6 +62,7 @@ const StockCard = ({ data }) => {
   const classes = useStyles();
 
   return (
+    <Link className={classes.link} to={`/stocks/${data.ticker}`}>
       <Card elevation={0} className={classes.card}>
         <CardHeader
           className={classes.cardHeader}
@@ -67,12 +76,13 @@ const StockCard = ({ data }) => {
           }
         />
       </Card>
+    </Link>
   );
 }
 
 
 StockCard.propTypes = {
-  data: stocksSummaryPropType,
+  data: stockSummaryPropType,
   loading: PropTypes.bool
 };
 
