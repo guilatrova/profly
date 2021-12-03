@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -21,7 +21,7 @@ import TransactionDot from './TransactionDot';
 const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
   return (
     <ResponsiveContainer height={300} width="100%">
-      <LineChart
+      <AreaChart
         data={chartData.data}
         margin={{
           top: 5,
@@ -30,7 +30,11 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid
+          vertical={false}
+          strokeDasharray="4 4"
+          fill="#1b6ae5"
+        />
 
         <XAxis
           dataKey="date"
@@ -51,13 +55,15 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
         />
         <Legend />
 
-        <Line
+        <Area
           type="monotone"
           dataKey="close"
-          stroke="#8884d8"
+          stroke="#fff"
+          fill="#649bed"
+          strokeWidth={2}
           dot={<TransactionDot />}
         />
-      </LineChart>
+      </AreaChart>
     </ResponsiveContainer>
   );
 };
