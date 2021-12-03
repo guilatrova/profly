@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import RecentTransactions from '../../transactions/containers/RecentTransactions';
 import StocksSummary from './StocksSummary';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,6 +22,8 @@ const Dashboard = () => {
     <Grid container spacing={3}>
 
       <Grid item xs={12}>
+        <Typography component="h2" variant="h6">Stocks</Typography>
+
         <StocksSummary />
       </Grid>
 
