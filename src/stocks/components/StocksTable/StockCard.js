@@ -15,16 +15,20 @@ const useStyles = makeStyles({
     fontSize: 16
   },
   card: {
+    background: 'inherit',
     position: 'relative',
     '&:before': {
       content: '""',
       display: 'block',
       position: 'absolute',
-      left: '70px',
+      left: '50px',
       right: '5px',
       bottom: 0,
       borderBottom: '1px solid #ccc',
     }
+  },
+  cardHeader: {
+    paddingLeft: 0
   }
 });
 
@@ -52,6 +56,7 @@ const StockCard = ({ data }) => {
   return (
       <Card elevation={0} className={classes.card}>
         <CardHeader
+          className={classes.cardHeader}
           avatar={
             <StockAvatar url={data.logoUrl} ticker={data.ticker} name={data.name} />
           }

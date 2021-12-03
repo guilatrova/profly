@@ -21,9 +21,7 @@ const Dashboard = () => {
     <Grid container spacing={3}>
 
       <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <StocksSummary />
-        </Paper>
+        <StocksSummary />
       </Grid>
 
       <Grid item xs={12}>
