@@ -2,9 +2,20 @@ import React from "react";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 import { formatCurrency } from '../../../utils/money';
 import { stocksSummaryPropType } from '../../types';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+  stockTitle: {
+    fontFamily: "Lato, Roboto",
+    fontWeight: 900,
+    fontSize: 16
+  },
+});
 
 
 const StockAvatar = ({ url, ticker, name }) => {
@@ -25,16 +36,18 @@ StockAvatar.propTypes = {
 
 
 const StockCard = ({ data }) => {
+  const classes = useStyles();
+
   return (
       <Card>
         <CardHeader
           avatar={
             <StockAvatar url={data.logoUrl} ticker={data.ticker} name={data.name} />
           }
-          title={data.ticker}
+          title={<Typography className={classes.stockTitle}>{data.ticker}</Typography>}
           subheader={`x${data.units}`}
           action={
-            <p>{formatCurrency(data.value, data.currency)}</p>
+            <p className={classes.stockTitle}>{formatCurrency(data.value, data.currency)}</p>
           }
         />
       </Card>
