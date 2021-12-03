@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   stockTitle: {
-    fontFamily: "Lato, Roboto",
     fontWeight: 900,
     fontSize: 16
   },

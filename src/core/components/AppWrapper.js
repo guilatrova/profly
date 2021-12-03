@@ -1,9 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import HeaderBar from './HeaderBar';
 import AppContent from './AppContent';
 
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Urbanist',
+      'Roboto',
+      'sans-serif'
+    ].join(',')
+  }
+});
 
 const useStyles = makeStyles({
   root: {
@@ -16,12 +25,13 @@ const AppWrapper = ({ children }) => {
 
   return (
     <div className={classes.root}>
+      <ThemeProvider theme={theme}>
+        <HeaderBar />
 
-      <HeaderBar />
-
-      <AppContent>
-        {children}
-      </AppContent>
+        <AppContent>
+          {children}
+        </AppContent>
+      </ThemeProvider>
 
     </div>
   );
