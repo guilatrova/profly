@@ -1,13 +1,14 @@
 import React from "react";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { formatCurrency } from '../../../utils/money';
-import { stockSummaryPropType } from '../../types';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+
+import { formatCurrency } from '../../../utils/money';
+import { stockSummaryPropType } from '../../types';
+import StockAvatar from '../StockAvatar';
+import StockLink from '../../../core/components/StockLink';
 
 
 const useStyles = makeStyles({
@@ -41,28 +42,11 @@ const useStyles = makeStyles({
 });
 
 
-const StockAvatar = ({ url, ticker, name }) => {
-  const ariaLabel = { "aria-label": `logo-${ticker}` };
-  if (url) {
-    return <Avatar {...ariaLabel} src={url} />;
-  }
-
-  const firstLetter = name[0];
-  return <Avatar {...ariaLabel}>{firstLetter}</Avatar>;
-}
-
-StockAvatar.propTypes = {
-  url: PropTypes.string,
-  ticker: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-};
-
-
 const StockCard = ({ data }) => {
   const classes = useStyles();
 
   return (
-    <Link className={classes.link} to={`/stocks/${data.ticker}`}>
+    <StockLink ticker={data.ticker}>
       <Card elevation={0} className={classes.card}>
         <CardHeader
           className={classes.cardHeader}
@@ -76,7 +60,7 @@ const StockCard = ({ data }) => {
           }
         />
       </Card>
-    </Link>
+    </StockLink>
   );
 }
 
