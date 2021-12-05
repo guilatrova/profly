@@ -27,15 +27,17 @@ export const COLORS = {
 
 const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
   const [cursorPos, setCursorPos] = useState(0);
+  const [Xpos, setXpos] = useState(0);
 
   const onMouseMove = hoveredData => {
-    if (hoveredData && hoveredData.activePayload) {
+    if (hoveredData && hoveredData.activePayload && hoveredData.chartX != Xpos) {
       const index = hoveredData.activeTooltipIndex;
       const total = chartData.data.length;
 
       const percentage = ((total - index) * 100) / total;
 
       setCursorPos(100 - percentage);
+      setXpos(hoveredData.chartX);
     }
   };
 
@@ -72,13 +74,13 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
           <stop offset="0%" stopColor={COLORS.activeArea} />
           <stop offset={`${cursorPos}%`} stopColor={COLORS.activeArea} />
           <stop offset={`${cursorPos}%`} stopColor={COLORS.unactiveArea} />
-          <stop offset={`${100}%`} stopColor={COLORS.unactiveArea} />
+          <stop offset="100%" stopColor={COLORS.unactiveArea} />
         </linearGradient>
         <linearGradient id="colorStroke" x1="0%" y1="0" x2="100%" y2="0">
           <stop offset="0%" stopColor={COLORS.activeLine} />
           <stop offset={`${cursorPos}%`} stopColor={COLORS.activeLine} />
           <stop offset={`${cursorPos}%`} stopColor={COLORS.unactiveLine} />
-          <stop offset={`${100}%`} stopColor={COLORS.unactiveLine} />
+          <stop offset="100%" stopColor={COLORS.unactiveLine} />
         </linearGradient>
       </defs>
 
