@@ -8,6 +8,7 @@ const stockSummary = gql`
       units
       averageBuyPrice
       averageSellPrice
+      currentValue
     }
   }
 `

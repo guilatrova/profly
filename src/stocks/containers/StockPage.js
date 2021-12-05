@@ -10,6 +10,7 @@ import StockTransactions from './StockTransactions';
 import PeriodToggle from '../components/PeriodToggle';
 import Typography from '@material-ui/core/Typography';
 import StockBreadcrumbs from '../components/StockBreadcrumbs';
+import ValueHeader from './ValueHeader';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,10 +44,8 @@ const StockPage = () => {
         <StockBreadcrumbs location={ticker} />
       </Grid>
 
-      <Grid container className={classes.paperless}>
-        <Grid item xs={12} md={6}>
-          <StockAverageSummary ticker={ticker} />
-        </Grid>
+      <Grid item xs={12}>
+        <ValueHeader ticker={ticker} />
       </Grid>
 
       <Grid item xs={12}>
@@ -57,6 +56,13 @@ const StockPage = () => {
 
       <Grid item xs={12}>
         <PeriodToggle onChange={setPeriod} />
+      </Grid>
+
+      <Grid container className={classes.paperless}>
+        <Grid item xs={12} md={6}>
+          <Typography component="h2" variant="h6">Status</Typography>
+          <StockAverageSummary ticker={ticker} />
+        </Grid>
       </Grid>
 
       <Grid item xs={12}>

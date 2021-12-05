@@ -12,6 +12,7 @@ const PortfolioSummary = () => {
   if (error) return <ErrorHandler>{error}</ErrorHandler>;
 
   const chartData = data?.stocks || [];
+  // TODO: Consider different currencies
   const total = chartData.reduce((acc, cur) => acc + cur.value, 0);
 
   return (
