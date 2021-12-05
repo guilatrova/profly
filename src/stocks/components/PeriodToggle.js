@@ -36,9 +36,9 @@ const PeriodToggle = ({ onChange }) => {
         onChange={handleChange}
         size="large"
       >
-        {PERIODS.map((period) => (
+        {PERIODS.map(({display: text, value: period}) => (
           <ToggleButton key={period} value={period} className={classes.root}>
-            {period}
+            {text}
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
