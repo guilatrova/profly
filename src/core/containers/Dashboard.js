@@ -24,22 +24,22 @@ const Dashboard = () => {
 
       <Grid item xs={12}>
         <Paper className={classes.paper}>
-          <Typography variant="subtitle2">Portfolio</Typography>
+          <Typography component="h2" variant="subtitle2">Portfolio</Typography>
 
           <PortfolioSummary />
         </Paper>
       </Grid>
 
-      <Grid item xs={12}>
+      <Grid item xs={12} md={6}>
         <Typography component="h2" variant="h6">Stocks</Typography>
 
         <StocksSummary />
       </Grid>
 
-      <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <RecentTransactions />
-        </Paper>
+      <Grid item xs={12} md={6}>
+        <Typography component="h2" variant="h6">Recent transactions</Typography>
+
+        <RecentTransactions />
       </Grid>
 
     </Grid>

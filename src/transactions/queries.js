@@ -6,8 +6,10 @@ const listTransactions = gql`
       id
       stock {
         id
+        name
         ticker
         currency
+        logoUrl
       }
       emotion
       strikePrice

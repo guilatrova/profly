@@ -13,7 +13,7 @@ const StocksSummary = () => {
   return (
     <Grid container spacing={3}>
 
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12}>
         <StocksTable data={data?.stocks} loading={loading} />
       </Grid>
 
