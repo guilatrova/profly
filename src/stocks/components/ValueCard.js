@@ -8,34 +8,28 @@ import { formatCurrency } from '../../utils/money';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   root: {
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+  value: {
+    color: 'black'
   },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+}));
 
-const ValueCard = ({ title, loading = false, currency = 'BRL', isMoney = false, children = null}) => {
+const ValueCard = ({ title, loading = false, currency = 'BRL', isMoney = false, icon, children = null}) => {
   const classes = useStyles();
   const displayValue = isMoney ? formatCurrency(children || 0, currency) : children;
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
+        {icon}
+
+        <Typography variant="subtitle2" component="h3" gutterBotom>
           {title}
         </Typography>
 
-        <Typography variant="h5" component="h2">
+        <Typography variant="subtitle2" component="h3" className={classes.value}>
           {loading ? <Skeleton /> : displayValue}
         </Typography>
       </CardContent>
@@ -48,6 +42,7 @@ ValueCard.propTypes = {
   currency: PropTypes.string,
   loading: PropTypes.bool,
   isMoney: PropTypes.bool,
+  icon: PropTypes.node,
   children: PropTypes.number
 }
 
