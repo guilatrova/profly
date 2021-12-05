@@ -1,8 +1,7 @@
 import React from 'react';
-import Title from '../../core/components/Title';
 import queries from '../queries';
 import { useQuery } from '@apollo/client';
-import TransactionsTable from '../../transactions/components/TransactionsTable';
+import Transactions from '../../transactions/components/Transactions';
 import { tickerType, periodType } from '../../core/types';
 import { subPeriod } from '../../utils/dates';
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
@@ -17,10 +16,10 @@ const StockTransactions = ({ ticker, period }) => {
   const tableData = data?.transactionsFilter.found.map(item => item.node);
 
   return (
-    <div>
-      <Title>Transactions</Title>
-      <TransactionsTable loading={loading} data={tableData} displayStock={false} />
-    </div>
+    <Transactions
+      mode="STOCK"
+      loading={loading}
+      data={tableData} />
   );
 }
 

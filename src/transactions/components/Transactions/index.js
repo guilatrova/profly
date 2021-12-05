@@ -9,14 +9,14 @@ import TransactionCard from './TransactionCard';
 const TransactionsList = ({
   data = [],
   loading = false,
-  displayStock = true,
+  mode,
 }) => {
   return (
     data.map((row) => (
       <TransactionCard
         key={row.id}
         row={row}
-        displayStock={displayStock}
+        mode={mode}
       />
     ))
   )
@@ -25,7 +25,7 @@ const TransactionsList = ({
 TransactionsList.propTypes = {
   data: transactionsPropType,
   loading: PropTypes.bool,
-  displayStock: PropTypes.bool,
+  mode: PropTypes.oneOf(['ALL', 'STOCK']),
 };
 
 export default TransactionsList;

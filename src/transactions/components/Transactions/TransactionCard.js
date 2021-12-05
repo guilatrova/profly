@@ -52,12 +52,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const TransactionCard = ({ row, displayStock }) => {
+const unitsToDisplay = (row) => row.units >= 0 ? `x${row.units}` : `x${row.units * -1}`;
+const resolveToTicker = (row) => row.stock.ticker;
+const resolveToStrikPrice = (row) => formatCurrency(row.strikePrice, row.stock.currency);
+const resolveToUnits = (row) => unitsToDisplay(row);
+
+const RESOLVER_MAP = {
+  ALL: {
+    resolveTitle: resolveToTicker,
+    resolveSubheader: resolveToUnits,
+  },
+  STOCK: {
+    resolveTitle: resolveToUnits,
+    resolveSubheader: resolveToStrikPrice,
+  }
+}
+
+
+const TransactionCard = ({ row, mode='ALL' }) => {
   const classes = useStyles();
   const [handleDelete] = useMutation(queries.deleteTransaction, { variables: { id: row.id }});
   const isBuyOperation = row.units >= 0;
-  const units = isBuyOperation ? `x${row.units}` : `x${row.units * -1}`;
   const displayClass = isBuyOperation ? classes.boughtUnits : classes.soldUnits;
+  const resolver = RESOLVER_MAP[mode];
 
   return (
     <StockLink ticker={row.stock.ticker}>
@@ -67,8 +84,8 @@ const TransactionCard = ({ row, displayStock }) => {
           avatar={
             <TransactionAvatar item={row} />
           }
-          title={<Typography className={classes.headerTitle}>{row.stock.ticker}</Typography>}
-          subheader={units}
+          title={<Typography className={classes.headerTitle}>{resolver.resolveTitle(row)}</Typography>}
+          subheader={resolver.resolveSubheader(row)}
           action={
             <div>
               <span className={clsx(classes.headerTitle, displayClass)}>{formatCurrency(row.value, row.stock.currency)}</span>
@@ -83,7 +100,7 @@ const TransactionCard = ({ row, displayStock }) => {
 
 TransactionCard.propTypes = {
   row: transactionPropType.isRequired,
-  displayStock: PropTypes.bool,
+  mode: PropTypes.oneOf(['ALL', 'STOCK']),
 };
 
 export default TransactionCard;

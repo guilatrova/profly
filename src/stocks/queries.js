@@ -26,6 +26,8 @@ const transactionsFromStock = gql`
         node {
           stock {
             id
+            name
+            logoUrl
             ticker
             currency
           }

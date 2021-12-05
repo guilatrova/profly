@@ -27,13 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paperless: {
     padding: theme.spacing(2),
-  },
-  rightAligned: {
-    textAlign: 'right'
-  },
-  fixedHeight: {
-    height: 240,
-  },
+  }
 }));
 
 const StockPage = () => {
@@ -61,16 +55,14 @@ const StockPage = () => {
         </Paper>
       </Grid>
 
-      <Grid item xs={12} className={classes.rightAligned}>
+      <Grid item xs={12}>
         <PeriodToggle onChange={setPeriod} />
       </Grid>
 
       <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <StockTransactions period={period} ticker={ticker} />
-        </Paper>
+        <Typography component="h2" variant="h6">Transactions</Typography>
+        <StockTransactions period={period} ticker={ticker} />
       </Grid>
-
 
     </Grid>
   );
