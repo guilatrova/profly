@@ -1,8 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import SellIcon from '@material-ui/icons/MoneyOff';
-import BuyIcon from '@material-ui/icons/MonetizationOn';
-import TradeIcon from '@material-ui/icons/SyncAlt';
 
 
 const TransactionDot = ({ cx, cy, payload, value }) => {
@@ -14,15 +11,15 @@ const TransactionDot = ({ cx, cy, payload, value }) => {
   const hasSold = payload.transactions.some(t => t.units <= 0);
 
   if (hasBought && hasSold) {
-    return <TradeIcon x={cx - 10} y={cy - 10} width={20} height={20} htmlColor="#3498DB" />;
+    return <circle cx={cx} cy={cy} r={5} stroke="#fff" strokeWidth={2} fill="black" />;
   }
 
   if (hasSold) {
-    return <SellIcon x={cx - 10} y={cy - 10} width={20} height={20} htmlColor="red" />;
+    return <circle cx={cx} cy={cy} r={5} stroke="#fff" strokeWidth={2} fill="rgb(244, 67, 54)" />;
   }
 
   if (hasBought) {
-    return <BuyIcon x={cx - 10} y={cy - 10} width={20} height={20} htmlColor="green" />
+    return <circle cx={cx} cy={cy} r={5} stroke="#fff" strokeWidth={2} fill="rgb(76, 175, 80)" />
   }
 
   return null;
