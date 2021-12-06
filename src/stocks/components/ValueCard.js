@@ -25,7 +25,7 @@ const ValueCard = ({ title, loading = false, currency = 'BRL', isMoney = false, 
       <CardContent>
         {icon}
 
-        <Typography variant="subtitle2" component="h3" gutterBotom>
+        <Typography variant="subtitle2" component="h3">
           {title}
         </Typography>
 
