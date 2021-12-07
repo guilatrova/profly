@@ -25,7 +25,7 @@ const StrikeActionToggle = ({ onChange, disabled, value = STOCK_ACTIONS.BUY }) =
   return (
     <div className={classes.toggleContainer}>
       <ToggleButtonGroup
-        size="small"
+        size="large"
         value={value}
         exclusive
         onChange={handleChange}

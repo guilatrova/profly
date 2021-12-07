@@ -1,22 +1,41 @@
 import React from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import 'emoji-mart/css/emoji-mart.css';
-import { Picker } from 'emoji-mart';
+import { Emoji as EmojiDisplay, Picker } from 'emoji-mart';
 
+const useStyles = makeStyles({
+  emojiButton: {
+    margin: 'auto'
+  },
+  disabled: {
+    opacity: 0.5
+  }
+});
 
 const EmojiSelectPicker = ({ open, emoji, disabled, onEmojiSelect, onPickerStateChange }) => {
+  const classes = useStyles();
 
   const handleOnSelect = (emoji) => {
     onEmojiSelect(emoji);
     onPickerStateChange();
   };
 
-  if (open) {
-    return (
-      <ClickAwayListener onClickAway={onPickerStateChange}>
+  return (
+    <>
+      <IconButton
+        className={clsx(classes.emojiButton, {[classes.disabled]: disabled})}
+        disabled={disabled}
+        onClick={onPickerStateChange}
+      >
+        <EmojiDisplay disabled emoji={emoji} set="twitter" size={32} />
+      </IconButton>
+
+      {open && <ClickAwayListener onClickAway={onPickerStateChange}>
         <div style={{position: 'relative'}}>
           <Picker
             set="twitter"
@@ -26,15 +45,9 @@ const EmojiSelectPicker = ({ open, emoji, disabled, onEmojiSelect, onPickerState
             onSelect={handleOnSelect}
           />
         </div>
-      </ClickAwayListener>
-    );
-  }
-
-  return (
-    <Button variant="outlined" disabled={disabled} onClick={onPickerStateChange}>
-      {emoji.native}
-    </Button>
-  )
+      </ClickAwayListener>}
+    </>
+  );
 };
 
 EmojiSelectPicker.propTypes = {
