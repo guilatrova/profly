@@ -33,11 +33,7 @@ const TransactionFormDrawer = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
+  const toggleDrawer = (open) => () => {
     setOpen(open);
   };
 
@@ -61,7 +57,7 @@ const TransactionFormDrawer = () => {
           </IconButton>
 
           <div role="presentation">
-            <TransactionFormContainer />
+            <TransactionFormContainer onPostSubmit={toggleDrawer(false)} />
           </div>
 
         </Drawer>

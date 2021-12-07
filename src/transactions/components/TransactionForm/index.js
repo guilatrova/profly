@@ -29,13 +29,13 @@ const TransactionForm = ({ onSubmit }) => {
       setEntity({ ...emptyEntity });
     }
   };
-  const handleFormSubmit = (e) => e.preventDefault();
+  const preventFormSubmit = (e) => e.preventDefault();
 
   return (
     <form
       noValidate
       autoComplete="off"
-      onSubmit={handleFormSubmit}
+      onSubmit={preventFormSubmit}
     >
       <StockInfoProvider ticker={ticker}>
         <TransactionBody
