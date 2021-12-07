@@ -14,13 +14,7 @@ import StockLink from '../../../core/components/StockLink';
 import TransactionAvatar from './TransactionAvatar';
 
 
-const useStyles = makeStyles((theme) => ({
-  boughtUnits: {
-    color: theme.palette.error.main,
-  },
-  soldUnits: {
-    color: theme.palette.success.main,
-  },
+const useStyles = makeStyles({
   headerTitle: {
     fontWeight: 900,
     fontSize: 16
@@ -49,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   cardAvatar: {
     marginRight: 15
   }
-}));
+});
 
 
 const unitsToDisplay = (row) => row.units >= 0 ? `x${row.units}` : `x${row.units * -1}`;
@@ -72,8 +66,6 @@ const RESOLVER_MAP = {
 const TransactionCard = ({ row, mode='ALL' }) => {
   const classes = useStyles();
   const [handleDelete] = useMutation(queries.deleteTransaction, { variables: { id: row.id }});
-  const isBuyOperation = row.units >= 0;
-  const displayClass = isBuyOperation ? classes.boughtUnits : classes.soldUnits;
   const resolver = RESOLVER_MAP[mode];
 
   return (
@@ -88,7 +80,7 @@ const TransactionCard = ({ row, mode='ALL' }) => {
           subheader={resolver.resolveSubheader(row)}
           action={
             <div>
-              <span className={clsx(classes.headerTitle, displayClass)}>{formatCurrency(row.value, row.stock.currency)}</span>
+              <span className={clsx(classes.headerTitle)}>{formatCurrency(row.value, row.stock.currency)}</span>
               <Actions onDelete={handleDelete} />
             </div>
           }
