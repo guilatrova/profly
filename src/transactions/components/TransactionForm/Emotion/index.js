@@ -22,7 +22,7 @@ const Emotion = ({ disabled, onChange }) => {
 
   return (
     <div>
-      <Label shrink disabled={disabled}>Emotion</Label>
+      <Label shrink disabled={disabled}>How are you feeling?</Label>
 
       <EmojiSelectPicker
         open={isPickerOpen}

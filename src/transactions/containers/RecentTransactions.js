@@ -2,7 +2,7 @@ import React from 'react';
 import queries from '../queries';
 import { useQuery } from '@apollo/client';
 import Transactions from '../components/Transactions';
-import TransactionForm from './TransactionFormContainer';
+import TransactionForm from './TransactionFormDrawer';
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
 
 const RecentTransactions = () => {
@@ -14,8 +14,8 @@ const RecentTransactions = () => {
 
   return (
     <>
-      <Transactions loading={loading} data={transactions} />
       <TransactionForm />
+      <Transactions loading={loading} data={transactions} />
     </>
   );
 }

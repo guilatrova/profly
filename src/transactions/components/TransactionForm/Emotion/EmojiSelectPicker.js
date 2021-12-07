@@ -17,13 +17,15 @@ const EmojiSelectPicker = ({ open, emoji, disabled, onEmojiSelect, onPickerState
   if (open) {
     return (
       <ClickAwayListener onClickAway={onPickerStateChange}>
-        <Picker
-          set="twitter"
-          title="How do you feel?"
-          emoji={emoji.id}
-          style={{ position: 'absolute', zIndex: 99 }}
-          onSelect={handleOnSelect}
-        />
+        <div style={{position: 'relative'}}>
+          <Picker
+            set="twitter"
+            title="How do you feel?"
+            emoji={emoji.id}
+            style={{ position: 'absolute', zIndex: 999, bottom: 0 }}
+            onSelect={handleOnSelect}
+          />
+        </div>
       </ClickAwayListener>
     );
   }
