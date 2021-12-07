@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import HeaderBar from './HeaderBar';
 import AppContent from './AppContent';
+import { SnackbarProvider } from 'notistack';
 
 const theme = createMuiTheme({
   typography: {
@@ -47,7 +48,9 @@ const AppWrapper = ({ children }) => {
         <HeaderBar />
 
         <AppContent>
-          {children}
+          <SnackbarProvider>
+            {children}
+          </SnackbarProvider>
         </AppContent>
       </ThemeProvider>
 

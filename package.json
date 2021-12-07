@@ -46,6 +46,7 @@
     "date-fns-tz": "1.0.12",
     "emoji-mart": "3.0.0",
     "graphql": "15.4.0",
+    "notistack": "1.0.10",
     "object-assign": "4.1.1",
     "react": "16.11.0",
     "react-dom": "16.11.0",

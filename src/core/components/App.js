@@ -12,6 +12,7 @@ import AppWrapper from './AppWrapper';
 import AmplifyPage from '../../core/containers/AmplifyPage';
 import PrivateRoute from '../../core/components/PrivateRoute';
 
+import { SnackbarProvider } from 'notistack';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -21,6 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <AppWrapper>
+        <SnackbarProvider>
         <Switch>
           <PrivateRoute exact path="/" component={Dashboard} />
           <PrivateRoute path="/transactions" component={TransactionForm} />
@@ -29,6 +31,7 @@ class App extends React.Component {
           <Route path="/login" component={AmplifyPage} />
           <Route component={NotFoundPage} />
         </Switch>
+        </SnackbarProvider>
       </AppWrapper>
     );
   }

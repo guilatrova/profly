@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
+import { useSnackbar } from 'notistack';
 import TransactionFormContainer from './TransactionFormContainer';
 
 const useStyles = makeStyles(theme => ({
@@ -32,6 +33,12 @@ const useStyles = makeStyles(theme => ({
 const TransactionFormDrawer = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handlePostSubmit = () => {
+    enqueueSnackbar('Transaction successfully added!', { variant: 'success' });
+    setOpen(false);
+  }
 
   const toggleDrawer = (open) => () => {
     setOpen(open);
@@ -57,7 +64,7 @@ const TransactionFormDrawer = () => {
           </IconButton>
 
           <div role="presentation">
-            <TransactionFormContainer onPostSubmit={toggleDrawer(false)} />
+            <TransactionFormContainer onPostSubmit={handlePostSubmit} />
           </div>
 
         </Drawer>
