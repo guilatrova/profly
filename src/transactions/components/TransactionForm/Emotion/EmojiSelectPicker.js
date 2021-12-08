@@ -32,7 +32,7 @@ const EmojiSelectPicker = ({ open, emoji, disabled, onEmojiSelect, onPickerState
         disabled={disabled}
         onClick={onPickerStateChange}
       >
-        <EmojiDisplay disabled emoji={emoji} set="twitter" size={32} />
+        <EmojiDisplay emoji={emoji} set="twitter" size={32} />
       </IconButton>
 
       {open && <ClickAwayListener onClickAway={onPickerStateChange}>

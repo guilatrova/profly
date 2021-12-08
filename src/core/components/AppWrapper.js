@@ -48,7 +48,7 @@ const AppWrapper = ({ children }) => {
         <HeaderBar />
 
         <AppContent>
-          <SnackbarProvider>
+          <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
             {children}
           </SnackbarProvider>
         </AppContent>

@@ -90,7 +90,7 @@ const TransactionBody = ({
         </FormRow>
 
         {loading && <LinearProgress color="secondary" />}
-        <ErrorHandler operation="get stock info">{error}</ErrorHandler>
+        <ErrorHandler hidden operation="get stock info">{error}</ErrorHandler>
 
         <FormRow>
           <DecimalTextField
