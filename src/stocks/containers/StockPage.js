@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import StockHistoryLineChart from '../../charts/containers/StockHistoryLineChart';
 import { COLORS } from '../../charts/components/StockHistoryLineChart';
-import StockAverageSummary from './StockAverageSummary';
+import StockStatusSummary from './StockStatusSummary';
 import StockTransactions from './StockTransactions';
 import PeriodToggle from '../components/PeriodToggle';
 import Typography from '@material-ui/core/Typography';
@@ -61,7 +61,7 @@ const StockPage = () => {
       <Grid container className={classes.paperless}>
         <Grid item xs={12} md={6}>
           <Typography component="h2" variant="h6">Status</Typography>
-          <StockAverageSummary ticker={ticker} />
+          <StockStatusSummary ticker={ticker} />
         </Grid>
       </Grid>
 

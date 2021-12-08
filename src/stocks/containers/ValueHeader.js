@@ -11,7 +11,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 const ValueHeader = ({ ticker }) => {
   const { loading, error, data } = useQuery(queries.stockSummary, { variables: { ticker }});
 
-  if (error) return <ErrorHandler>{error}</ErrorHandler>;
+  if (error) return <ErrorHandler operation="stock summary">{error}</ErrorHandler>;
 
   const summary = data?.summary;
   const value = summary?.currentValue;

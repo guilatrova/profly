@@ -11,7 +11,7 @@ const StockTransactions = ({ ticker, period }) => {
   const start = subPeriod(period).toISOString();
   const { loading, error, data } = useQuery(queries.transactionsFromStock, { variables: { ticker, start }});
 
-  if (error) return <ErrorHandler>{error}</ErrorHandler>;
+  if (error) return <ErrorHandler operation="stock transactions">{error}</ErrorHandler>;
 
   const tableData = data?.transactionsFilter.found.map(item => item.node);
 

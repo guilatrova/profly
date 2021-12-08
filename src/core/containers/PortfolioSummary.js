@@ -9,7 +9,7 @@ import { formatCurrency } from '../../utils/money';
 const PortfolioSummary = () => {
   const { error, data = [] } = useQuery(queries.chartStocksValues);
 
-  if (error) return <ErrorHandler>{error}</ErrorHandler>;
+  if (error) return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>;
 
   const chartData = data?.stocks || [];
   // TODO: Consider different currencies

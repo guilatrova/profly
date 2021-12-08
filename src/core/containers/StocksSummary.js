@@ -8,7 +8,7 @@ import StocksTable from '../../stocks/components/StocksTable';
 const StocksSummary = () => {
   const { loading, error, data = [] } = useQuery(queries.chartStocksValues);
 
-  if (error) return <ErrorHandler>{error}</ErrorHandler>;
+  if (error) return <ErrorHandler operation="stocks summary">{error}</ErrorHandler>;
 
   return (
     <Grid container spacing={3}>

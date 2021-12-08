@@ -8,13 +8,12 @@ import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import BuyIcon from '../../core/components/BuyIcon';
 import SellIcon from '../../core/components/SellIcon';
-import { green } from '@material-ui/core/colors';
 
 
-const StockAverageSummary = ({ ticker }) => {
+const StockStatusSummary = ({ ticker }) => {
   const { loading, error, data } = useQuery(queries.stockSummary, { variables: { ticker }});
 
-  if (error) return <ErrorHandler>{error}</ErrorHandler>;
+  if (error) return <ErrorHandler operation="stock status summary">{error}</ErrorHandler>;
 
   const summary = data?.summary;
 
@@ -57,8 +56,8 @@ const StockAverageSummary = ({ ticker }) => {
   );
 }
 
-StockAverageSummary.propTypes = {
+StockStatusSummary.propTypes = {
   ticker: tickerType.isRequired
 }
 
-export default StockAverageSummary;
+export default StockStatusSummary;

@@ -26,7 +26,7 @@ const ValueSpreadPieChartContainer = () => {
   const rateValue = dataRate?.currencyRate?.rate || 1;
   const error = errorStocks ? errorStocks : errorRate;
 
-  if (error) return <ErrorHandler>{error}</ErrorHandler>;
+  if (error) return <ErrorHandler operation="pie chart data">{error}</ErrorHandler>;
 
   if (loading || loadingRate) {
     return <Skeleton variant="circle" width={250} height={250}/>;
