@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import StockLink from '../../../core/components/StockLink';
 import TransactionAvatar from './TransactionAvatar';
+import { useSnackbar } from 'notistack';
 
 
 const useStyles = makeStyles({
@@ -65,28 +66,34 @@ const RESOLVER_MAP = {
 
 const TransactionCard = ({ row, mode='ALL' }) => {
   const classes = useStyles();
-  const [handleDelete] = useMutation(queries.deleteTransaction, { variables: { id: row.id }});
+  const { enqueueSnackbar } = useSnackbar();
+
+  const [deleteMutation] = useMutation(queries.deleteTransaction, { variables: { id: row.id }});
+  const handleDelete = () => {
+    deleteMutation();
+    enqueueSnackbar("Transaction deleted successfully", { variant: 'success' });
+  };
   const resolver = RESOLVER_MAP[mode];
 
   return (
-    <StockLink ticker={row.stock.ticker}>
-      <Card elevation={0} className={classes.card}>
-        <CardHeader
-          className={classes.cardHeader}
-          avatar={
+    <Card elevation={0} className={classes.card}>
+      <CardHeader
+        className={classes.cardHeader}
+        avatar={
+          <StockLink ticker={row.stock.ticker}>
             <TransactionAvatar item={row} />
-          }
-          title={<Typography className={classes.headerTitle}>{resolver.resolveTitle(row)}</Typography>}
-          subheader={resolver.resolveSubheader(row)}
-          action={
-            <div>
-              <span className={clsx(classes.headerTitle)}>{formatCurrency(row.value, row.stock.currency)}</span>
-              <Actions onDelete={handleDelete} />
-            </div>
-          }
-        />
-      </Card>
-    </StockLink>
+          </StockLink>
+        }
+        title={<Typography className={classes.headerTitle}>{resolver.resolveTitle(row)}</Typography>}
+        subheader={resolver.resolveSubheader(row)}
+        action={
+          <div>
+            <span className={clsx(classes.headerTitle)}>{formatCurrency(row.value, row.stock.currency)}</span>
+            <Actions onDelete={handleDelete} />
+          </div>
+        }
+      />
+    </Card>
   );
 };
 
