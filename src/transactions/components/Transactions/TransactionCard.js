@@ -72,6 +72,7 @@ const TransactionCard = ({ row, mode='ALL' }) => {
   const handleDelete = () => {
     deleteMutation();
     enqueueSnackbar("Transaction deleted successfully", { variant: 'success' });
+    setTimeout(() => window.location.reload(false), 2000);
   };
   const resolver = RESOLVER_MAP[mode];
 
