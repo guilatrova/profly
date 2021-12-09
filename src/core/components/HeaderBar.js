@@ -10,6 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/GitHub';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
+import Chip from '@material-ui/core/Chip';
 import LoggedUser from './LoggedUser';
 import { DownloadCSV } from '../../utils/downloader';
 
@@ -41,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  betaChip: {
+    marginLeft: theme.spacing(1)
+  }
 }));
 
 const HeaderBar = () => {
@@ -82,6 +86,7 @@ const HeaderBar = () => {
             className={classes.title}
           >
             profly
+            <Chip className={classes.betaChip} size="small" label="BETA" color="secondary" />
           </Typography>
 
           <IconButton color="inherit" onClick={handleDownloadCSV}>
