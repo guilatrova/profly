@@ -48,7 +48,7 @@ const TransactionFormDrawer = () => {
   return (
     <>
       <Box display="flex" justifyContent="center">
-        <Button color="primary" onClick={toggleDrawer(true)} className={classes.addButton}>Add Transaction</Button>
+        <Button color="secondary" onClick={toggleDrawer(true)} className={classes.addButton}>Add Transaction</Button>
       </Box>
 
       <Box

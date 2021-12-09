@@ -81,7 +81,7 @@ const HeaderBar = () => {
             noWrap
             className={classes.title}
           >
-            Profly
+            profly
           </Typography>
 
           <IconButton color="inherit" onClick={handleDownloadCSV}>
