@@ -31,13 +31,13 @@ const Dashboard = () => {
       </Grid>
 
       <Grid item xs={12} md={6}>
-        <Typography component="h2" variant="h6">Stocks</Typography>
+        <Typography component="h2" variant="h6">🧺 Stocks</Typography>
 
         <StocksSummary />
       </Grid>
 
       <Grid item xs={12} md={6}>
-        <Typography component="h2" variant="h6">Recent transactions</Typography>
+        <Typography component="h2" variant="h6">🛒 Recent transactions</Typography>
 
         <RecentTransactions />
       </Grid>
