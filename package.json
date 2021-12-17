@@ -87,6 +87,7 @@
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.15.1",
     "eslint": "6.6.0",
+    "eslint-import-resolver-webpack": "0.13.2",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-react": "7.16.0",
     "eslint-watch": "6.0.1",
@@ -182,6 +183,13 @@
       "plugin:import/warnings",
       "plugin:react/recommended"
     ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "moduleDirectory": ["node_modules", "src/"]
+        }
+      }
+    },
     "plugins": [
       "react"
     ],
