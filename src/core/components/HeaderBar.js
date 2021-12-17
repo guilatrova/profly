@@ -11,6 +11,7 @@ import PersonIcon from '@material-ui/icons/GitHub';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
 import Chip from '@material-ui/core/Chip';
+import { Link } from 'react-router-dom';
 import LoggedUser from './LoggedUser';
 import { DownloadCSV } from '../../utils/downloader';
 
@@ -43,7 +44,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   betaChip: {
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1),
+  },
+  linkTitle: {
+    textDecoration: 'none',
+    color: 'inherit'
   }
 }));
 
@@ -78,15 +83,22 @@ const HeaderBar = () => {
             </IconButton>
           )}
 
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            profly
-            <Chip className={classes.betaChip} size="small" label="BETA" color="secondary" />
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.title}
+            >
+              <Link to="/" className={classes.linkTitle}>
+                profly
+              </Link>
+              <Chip
+                className={classes.betaChip}
+                size="small"
+                label="BETA"
+                color="secondary"
+              />
           </Typography>
 
           <IconButton color="inherit" onClick={handleDownloadCSV}>
