@@ -1,9 +1,10 @@
-import {createStore, compose, applyMiddleware} from 'redux';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
-import { createBrowserHistory } from "history";
 // 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from "history";
+import {applyMiddleware,compose, createStore} from 'redux';
+import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+import thunk from 'redux-thunk';
+
 import createRootReducer from '../reducers';
 
 export const history = createBrowserHistory();

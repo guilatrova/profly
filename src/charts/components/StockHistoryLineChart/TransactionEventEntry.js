@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+
 import { formatShortTimeOutput } from '../../../utils/dates';
 import { formatCurrency } from '../../../utils/money';
 

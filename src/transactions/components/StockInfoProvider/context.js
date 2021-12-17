@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react';
 
 const initialState = {
-  stock: null,
+  error: null,
   loadingStock: false,
-  error: null
+  stock: null
 };
 
 export const StockInfoContext = createContext(initialState);

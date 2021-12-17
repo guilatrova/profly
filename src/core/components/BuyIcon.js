@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import SvgIcon from '@material-ui/core/SvgIcon';
+
 import { makeStyles } from '@material-ui/core/styles';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import PropTypes from 'prop-types';
 
 
 const STROKE_COLOR = '#FFF';
@@ -9,8 +10,8 @@ const STROKE_WIDTH = 2;
 
 const useStyles = makeStyles((theme) => ({
   iconStyle: {
-    transform: "scaleX(-1)",
     color: theme.palette.success.main,
+    transform: "scaleX(-1)",
   },
 }));
 
@@ -19,7 +20,7 @@ const BuyIcon = ({ size='large' }) => {
   const classes = useStyles();
 
   return (
-    <SvgIcon fontSize={size} className={classes.iconStyle}>
+    <SvgIcon className={classes.iconStyle} fontSize={size}>
       <path
         d="M20 5.41L18.59 4 7 15.59V9H5v10h10v-2H8.41z"
         stroke={STROKE_COLOR}

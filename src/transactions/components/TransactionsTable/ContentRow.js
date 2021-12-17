@@ -1,17 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import { useMutation } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import { Emoji } from 'emoji-mart'
+import PropTypes from 'prop-types';
+
+import TickerLink from '../../../core/components/TickerLink';
 import { formatDateTimeOutput } from '../../../utils/dates';
 import { formatCurrency } from '../../../utils/money';
-import { transactionPropType } from '../../types';
-import TickerLink from '../../../core/components/TickerLink';
-import Actions from './Actions';
-import { useMutation } from '@apollo/client';
 import queries from '../../queries';
-
-import { Emoji } from 'emoji-mart'
+import { transactionPropType } from '../../types';
+import Actions from './Actions';
 
 const useStyles = makeStyles((theme) => ({
   boughtUnits: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const DEFAULT_EMOTION = 'neutral_face';
 
 
-const ContentRow = ({ row, alignUnits, displayStock }) => {
+const ContentRow = ({ alignUnits, displayStock, row }) => {
   const classes = useStyles();
   const [handleDelete] = useMutation(queries.deleteTransaction, { variables: { id: row.id }});
 
@@ -43,7 +44,7 @@ const ContentRow = ({ row, alignUnits, displayStock }) => {
         {row.units}
       </TableCell>
       <TableCell align="center">
-        <Emoji emoji={row.emotion || DEFAULT_EMOTION} size={24} set="twitter" />
+        <Emoji emoji={row.emotion || DEFAULT_EMOTION} set="twitter" size={24} />
       </TableCell>
       <TableCell align="right">{formatCurrency(row.strikePrice, row.stock.currency)}</TableCell>
       <TableCell align="right">{formatCurrency(row.value, row.stock.currency)}</TableCell>
@@ -58,9 +59,9 @@ const ContentRow = ({ row, alignUnits, displayStock }) => {
 };
 
 ContentRow.propTypes = {
-  row: transactionPropType.isRequired,
   alignUnits: PropTypes.string.isRequired,
   displayStock: PropTypes.bool,
+  row: transactionPropType.isRequired,
 };
 
 export default ContentRow;

@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   toggleContainer: {
@@ -21,9 +22,9 @@ const CurrencyToggleButton = ({ currency, onChange }) => {
   return (
     <div className={classes.toggleContainer}>
       <ToggleButtonGroup
+        exclusive
         size="small"
         value={currency}
-        exclusive
         onChange={handleChange}
       >
         {["USD", "BRL"].map((symbol) => (

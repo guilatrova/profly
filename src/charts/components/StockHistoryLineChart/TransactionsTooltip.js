@@ -1,19 +1,21 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import TransactionEventEntry from './TransactionEventEntry';
+
 import { makeStyles } from '@material-ui/core/styles';
+
+import TransactionEventEntry from './TransactionEventEntry';
 
 
 const useStyles = makeStyles({
   root: {
     background: '#fff',
-    padding: "2px 10px",
-    borderRadius: 15
+    borderRadius: 15,
+    padding: "2px 10px"
   },
 });
 
 
-const TransactionsTooltip = ({ active, label, labelFormatter, formatter, payload }) => {
+const TransactionsTooltip = ({ active, formatter, label, labelFormatter, payload }) => {
   const classes = useStyles();
 
   const hasPayload = !!payload.length;

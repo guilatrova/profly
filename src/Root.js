@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import App from './core/components/App';
+
 import { ApolloProvider } from '@apollo/client';
-import apolloClient from './core/apollo';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { ConnectedRouter } from 'connected-react-router';
+import PropTypes from 'prop-types';
+
+import apolloClient from './core/apollo';
 import { AuthenticationProvider } from './core/authentication';
+import App from './core/components/App';
 
 const onRedirectCallback = () => {
   window.location.href = window.location.origin;
@@ -19,11 +21,11 @@ const onLogoutCallback = () => {
 
 export default class Root extends Component {
   render() {
-    const { store, history } = this.props;
+    const { history, store } = this.props;
     return (
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
-          <AuthenticationProvider onRedirectCallback={onRedirectCallback} onLogoutCallback={onLogoutCallback}>
+          <AuthenticationProvider onLogoutCallback={onLogoutCallback} onRedirectCallback={onRedirectCallback}>
             <ConnectedRouter history={history}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <App />
@@ -37,6 +39,6 @@ export default class Root extends Component {
 }
 
 Root.propTypes = {
-  store: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired,
 };

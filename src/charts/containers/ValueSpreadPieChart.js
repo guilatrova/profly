@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { useQuery } from '@apollo/client';
-import queries from '../queries';
-import ValueSpreadPieChart from '../components/ValueSpreadPieChart';
 import Skeleton from '@material-ui/lab/Skeleton';
+
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
+import ValueSpreadPieChart from '../components/ValueSpreadPieChart';
+import queries from '../queries';
 
 
 const unifyCurrency = (data, rate) => {
@@ -29,7 +31,7 @@ const ValueSpreadPieChartContainer = () => {
   if (error) return <ErrorHandler operation="pie chart data">{error}</ErrorHandler>;
 
   if (loading || loadingRate) {
-    return <Skeleton variant="circle" width={250} height={250}/>;
+    return <Skeleton height={250} variant="circle" width={250}/>;
   }
 
   const finalChartData = unifyCurrency(chartData, rateValue);

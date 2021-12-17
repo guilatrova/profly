@@ -1,43 +1,44 @@
 import React from "react";
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 
+import StockLink from '../../../core/components/StockLink';
 import { formatCurrency } from '../../../utils/money';
 import { stockSummaryPropType } from '../../types';
 import StockAvatar from '../StockAvatar';
-import StockLink from '../../../core/components/StockLink';
 
 
 const useStyles = makeStyles({
-  stockTitle: {
-    fontWeight: 900,
-    fontSize: 16
+  card: {
+    '&:before': {
+      borderBottom: '1px solid #dadada',
+      bottom: 0,
+      content: '""',
+      display: 'block',
+      left: '50px',
+      position: 'absolute',
+      right: '5px',
+    },
+    '&:hover': {
+      background: '#eaeaea'
+    },
+    background: 'inherit',
+    cursor: 'pointer',
+    position: 'relative'
+  },
+  cardHeader: {
+    paddingLeft: 5
   },
   link: {
     textDecoration: 'none',
   },
-  card: {
-    cursor: 'pointer',
-    background: 'inherit',
-    position: 'relative',
-    '&:hover': {
-      background: '#eaeaea'
-    },
-    '&:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      left: '50px',
-      right: '5px',
-      bottom: 0,
-      borderBottom: '1px solid #dadada',
-    }
-  },
-  cardHeader: {
-    paddingLeft: 5
+  stockTitle: {
+    fontSize: 16,
+    fontWeight: 900
   }
 });
 
@@ -47,17 +48,17 @@ const StockCard = ({ data }) => {
 
   return (
     <StockLink ticker={data.ticker}>
-      <Card elevation={0} className={classes.card}>
+      <Card className={classes.card} elevation={0}>
         <CardHeader
-          className={classes.cardHeader}
-          avatar={
-            <StockAvatar url={data.logoUrl} ticker={data.ticker} name={data.name} />
-          }
-          title={<Typography className={classes.stockTitle}>{data.ticker}</Typography>}
-          subheader={`x${data.units}`}
           action={
             <p className={classes.stockTitle}>{formatCurrency(data.value, data.currency)}</p>
           }
+          avatar={
+            <StockAvatar name={data.name} ticker={data.ticker} url={data.logoUrl} />
+          }
+          className={classes.cardHeader}
+          subheader={`x${data.units}`}
+          title={<Typography className={classes.stockTitle}>{data.ticker}</Typography>}
         />
       </Card>
     </StockLink>

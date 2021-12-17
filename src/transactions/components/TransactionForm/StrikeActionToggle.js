@@ -1,15 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import PropTypes from 'prop-types';
+
 import STOCK_ACTIONS from '../../../core/constants/stockActions';
 
 const useStyles = makeStyles((theme) => ({
   toggleContainer: {
-    margin: theme.spacing(0, 2),
-    display: 'flex',
     alignItems: 'center',
+    display: 'flex',
+    margin: theme.spacing(0, 2),
   },
 }));
 
@@ -25,16 +27,16 @@ const StrikeActionToggle = ({ onChange, disabled, value = STOCK_ACTIONS.BUY }) =
   return (
     <div className={classes.toggleContainer}>
       <ToggleButtonGroup
+        exclusive
         size="large"
         value={value}
-        exclusive
         onChange={handleChange}
       >
-        <ToggleButton value={STOCK_ACTIONS.BUY} disabled={disabled}>
+        <ToggleButton disabled={disabled} value={STOCK_ACTIONS.BUY}>
           Buy
         </ToggleButton>
 
-        <ToggleButton value={STOCK_ACTIONS.SELL} disabled={disabled}>
+        <ToggleButton disabled={disabled} value={STOCK_ACTIONS.SELL}>
           Sell
         </ToggleButton>
       </ToggleButtonGroup>
@@ -43,8 +45,8 @@ const StrikeActionToggle = ({ onChange, disabled, value = STOCK_ACTIONS.BUY }) =
 }
 
 StrikeActionToggle.propTypes = {
-  onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOf(Object.values(STOCK_ACTIONS))
 }
 

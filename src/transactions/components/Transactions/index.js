@@ -1,5 +1,7 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
+
 import { transactionsPropType } from '../../types';
 import TransactionCard from './TransactionCard';
 
@@ -15,8 +17,8 @@ const TransactionsList = ({
     data.map((row) => (
       <TransactionCard
         key={row.id}
-        row={row}
         mode={mode}
+        row={row}
       />
     ))
   )

@@ -1,6 +1,8 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+
 import { useQuery } from '@apollo/client';
+import Grid from '@material-ui/core/Grid';
+
 import queries from '../../charts/queries';
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import StocksTable from '../../stocks/components/StocksTable';

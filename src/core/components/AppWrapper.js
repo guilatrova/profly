@@ -1,10 +1,12 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import HeaderBar from './HeaderBar';
-import AppContent from './AppContent';
-import theme from '../constants/theme';
 import { SnackbarProvider } from 'notistack';
+import PropTypes from 'prop-types';
+
+import theme from '../constants/theme';
+import AppContent from './AppContent';
+import HeaderBar from './HeaderBar';
 
 
 const useStyles = makeStyles({
@@ -22,7 +24,7 @@ const AppWrapper = ({ children }) => {
         <HeaderBar />
 
         <AppContent>
-          <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+          <SnackbarProvider anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
             {children}
           </SnackbarProvider>
         </AppContent>

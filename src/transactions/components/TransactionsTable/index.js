@@ -1,12 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { transactionsPropType } from '../../types';
+import PropTypes from 'prop-types';
+
 import LoadingRows from '../../../core/components/LoadingRows';
+import { transactionsPropType } from '../../types';
 import ContentRow from './ContentRow';
 
 
@@ -41,9 +43,9 @@ const TransactionsTable = ({
           data.map((row) => (
             <ContentRow
               key={row.id}
-              row={row}
               alignUnits={alignUnits}
               displayStock={displayStock}
+              row={row}
             />
           ))
         )}
@@ -54,8 +56,8 @@ const TransactionsTable = ({
 
 TransactionsTable.propTypes = {
   data: transactionsPropType,
-  loading: PropTypes.bool,
   displayStock: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 export default TransactionsTable;

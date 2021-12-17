@@ -1,15 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { useQuery } from '@apollo/client';
+import Skeleton from '@material-ui/lab/Skeleton';
+import PropTypes from 'prop-types';
+
+import ErrorHandler from '../../core/components/ApolloErrorHandler';
+import StockHistoryLineChart from '../components/StockHistoryLineChart';
 import queries from '../queries';
 import { prepareHistoryLineChartData } from '../utils';
-import StockHistoryLineChart from '../components/StockHistoryLineChart';
-import Skeleton from '@material-ui/lab/Skeleton';
-import ErrorHandler from '../../core/components/ApolloErrorHandler';
 
 
-const StockHistoryLineChartContainer = ({ ticker, period = "ytd", interval = "1d"}) => {
-  const { loading, error, data } = useQuery(queries.stockLineChart, { variables: { ticker, period, interval }});
+const StockHistoryLineChartContainer = ({ interval = "1d", period = "ytd", ticker}) => {
+  const { data, error, loading } = useQuery(queries.stockLineChart, { variables: { interval, period, ticker }});
 
 
   if (error) return <ErrorHandler operation="line chart data">{error}</ErrorHandler>;
@@ -19,15 +21,15 @@ const StockHistoryLineChartContainer = ({ ticker, period = "ytd", interval = "1d
 
   return (
     <>
-      {loading ? <Skeleton variant="rect" height={300} /> : <StockHistoryLineChart currency={stockHistory?.currency} chartData={chart} />}
+      {loading ? <Skeleton height={300} variant="rect" /> : <StockHistoryLineChart chartData={chart} currency={stockHistory?.currency} />}
     </>
   )
 }
 
 StockHistoryLineChartContainer.propTypes = {
-  ticker: PropTypes.string.isRequired,
+  interval: PropTypes.string,
   period: PropTypes.string,
-  interval: PropTypes.string
+  ticker: PropTypes.string.isRequired
 };
 
 export default StockHistoryLineChartContainer;

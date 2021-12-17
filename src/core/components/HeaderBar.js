@@ -1,38 +1,44 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { Link } from 'react-router-dom';
+
 import AppBar from '@material-ui/core/AppBar';
+import Chip from '@material-ui/core/Chip';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import PersonIcon from '@material-ui/icons/GitHub';
 import GetAppIcon from '@material-ui/icons/GetApp';
-import AppDrawer, { drawerWidth, drawerEnabled } from './AppDrawer';
-import Chip from '@material-ui/core/Chip';
-import { Link } from 'react-router-dom';
-import LoggedUser from './LoggedUser';
+import PersonIcon from '@material-ui/icons/GitHub';
+import MenuIcon from '@material-ui/icons/Menu';
+import clsx from 'clsx';
+
 import { DownloadCSV } from '../../utils/downloader';
+import AppDrawer, { drawerEnabled,drawerWidth } from './AppDrawer';
+import LoggedUser from './LoggedUser';
 
 const useStyles = makeStyles((theme) => ({
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+      easing: theme.transitions.easing.sharp,
     }),
+    zIndex: theme.zIndex.drawer + 1,
   },
   appBarShift: {
     marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
+      easing: theme.transitions.easing.sharp,
     }),
+    width: `calc(100% - ${drawerWidth}px)`,
+  },
+  betaChip: {
+    marginLeft: theme.spacing(1),
+  },
+  linkTitle: {
+    color: 'inherit',
+    textDecoration: 'none'
   },
   menuButton: {
     marginRight: 36,
@@ -43,12 +49,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  betaChip: {
-    marginLeft: theme.spacing(1),
-  },
-  linkTitle: {
-    textDecoration: 'none',
-    color: 'inherit'
+  toolbar: {
+    paddingRight: 24, // keep right padding when drawer closed
   }
 }));
 
@@ -64,40 +66,40 @@ const HeaderBar = () => {
     <>
       <CssBaseline />
       <AppBar
-        position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
+        position="absolute"
       >
         <Toolbar className={classes.toolbar}>
           {drawerEnabled && (
             <IconButton
-              edge="start"
-              color="inherit"
               aria-label="open drawer"
-              onClick={toggleDrawer}
               className={clsx(
                 classes.menuButton,
                 open && classes.menuButtonHidden
               )}
+              color="inherit"
+              edge="start"
+              onClick={toggleDrawer}
             >
               <MenuIcon />
             </IconButton>
           )}
 
             <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
               noWrap
               className={classes.title}
+              color="inherit"
+              component="h1"
+              variant="h6"
             >
-              <Link to="/" className={classes.linkTitle}>
+              <Link className={classes.linkTitle} to="/">
                 profly
               </Link>
               <Chip
                 className={classes.betaChip}
-                size="small"
-                label="BETA"
                 color="secondary"
+                label="BETA"
+                size="small"
               />
           </Typography>
 

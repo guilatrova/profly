@@ -8,11 +8,11 @@ const REACT_APP_COGNITO_REGION = "us-east-1";
 // All possible configs: https://docs.amplify.aws/lib/auth/start/q/platform/js#re-use-existing-authentication-resource
 const cognitoConfig = {
   Auth: {
+    authenticationFlowType: 'USER_PASSWORD_AUTH',
+    mandatorySignIn: true,
     region: REACT_APP_COGNITO_REGION,
     userPoolId: REACT_APP_COGNITO_POOL_ID,
     userPoolWebClientId: REACT_APP_COGNITO_POOL_CLIENT_ID,
-    mandatorySignIn: true,
-    authenticationFlowType: 'USER_PASSWORD_AUTH',
   }
 };
 

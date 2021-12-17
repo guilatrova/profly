@@ -1,30 +1,32 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useParams } from 'react-router-dom';
+
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import StockHistoryLineChart from '../../charts/containers/StockHistoryLineChart';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
 import { COLORS } from '../../charts/components/StockHistoryLineChart';
+import StockHistoryLineChart from '../../charts/containers/StockHistoryLineChart';
+import PeriodToggle from '../components/PeriodToggle';
+import StockBreadcrumbs from '../components/StockBreadcrumbs';
 import StockStatusSummary from './StockStatusSummary';
 import StockTransactions from './StockTransactions';
-import PeriodToggle from '../components/PeriodToggle';
-import Typography from '@material-ui/core/Typography';
-import StockBreadcrumbs from '../components/StockBreadcrumbs';
 import ValueHeader from './ValueHeader';
 
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding: theme.spacing(2),
     display: 'flex',
-    overflow: 'auto',
     flexDirection: 'column',
+    overflow: 'auto',
+    padding: theme.spacing(2),
   },
   paperChart: {
+    background: COLORS.background,
     display: 'flex',
-    overflow: 'auto',
     flexDirection: 'column',
-    background: COLORS.background
+    overflow: 'auto'
   },
   paperless: {
     padding: theme.spacing(2),
@@ -50,7 +52,7 @@ const StockPage = () => {
 
       <Grid item xs={12}>
         <Paper className={classes.paperChart}>
-          <StockHistoryLineChart period={period} interval={interval} ticker={ticker} />
+          <StockHistoryLineChart interval={interval} period={period} ticker={ticker} />
         </Paper>
       </Grid>
 
@@ -59,7 +61,7 @@ const StockPage = () => {
       </Grid>
 
       <Grid container className={classes.paperless}>
-        <Grid item xs={12} md={6}>
+        <Grid item md={6} xs={12}>
           <Typography component="h2" variant="h6">Status</Typography>
           <StockStatusSummary ticker={ticker} />
         </Grid>

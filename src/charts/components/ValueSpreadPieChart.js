@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { PieChart, Pie, Cell, ResponsiveContainer, Label } from 'recharts';
-import { randomColor } from '../../utils/colors';
-import ActiveShape from './ValueSpreadActiveShape';
-import ContentValueLabel from './ValueLabel';
+import React, { useEffect, useState } from 'react'
 
+import PropTypes from 'prop-types'
+import { Cell, Label, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
+import { randomColor } from '../../utils/colors'
+import ContentValueLabel from './ValueLabel'
+import ActiveShape from './ValueSpreadActiveShape'
 
 const ValueSpreadPieChart = ({ chartData }) => {
-  const [activeIndex, setActiveIndex] = useState();
-  const [colors, setColors] = useState([]);
+  const [activeIndex, setActiveIndex] = useState()
+  const [colors, setColors] = useState([])
 
   useEffect(() => {
     if (chartData.length !== colors.length) {
-      setColors(chartData.map(() => randomColor()));
+      setColors(chartData.map(() => randomColor()))
     }
-  }, [chartData]);
-  const total = chartData.reduce((acc, cur) => acc + cur.value, 0);
+  }, [chartData, colors.length])
+  const total = chartData.reduce((acc, cur) => acc + cur.value, 0)
 
   return (
-    <ResponsiveContainer width="100%" height="100%" minHeight={250}>
+    <ResponsiveContainer height="100%" minHeight={250} width="100%">
       <PieChart>
         <Pie
           activeIndex={activeIndex}
@@ -38,19 +38,19 @@ const ValueSpreadPieChart = ({ chartData }) => {
 
           {activeIndex >= 0 || (
             <Label
-              width={30}
-              position="center"
               content={<ContentValueLabel title={total} />}
+              position="center"
+              width={30}
             />
           )}
         </Pie>
       </PieChart>
     </ResponsiveContainer>
-  );
-};
+  )
+}
 
 ValueSpreadPieChart.propTypes = {
   chartData: PropTypes.array.isRequired,
-};
+}
 
-export default ValueSpreadPieChart;
+export default ValueSpreadPieChart

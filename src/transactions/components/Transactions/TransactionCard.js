@@ -1,48 +1,50 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { formatCurrency } from '../../../utils/money';
-import { transactionPropType } from '../../types';
-import Actions from './Actions';
+
 import { useMutation } from '@apollo/client';
-import queries from '../../queries';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
-import StockLink from '../../../core/components/StockLink';
-import TransactionAvatar from './TransactionAvatar';
 import { useSnackbar } from 'notistack';
+import PropTypes from 'prop-types';
+
+import StockLink from '../../../core/components/StockLink';
+import { formatCurrency } from '../../../utils/money';
+import queries from '../../queries';
+import { transactionPropType } from '../../types';
+import Actions from './Actions';
+import TransactionAvatar from './TransactionAvatar';
 
 
 const useStyles = makeStyles({
-  headerTitle: {
-    fontWeight: 900,
-    fontSize: 16
-  },
   card: {
-    cursor: 'pointer',
-    background: 'inherit',
-    position: 'relative',
-    padding: '10px 0',
+    '&:before': {
+      borderBottom: '1px solid #dadada',
+      bottom: 0,
+      content: '""',
+      display: 'block',
+      left: '70px',
+      position: 'absolute',
+      right: '28px',
+    },
     '&:hover': {
       background: '#eaeaea'
     },
-    '&:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      left: '70px',
-      right: '28px',
-      bottom: 0,
-      borderBottom: '1px solid #dadada',
-    }
+    background: 'inherit',
+    cursor: 'pointer',
+    padding: '10px 0',
+    position: 'relative'
+  },
+  cardAvatar: {
+    marginRight: 15
   },
   cardHeader: {
     paddingLeft: 5
   },
-  cardAvatar: {
-    marginRight: 15
+  headerTitle: {
+    fontSize: 16,
+    fontWeight: 900
   }
 });
 
@@ -54,17 +56,17 @@ const resolveToUnits = (row) => unitsToDisplay(row);
 
 const RESOLVER_MAP = {
   ALL: {
-    resolveTitle: resolveToTicker,
     resolveSubheader: resolveToUnits,
+    resolveTitle: resolveToTicker,
   },
   STOCK: {
-    resolveTitle: resolveToUnits,
     resolveSubheader: resolveToStrikPrice,
+    resolveTitle: resolveToUnits,
   }
 }
 
 
-const TransactionCard = ({ row, mode='ALL' }) => {
+const TransactionCard = ({ mode='ALL', row }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -77,30 +79,30 @@ const TransactionCard = ({ row, mode='ALL' }) => {
   const resolver = RESOLVER_MAP[mode];
 
   return (
-    <Card elevation={0} className={classes.card}>
+    <Card className={classes.card} elevation={0}>
       <CardHeader
-        className={classes.cardHeader}
-        avatar={
-          <StockLink ticker={row.stock.ticker}>
-            <TransactionAvatar item={row} />
-          </StockLink>
-        }
-        title={<Typography className={classes.headerTitle}>{resolver.resolveTitle(row)}</Typography>}
-        subheader={resolver.resolveSubheader(row)}
         action={
           <div>
             <span className={clsx(classes.headerTitle)}>{formatCurrency(row.value, row.stock.currency)}</span>
             <Actions onDelete={handleDelete} />
           </div>
         }
+        avatar={
+          <StockLink ticker={row.stock.ticker}>
+            <TransactionAvatar item={row} />
+          </StockLink>
+        }
+        className={classes.cardHeader}
+        subheader={resolver.resolveSubheader(row)}
+        title={<Typography className={classes.headerTitle}>{resolver.resolveTitle(row)}</Typography>}
       />
     </Card>
   );
 };
 
 TransactionCard.propTypes = {
-  row: transactionPropType.isRequired,
   mode: PropTypes.oneOf(['ALL', 'STOCK']),
+  row: transactionPropType.isRequired,
 };
 
 export default TransactionCard;

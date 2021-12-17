@@ -1,15 +1,17 @@
 import React from 'react';
+
 import { useQuery } from '@apollo/client';
-import chartQueries from '../../charts/queries';
-import savingsQueries from '../queries';
-import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import Typography from '@material-ui/core/Typography';
+
+import chartQueries from '../../charts/queries';
+import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import { formatCurrency } from '../../utils/money';
+import savingsQueries from '../queries';
 
 
 const TotalSummary = () => {
   const { error, data = [] } = useQuery(chartQueries.chartStocksValues);
-  const { walletError, walletData } = useQuery(savingsQueries.defaultWallet);
+  const { walletData, walletError } = useQuery(savingsQueries.defaultWallet);
 
   if (error) return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>;
   if (walletError) return <ErrorHandler operation="wallet summary">{walletError}</ErrorHandler>;

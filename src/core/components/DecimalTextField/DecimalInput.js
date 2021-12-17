@@ -1,12 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import NumberFormat from 'react-number-format';
+
+import PropTypes from 'prop-types';
 
 const DecimalInput = ({ inputRef, onChange, ...other }) => {
   return (
     <NumberFormat
       {...other}
+      isNumericString
       getInputRef={inputRef}
       onValueChange={values => {
         onChange({
@@ -15,7 +16,6 @@ const DecimalInput = ({ inputRef, onChange, ...other }) => {
           }
         });
       }}
-      isNumericString
     />
   );
 };

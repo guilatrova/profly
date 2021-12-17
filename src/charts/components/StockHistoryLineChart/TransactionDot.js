@@ -11,15 +11,15 @@ const TransactionDot = ({ cx, cy, payload, value }) => {
   const hasSold = payload.transactions.some(t => t.units <= 0);
 
   if (hasBought && hasSold) {
-    return <circle cx={cx} cy={cy} r={5} stroke="#fff" strokeWidth={2} fill="black" />;
+    return <circle cx={cx} cy={cy} fill="black" r={5} stroke="#fff" strokeWidth={2} />;
   }
 
   if (hasSold) {
-    return <circle cx={cx} cy={cy} r={5} stroke="#fff" strokeWidth={2} fill="rgb(244, 67, 54)" />;
+    return <circle cx={cx} cy={cy} fill="rgb(244, 67, 54)" r={5} stroke="#fff" strokeWidth={2} />;
   }
 
   if (hasBought) {
-    return <circle cx={cx} cy={cy} r={5} stroke="#fff" strokeWidth={2} fill="rgb(76, 175, 80)" />
+    return <circle cx={cx} cy={cy} fill="rgb(76, 175, 80)" r={5} stroke="#fff" strokeWidth={2} />
   }
 
   return null;

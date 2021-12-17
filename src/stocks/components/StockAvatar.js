@@ -1,9 +1,10 @@
 import React from "react";
+
 import Avatar from '@material-ui/core/Avatar';
 import PropTypes from 'prop-types';
 
 
-const StockAvatar = ({ url, ticker, name }) => {
+const StockAvatar = ({ name, ticker, url }) => {
   const ariaLabel = { "aria-label": `logo-${ticker}` };
   if (url) {
     return <Avatar {...ariaLabel} src={url} />;
@@ -15,9 +16,9 @@ const StockAvatar = ({ url, ticker, name }) => {
 
 
 StockAvatar.propTypes = {
-  url: PropTypes.string,
-  ticker: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  ticker: PropTypes.string.isRequired,
+  url: PropTypes.string,
 };
 
 export default StockAvatar;

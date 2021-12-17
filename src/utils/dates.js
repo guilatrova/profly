@@ -1,13 +1,13 @@
-import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
 import {
   format,
   parseISO,
+  startOfToday,
   subDays,
   subMonths,
-  startOfToday,
   subYears,
 } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
 
 const timeZone = 'America/Sao_Paulo';
 

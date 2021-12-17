@@ -33,6 +33,6 @@ mutation deleteSavingTransaction($id: ID!) {
 
 export default {
   defaultWallet,
-  listTransactions,
-  deleteTransaction
+  deleteTransaction,
+  listTransactions
 }

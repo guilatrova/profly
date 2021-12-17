@@ -1,12 +1,12 @@
-import { shape, string, number, arrayOf } from 'prop-types';
+import { arrayOf,number, shape, string } from 'prop-types';
 
 export const stockSummaryPropType = shape({
-  ticker: string.isRequired,
-  name: string.isRequired,
   currency: string.isRequired,
+  logoUrl: string,
+  name: string.isRequired,
+  ticker: string.isRequired,
   units: number.isRequired,
-  value: number.isRequired,
-  logoUrl: string
+  value: number.isRequired
 });
 
 export const stocksSummaryPropType = arrayOf(stockSummaryPropType);

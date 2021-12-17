@@ -4,8 +4,8 @@ const currencyLangMap = {
 };
 
 const moneyFormatter = (currency) => new Intl.NumberFormat(currencyLangMap[currency] || [], {
-  style: 'currency',
   currency,
+  style: 'currency',
 });
 
 export const formatCurrency = (value, currency='USD') => moneyFormatter(currency).format(value);

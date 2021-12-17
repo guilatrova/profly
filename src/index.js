@@ -3,6 +3,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+
 import configureStore, { history } from './core/store/configureStore';
 import Root from './Root';
 require('./favicon.png'); // Tell webpack to load favicon.ico
@@ -10,7 +11,7 @@ const store = configureStore();
 
 render(
   <AppContainer>
-    <Root store={store} history={history} />
+    <Root history={history} store={store} />
   </AppContainer>,
   document.getElementById('app')
 );
@@ -20,7 +21,7 @@ if (module.hot) {
     const NewRoot = require('./Root').default;
     render(
       <AppContainer>
-        <NewRoot store={store} history={history} />
+        <NewRoot history={history} store={store} />
       </AppContainer>,
       document.getElementById('app')
     );

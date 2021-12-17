@@ -1,6 +1,8 @@
 import React from 'react';
-import { AmplifyAuthenticator, AmplifySignUp } from '@aws-amplify/ui-react';
 import { Redirect } from 'react-router-dom';
+
+import { AmplifyAuthenticator, AmplifySignUp } from '@aws-amplify/ui-react';
+
 import { useAuthentication } from '../authentication';
 
 const FORM_FIELDS = [
@@ -16,7 +18,7 @@ const AmplifyPage = () => {
 
   return (
     <AmplifyAuthenticator handleAuthStateChange={refresh}>
-      <AmplifySignUp slot="sign-up" formFields={FORM_FIELDS}></AmplifySignUp>
+      <AmplifySignUp formFields={FORM_FIELDS} slot="sign-up"></AmplifySignUp>
     </AmplifyAuthenticator>
   );
 };

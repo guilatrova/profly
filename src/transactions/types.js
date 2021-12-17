@@ -1,22 +1,22 @@
-import { shape, string, number, arrayOf } from 'prop-types';
+import { arrayOf,number, shape, string } from 'prop-types';
 
 export const stockInfoPropType = shape({
-  name: string,
-  ticker: string.isRequired,
   currency: string,
   currentPrice: number,
   logoUrl: string,
+  name: string,
+  ticker: string.isRequired,
   timestamp: string
 });
 
 export const transactionPropType = shape({
   id: string,
-  ticker: string,
   performedAt: string,
+  stock: stockInfoPropType,
   strikePrice: number,
+  ticker: string,
   units: number,
-  value: number,
-  stock: stockInfoPropType
+  value: number
 });
 
 export const transactionsPropType = arrayOf(transactionPropType);

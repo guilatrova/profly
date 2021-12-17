@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import DecimalInput from './DecimalInput';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
+
+import DecimalInput from './DecimalInput';
 import { resolveCurrencySign } from './utils';
 
 const DecimalTextField = ({ currency, ...props }) => {

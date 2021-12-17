@@ -1,12 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { transactionPropType } from '../../types';
+
 import Badge from '@material-ui/core/Badge';
-import StockAvatar from '../../../stocks/components/StockAvatar';
-import SellIcon from '../../../core/components/SellIcon';
+import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+
 import BuyIcon from '../../../core/components/BuyIcon';
 import Emoji from '../../../core/components/Emoji';
+import SellIcon from '../../../core/components/SellIcon';
+import StockAvatar from '../../../stocks/components/StockAvatar';
+import { transactionPropType } from '../../types';
 
 
 const useStyles = makeStyles({
@@ -24,17 +26,17 @@ const TransactionAvatar = ({ item }) => {
   return (
     <div className={classes.root}>
       <Badge
+        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         badgeContent={<Icon />}
-        anchorOrigin={{vertical: 'top', horizontal: 'right'}}
         >
         <Badge
+          anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
           badgeContent={<Emoji emoji={item.emotion} />}
-          anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
         >
           <StockAvatar
-            url={stock.logoUrl}
-            ticker={stock.ticker}
             name={stock.name}
+            ticker={stock.ticker}
+            url={stock.logoUrl}
           />
         </Badge>
       </Badge>
@@ -44,8 +46,8 @@ const TransactionAvatar = ({ item }) => {
 
 
 TransactionAvatar.propTypes = {
-  item: transactionPropType.isRequired,
   displayStock: PropTypes.bool,
+  item: transactionPropType.isRequired,
 };
 
 export default TransactionAvatar;

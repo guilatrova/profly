@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
+
 import PropTypes from 'prop-types';
 import {
-  AreaChart,
   Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from 'recharts';
-import { epochToDateOutput } from '../../../utils/dates';
-import { getCurrencyRoundedNumber } from '../../../utils/numberFormat';
-import { formatCurrency } from '../../../utils/money';
 
-import TransactionsTooltip from './TransactionsTooltip';
+import { epochToDateOutput } from '../../../utils/dates';
+import { formatCurrency } from '../../../utils/money';
+import { getCurrencyRoundedNumber } from '../../../utils/numberFormat';
 import TransactionDot from './TransactionDot';
+import TransactionsTooltip from './TransactionsTooltip';
 
 export const COLORS = {
-  activeLine: '#fff',
-  unactiveLine: '#a9c8f5',
   activeArea: '#649bed',
-  unactiveArea: '#3079e7',
+  activeLine: '#fff',
   background: '#1b6ae5',
-  tooltipCursor: '#fff'
+  tooltipCursor: '#fff',
+  unactiveArea: '#3079e7',
+  unactiveLine: '#a9c8f5'
 };
 
-const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
+const StockHistoryLineChart = ({ chartData, currency = 'BRL' }) => {
   const [cursorPos, setCursorPos] = useState(0);
   const [Xpos, setXpos] = useState(0);
 
@@ -55,28 +56,28 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
       <AreaChart
         data={chartData.data}
         margin={{
-          top: 15,
-          right: 10,
-          left: 0,
           bottom: -30,
+          left: 0,
+          right: 10,
+          top: 15,
         }}
         onMouseMove={onMouseMove}
         onMouseOut={onMouseOut}
       >
         <CartesianGrid
-          vertical={false}
-          strokeDasharray="8 8"
           fill={COLORS.background}
+          strokeDasharray="8 8"
+          vertical={false}
         />
 
       <defs>
-        <linearGradient id="colorClose" x1="0%" y1="0" x2="100%" y2="0">
+        <linearGradient id="colorClose" x1="0%" x2="100%" y1="0" y2="0">
           <stop offset="0%" stopColor={COLORS.activeArea} />
           <stop offset={`${cursorPos}%`} stopColor={COLORS.activeArea} />
           <stop offset={`${cursorPos}%`} stopColor={COLORS.unactiveArea} />
           <stop offset="100%" stopColor={COLORS.unactiveArea} />
         </linearGradient>
-        <linearGradient id="colorStroke" x1="0%" y1="0" x2="100%" y2="0">
+        <linearGradient id="colorStroke" x1="0%" x2="100%" y1="0" y2="0">
           <stop offset="0%" stopColor={COLORS.activeLine} />
           <stop offset={`${cursorPos}%`} stopColor={COLORS.activeLine} />
           <stop offset={`${cursorPos}%`} stopColor={COLORS.unactiveLine} />
@@ -88,34 +89,34 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
           dataKey="date"
           domain={chartData.xDomain}
           scale="time"
-          type="number"
-          tickLine={false}
           tick={false}
+          tickLine={false}
+          type="number"
           />
         <YAxis
-          orientation="right"
           axisLine={false}
-          tickLine={false}
-          ticks={yTicks}
+          domain={chartData.yDomain}
+          orientation="right"
           tick={{stroke:'#fff'}}
           tickFormatter={val => getCurrencyRoundedNumber(val, currency)}
-          domain={chartData.yDomain}
+          tickLine={false}
+          ticks={yTicks}
         />
 
         <Tooltip
-          cursor={{ stroke: COLORS.tooltipCursor, strokeWidth: 2 }}
           content={<TransactionsTooltip />}
-          labelFormatter={epochToDateOutput}
+          cursor={{ stroke: COLORS.tooltipCursor, strokeWidth: 2 }}
           formatter={val => formatCurrency(val, currency)}
+          labelFormatter={epochToDateOutput}
         />
 
         <Area
-          type="monotone"
           dataKey="close"
-          stroke="url(#colorStroke)"
-          fill="url(#colorClose)"
-          strokeWidth={2}
           dot={<TransactionDot />}
+          fill="url(#colorClose)"
+          stroke="url(#colorStroke)"
+          strokeWidth={2}
+          type="monotone"
         />
       </AreaChart>
     </ResponsiveContainer>
@@ -123,12 +124,12 @@ const StockHistoryLineChart = ({ currency = 'BRL', chartData }) => {
 };
 
 StockHistoryLineChart.propTypes = {
-  currency: PropTypes.string,
   chartData: PropTypes.shape({
     data: PropTypes.array,
     xDomain: PropTypes.arrayOf(PropTypes.number),
     yDomain: PropTypes.arrayOf(PropTypes.number),
   }),
+  currency: PropTypes.string,
 };
 
 export default StockHistoryLineChart;

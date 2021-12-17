@@ -1,105 +1,104 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import chartQueries from '../../charts/queries';
-import savingsQueries from '../queries';
-import ErrorHandler from '../../core/components/ApolloErrorHandler';
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Link } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
-import { formatCurrency } from '../../utils/money';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import { Box } from '@material-ui/core';
-import BitcoinIcon from '../../assets/bitcoin.svg';
-import WalletIcon from '../../assets/wallet.svg';
-import StocksIcon from '../../assets/stocks.svg';
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+import { useQuery } from '@apollo/client'
+import { Box } from '@material-ui/core'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Chip from '@material-ui/core/Chip'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+
+import BitcoinIcon from '../../assets/bitcoin.svg'
+import StocksIcon from '../../assets/stocks.svg'
+import WalletIcon from '../../assets/wallet.svg'
+import chartQueries from '../../charts/queries'
+import ErrorHandler from '../../core/components/ApolloErrorHandler'
+import { formatCurrency } from '../../utils/money'
+import savingsQueries from '../queries'
 
 const useStyles = makeStyles((theme) => ({
-  summaryTitle: {
-    flexBasis: '25%',
-  },
-  summaryValue: {
-    fontWeight: '700',
-    flexShrink: 0,
-  },
   card: {
+    marginRight: theme.spacing(2),
     width: 160,
-    marginRight: theme.spacing(2)
+  },
+  link: {
+    color: 'inherit',
+    textDecoration: 'none',
   },
   media: {
     height: 100,
     textAlign: 'center',
   },
   mediaImage: {
-    width: 90,
+    margin: 'auto',
     paddingTop: 20,
-    margin: 'auto'
+    width: 90,
   },
   soonChip: {
     fontWeight: 'bold',
   },
-  link: {
-    textDecoration: 'none',
-    color: 'inherit'
-  }
-}));
+  summaryTitle: {
+    flexBasis: '25%',
+  },
+  summaryValue: {
+    flexShrink: 0,
+    fontWeight: '700',
+  },
+}))
 
-const CategorySummaryCard = ({ src, title, disabled, children, redirect="" }) => {
-  const classes = useStyles();
+const CategorySummaryCard = ({
+  children,
+  disabled,
+  redirect = '',
+  src,
+  title,
+}) => {
+  const classes = useStyles()
 
   return (
     <Card className={classes.card}>
-      <Link to={redirect} className={classes.link} disabled={disabled}>
+      <Link className={classes.link} disabled={disabled} to={redirect}>
         <CardActionArea disabled={disabled}>
-          <CardMedia
-            className={classes.media}
-            title={title}
-          >
-            <img src={src} className={classes.mediaImage} />
+          <CardMedia className={classes.media} title={title}>
+            <img className={classes.mediaImage} src={src} />
           </CardMedia>
 
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom component="h2" variant="h5">
               {children}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography color="textSecondary" component="p" variant="body2">
               {title}
             </Typography>
           </CardContent>
         </CardActionArea>
       </Link>
     </Card>
-  );
-};
+  )
+}
 
 const SavingsSummary = () => {
-  const classes = useStyles();
-  const { error, data = [] } = useQuery(chartQueries.chartStocksValues);
-  const { walletError, walletData } = useQuery(savingsQueries.defaultWallet);
-  const [expanded, setExpanded] = React.useState('');
+  const classes = useStyles()
+  const { error, data = [] } = useQuery(chartQueries.chartStocksValues)
+  const { walletData, walletError } = useQuery(savingsQueries.defaultWallet)
+  const [expanded, setExpanded] = React.useState('')
 
   const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
+    setExpanded(newExpanded ? panel : false)
+  }
 
   if (error)
-    return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>;
+    return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>
   if (walletError)
-    return (
-      <ErrorHandler operation="wallet summary">{walletError}</ErrorHandler>
-    );
+    return <ErrorHandler operation="wallet summary">{walletError}</ErrorHandler>
 
-  const chartData = data?.stocks || [];
-  const walletTotal = walletData?.value || 0;
+  const chartData = data?.stocks || []
+  const walletTotal = walletData?.value || 0
   // TODO: Consider different currencies
-  const stocksTotal = chartData.reduce((acc, cur) => acc + cur.value, 0);
+  const stocksTotal = chartData.reduce((acc, cur) => acc + cur.value, 0)
 
   return (
     <Box display="flex" justifyContent="center">
@@ -107,15 +106,20 @@ const SavingsSummary = () => {
         {formatCurrency(walletTotal)}
       </CategorySummaryCard>
 
-      <CategorySummaryCard src={StocksIcon} title="Stocks" redirect="/stocks">
+      <CategorySummaryCard redirect="/stocks" src={StocksIcon} title="Stocks">
         {formatCurrency(stocksTotal)}
       </CategorySummaryCard>
 
-      <CategorySummaryCard src={BitcoinIcon} title="Crypto" disabled>
-        <Chip size="small" label="coming soon" color="secondary" className={classes.soonChip} />
+      <CategorySummaryCard disabled src={BitcoinIcon} title="Crypto">
+        <Chip
+          className={classes.soonChip}
+          color="secondary"
+          label="coming soon"
+          size="small"
+        />
       </CategorySummaryCard>
     </Box>
-  );
-};
+  )
+}
 
-export default SavingsSummary;
+export default SavingsSummary

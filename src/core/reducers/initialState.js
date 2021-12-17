@@ -1,18 +1,18 @@
 export default {
   fuelSavings: {
-    newMpg: '',
-    tradeMpg: '',
-    newPpg: '',
-    tradePpg: '',
+    dateModified: null,
+    displayResults: false,
     milesDriven: '',
     milesDrivenTimeframe: 'week',
-    displayResults: false,
-    dateModified: null,
     necessaryDataIsProvidedToCalculateSavings: false,
+    newMpg: '',
+    newPpg: '',
     savings: {
-      monthly: 0,
       annual: 0,
+      monthly: 0,
       threeYear: 0
-    }
+    },
+    tradeMpg: '',
+    tradePpg: ''
   }
 };

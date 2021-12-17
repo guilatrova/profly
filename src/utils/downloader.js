@@ -1,6 +1,6 @@
-import { getSessionToken } from './localStorage';
-import { formatShortDateTimeOutput } from './dates';
 import { API_ENDPOINT } from '../core/constants/api';
+import { formatShortDateTimeOutput } from './dates';
+import { getSessionToken } from './localStorage';
 
 const ENDPOINT = `${API_ENDPOINT}/csv/`;
 

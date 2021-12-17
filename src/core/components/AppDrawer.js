@@ -1,45 +1,47 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
+
 import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import { makeStyles } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+
 import { mainListItems, secondaryListItems } from './drawerItems';
 
 export const drawerWidth = 240;
 export const drawerEnabled = false;
 
 const useStyles = makeStyles((theme) => ({
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
   drawerPaper: {
+    boxSizing: 'border-box',
     position: 'relative',
+    transition: theme.transitions.create('width', {
+      duration: theme.transitions.duration.enteringScreen,
+      easing: theme.transitions.easing.sharp,
+    }),
     whiteSpace: 'nowrap',
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: 'border-box',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+      easing: theme.transitions.easing.sharp,
     }),
     width: theme.spacing(7),
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
     },
+  },
+  toolbarIcon: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
   },
 }));
 
@@ -50,11 +52,11 @@ const AppDrawer = ({ open, toggleDrawer }) => {
 
   return (
     <Drawer
-      variant="permanent"
       classes={{
         paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
       }}
       open={open}
+      variant="permanent"
     >
       <div className={classes.toolbarIcon}>
         <IconButton onClick={toggleDrawer}>

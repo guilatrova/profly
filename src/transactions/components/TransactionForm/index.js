@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
+
 import PropTypes from 'prop-types';
 
+import STOCK_ACTIONS from '../../../core/constants/stockActions';
 import StockInfoProvider from '../StockInfoProvider';
 import TransactionBody from './TransactionBody';
-import STOCK_ACTIONS from '../../../core/constants/stockActions';
-import { prepareEntity, isSubmitEnabled } from './utils';
+import { isSubmitEnabled,prepareEntity } from './utils';
 
 
 const emptyEntity = {
-  ticker: '',
   action: STOCK_ACTIONS.BUY,
-  units: '',
-  strikePrice: '',
   emotion: 'neutral_face',
   performedAt: new Date(),
+  strikePrice: '',
+  ticker: '',
+  units: '',
 };
 
 const TransactionForm = ({ onSubmit }) => {
@@ -39,11 +40,11 @@ const TransactionForm = ({ onSubmit }) => {
     >
       <StockInfoProvider ticker={ticker}>
         <TransactionBody
+          enableSubmit={isEntityValid}
           entity={entity}
           onPropChange={handlePropChange}
-          onSubmitTicker={setTicker}
           onSubmit={handleSubmit}
-          enableSubmit={isEntityValid}
+          onSubmitTicker={setTicker}
         />
       </StockInfoProvider>
 

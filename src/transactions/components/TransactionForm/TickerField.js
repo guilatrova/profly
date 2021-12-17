@@ -1,13 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
+
 import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import PropTypes from 'prop-types';
 
 const ENTER_KEY = 13;
 
-const TickerField = ({ value, onChange, onSubmitTicker, error, helperText }) => {
+const TickerField = ({ error, helperText, onChange, onSubmitTicker, value }) => {
   const hasError = !!error;
 
   const handleSubmit = () => onSubmitTicker(value);
@@ -24,13 +25,9 @@ const TickerField = ({ value, onChange, onSubmitTicker, error, helperText }) => 
 
   return (
     <TextField
-      id="ticker"
-      label="Ticker"
-      value={value}
       error={hasError}
       helperText={helperText}
-      onChange={handleChange}
-      onKeyDown={handleKeyPress}
+      id="ticker"
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
@@ -44,16 +41,20 @@ const TickerField = ({ value, onChange, onSubmitTicker, error, helperText }) => 
           </InputAdornment>
         ),
       }}
+      label="Ticker"
+      value={value}
+      onChange={handleChange}
+      onKeyDown={handleKeyPress}
     />
   );
 };
 
 TickerField.propTypes = {
-  value: PropTypes.string.isRequired,
+  error: PropTypes.any,
+  helperText: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onSubmitTicker: PropTypes.func.isRequired,
-  error: PropTypes.any,
-  helperText: PropTypes.string
+  value: PropTypes.string.isRequired
 };
 
 export default TickerField;

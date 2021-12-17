@@ -1,17 +1,19 @@
 import React from 'react';
+
 import { useQuery } from '@apollo/client';
-import queries from '../queries';
 import Grid from '@material-ui/core/Grid';
-import ValueCard from '../components/ValueCard';
-import { tickerType } from '../../core/types';
-import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+
+import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import BuyIcon from '../../core/components/BuyIcon';
 import SellIcon from '../../core/components/SellIcon';
+import { tickerType } from '../../core/types';
+import ValueCard from '../components/ValueCard';
+import queries from '../queries';
 
 
 const StockStatusSummary = ({ ticker }) => {
-  const { loading, error, data } = useQuery(queries.stockSummary, { variables: { ticker }});
+  const { data, error, loading } = useQuery(queries.stockSummary, { variables: { ticker }});
 
   if (error) return <ErrorHandler operation="stock status summary">{error}</ErrorHandler>;
 
@@ -19,35 +21,35 @@ const StockStatusSummary = ({ ticker }) => {
 
   return (
       <Grid container spacing={3}>
-        <Grid item xs={4} md={3}>
+        <Grid item md={3} xs={4}>
           <ValueCard
-            title="Units"
+            icon={<ShoppingBasketIcon fontSize="large" style={{color: '#4988e9'}} />}
             loading={loading}
-            icon={<ShoppingBasketIcon style={{color: '#4988e9'}} fontSize="large" />}
+            title="Units"
           >
             {summary?.units}
           </ValueCard>
         </Grid>
 
-        <Grid item xs={4} md={3}>
+        <Grid item md={3} xs={4}>
           <ValueCard
-            title="Avg Buy"
-            loading={loading}
+            isMoney
             currency={summary?.currency}
             icon={<BuyIcon />}
-            isMoney
+            loading={loading}
+            title="Avg Buy"
           >
             {summary?.averageBuyPrice}
           </ValueCard>
         </Grid>
 
-        <Grid item xs={4} md={3}>
+        <Grid item md={3} xs={4}>
           <ValueCard
-            title="Avg Sell"
-            loading={loading}
+            isMoney
             currency={summary?.currency}
             icon={<SellIcon />}
-            isMoney
+            loading={loading}
+            title="Avg Sell"
           >
             {summary?.averageSellPrice}
           </ValueCard>

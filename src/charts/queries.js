@@ -48,6 +48,6 @@ const currencyRate = gql`
 
 export default {
   chartStocksValues,
-  stockLineChart,
-  currencyRate
+  currencyRate,
+  stockLineChart
 }

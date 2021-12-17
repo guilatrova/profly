@@ -55,7 +55,7 @@ const deleteTransaction = gql`
 
 export default {
   addTransaction,
+  deleteTransaction,
   getStockInfo,
-  listTransactions,
-  deleteTransaction
+  listTransactions
 }

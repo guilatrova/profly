@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Skeleton from '@material-ui/lab/Skeleton';
+import PropTypes from 'prop-types';
 
 
 const LoadingRows = ({ cellsCount, rowsCount = 5 }) => {

@@ -1,18 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect,useRef, useState } from 'react';
+
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { useAuthentication } from '../authentication';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
+import { useAuthentication } from '../authentication';
 
 
 const LoggedUser = () => {
   const [open, setOpen] = useState(false);
-  const { isAuthenticated, user, logout } = useAuthentication();
+  const { isAuthenticated, logout, user } = useAuthentication();
   const anchorRef = useRef(null);
 
   const handleToggle = () => setOpen((prevOpen) => !prevOpen);
@@ -51,23 +53,23 @@ const LoggedUser = () => {
     <div>
       <Button
         ref={anchorRef}
-        color="inherit"
         aria-controls={open ? 'menu-list-grow' : undefined}
         aria-haspopup="true"
-        onClick={handleToggle}
+        color="inherit"
         endIcon={<ArrowDropDownIcon />}
+        onClick={handleToggle}
       >
         {user?.username}
       </Button>
 
       <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
         disablePortal
+        transition
+        anchorEl={anchorRef.current}
+        open={open}
+        role={undefined}
       >
-        {({ TransitionProps, placement }) => (
+        {({ placement, TransitionProps }) => (
           <Grow
             {...TransitionProps}
             style={{

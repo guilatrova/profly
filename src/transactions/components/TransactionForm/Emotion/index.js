@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import PropTypes from 'prop-types';
 
 import EmojiSelectPicker from './EmojiSelectPicker'
@@ -20,11 +21,11 @@ const Emotion = ({ disabled, onChange }) => {
 
   return (
     <EmojiSelectPicker
-      open={isPickerOpen}
-      emoji={selectedEmoji}
       disabled={disabled}
-      onPickerStateChange={handlePickerState}
+      emoji={selectedEmoji}
+      open={isPickerOpen}
       onEmojiSelect={handleOnSelect}
+      onPickerStateChange={handlePickerState}
     />
   );
 };

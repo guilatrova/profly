@@ -1,7 +1,8 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 
 const useStyles = makeStyles({
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
 });
 
 
-const StockLink = ({ ticker, children }) => {
+const StockLink = ({ children, ticker }) => {
   const classes = useStyles();
 
   return (

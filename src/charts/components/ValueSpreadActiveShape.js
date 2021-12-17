@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+
 import { Sector } from 'recharts';
+
 import { formatCurrency } from '../../utils/money';
 
 
 const ValueSpreadActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
   const {
-    cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
-    fill, payload, percent, value,
+    cx, cy, endAngle, fill, innerRadius, midAngle, outerRadius,
+    payload, percent, startAngle, value,
   } = props;
   const sin = Math.sin(-RADIAN * midAngle);
   const cos = Math.cos(-RADIAN * midAngle);
@@ -23,34 +25,34 @@ const ValueSpreadActiveShape = (props) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
+      <text dy={8} fill={fill} textAnchor="middle" x={cx} y={cy}>{payload.name}</text>
 
       <Sector
         cx={cx}
         cy={cy}
+        endAngle={endAngle}
+        fill={fill}
         innerRadius={innerRadius}
         outerRadius={outerRadius}
         startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
       />
 
       <Sector
         cx={cx}
         cy={cy}
-        startAngle={startAngle}
         endAngle={endAngle}
+        fill={fill}
         innerRadius={outerRadius + 6}
         outerRadius={outerRadius + 10}
-        fill={fill}
+        startAngle={startAngle}
       />
 
-      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">
+      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} fill="none" stroke={fill} />
+      <circle cx={ex} cy={ey} fill={fill} r={2} stroke="none" />
+      <text fill="#333" textAnchor={textAnchor} x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey}>
         {`${formatCurrency(value)} (${currency})`}
       </text>
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
+      <text dy={18} fill="#999" textAnchor={textAnchor} x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey}>
         {`(${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>

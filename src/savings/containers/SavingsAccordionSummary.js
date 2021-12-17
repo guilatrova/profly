@@ -1,69 +1,71 @@
 import React from 'react';
+
 import { useQuery } from '@apollo/client';
-import chartQueries from '../../charts/queries';
-import savingsQueries from '../queries';
-import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import Chip from '@material-ui/core/Chip';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import chartQueries from '../../charts/queries';
+import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import { formatCurrency } from '../../utils/money';
+import savingsQueries from '../queries';
 
 
 const useStyles = makeStyles((theme) => ({
+  soonChip: {
+    fontWeight: 'bold',
+    marginLeft: theme.spacing(1),
+  },
   summaryTitle: {
     flexBasis: '25%',
   },
   summaryValue: {
-    fontWeight: '700',
     flexShrink: 0,
-  },
-  soonChip: {
-    marginLeft: theme.spacing(1),
-    fontWeight: 'bold',
+    fontWeight: '700',
   }
 }));
 
 const Accordion = withStyles({
+  expanded: {},
   root: {
-    backgroundColor: 'inherit',
-    border: 'none',
-    boxShadow: 'none',
-    '&:before': {
-      display: 'none',
-    },
     '&$expanded': {
       margin: 'auto',
     },
+    '&:before': {
+      display: 'none',
+    },
+    backgroundColor: 'inherit',
+    border: 'none',
+    boxShadow: 'none',
   },
-  expanded: {},
 })(MuiAccordion);
 
 const AccordionSummary = withStyles({
-  root: {
-    padding: 0,
-    margin: 0,
-    minHeight: '24px',
-    backgroundColor: 'inherit',
-    marginBottom: -1,
-    flexDirection: 'row-reverse',
-  },
-  expandIcon: {
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingRight: 0,
-
-  },
   content: {
-    margin: 0,
     '&$expanded': {
       margin: 0,
     },
+    margin: 0,
+  },
+  expandIcon: {
+    paddingBottom: 0,
+    paddingRight: 0,
+    paddingTop: 0,
+
   },
   expanded: {},
+  root: {
+    backgroundColor: 'inherit',
+    flexDirection: 'row-reverse',
+    margin: 0,
+    marginBottom: -1,
+    minHeight: '24px',
+    padding: 0,
+  },
 })(MuiAccordionSummary);
 
 const AccordionDetails = withStyles((theme) => ({
@@ -75,7 +77,7 @@ const AccordionDetails = withStyles((theme) => ({
 const SavingsSummary = () => {
   const classes = useStyles();
   const { error, data = [] } = useQuery(chartQueries.chartStocksValues);
-  const { walletError, walletData } = useQuery(savingsQueries.defaultWallet);
+  const { walletData, walletError } = useQuery(savingsQueries.defaultWallet);
   const [expanded, setExpanded] = React.useState("");
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -138,7 +140,7 @@ const SavingsSummary = () => {
         >
           <Typography className={classes.summaryTitle}>Crypto</Typography>
           <Typography className={classes.summaryValue}>
-            <Chip size="small" label="coming soon" color="secondary" />
+            <Chip color="secondary" label="coming soon" size="small" />
           </Typography>
         </AccordionSummary>
       </Accordion>

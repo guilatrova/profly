@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import PropTypes from 'prop-types';
+
 import PERIODS from '../../core/constants/periods';
 
 const useStyles = makeStyles({
-  toggleContainer: {
-    textAlign: 'center'
-  },
   root: {
     border: 'none',
     fontWeight: 900
+  },
+  toggleContainer: {
+    textAlign: 'center'
   }
 });
 
@@ -31,13 +33,13 @@ const PeriodToggle = ({ onChange }) => {
   return (
     <div className={classes.toggleContainer}>
       <ToggleButtonGroup
-        value={selectedPeriod}
         exclusive
-        onChange={handleChange}
         size="large"
+        value={selectedPeriod}
+        onChange={handleChange}
       >
         {PERIODS.map(({display: text, value: period}) => (
-          <ToggleButton key={period} value={period} className={classes.root}>
+          <ToggleButton key={period} className={classes.root} value={period}>
             {text}
           </ToggleButton>
         ))}

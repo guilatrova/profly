@@ -1,15 +1,17 @@
 import React from 'react';
-import queries from '../queries';
+
 import { useQuery } from '@apollo/client';
-import Transactions from '../../transactions/components/Transactions';
-import { tickerType, periodType } from '../../core/types';
-import { subPeriod } from '../../utils/dates';
+
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
+import { periodType,tickerType } from '../../core/types';
+import Transactions from '../../transactions/components/Transactions';
+import { subPeriod } from '../../utils/dates';
+import queries from '../queries';
 
 
-const StockTransactions = ({ ticker, period }) => {
+const StockTransactions = ({ period, ticker }) => {
   const start = subPeriod(period).toISOString();
-  const { loading, error, data } = useQuery(queries.transactionsFromStock, { variables: { ticker, start }});
+  const { data, error, loading } = useQuery(queries.transactionsFromStock, { variables: { start, ticker }});
 
   if (error) return <ErrorHandler operation="stock transactions">{error}</ErrorHandler>;
 
@@ -17,16 +19,16 @@ const StockTransactions = ({ ticker, period }) => {
 
   return (
     <Transactions
-      mode="STOCK"
+      data={tableData}
       loading={loading}
-      data={tableData} />
+      mode="STOCK" />
   );
 }
 
 
 StockTransactions.propTypes = {
-  ticker: tickerType.isRequired,
-  period: periodType.isRequired
+  period: periodType.isRequired,
+  ticker: tickerType.isRequired
 }
 
 export default StockTransactions;

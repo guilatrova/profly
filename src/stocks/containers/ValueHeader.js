@@ -1,15 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { useQuery } from '@apollo/client';
-import queries from '../queries';
-import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import Typography from '@material-ui/core/Typography';
-import { formatCurrency } from '../../utils/money';
 import Skeleton from '@material-ui/lab/Skeleton';
+import PropTypes from 'prop-types';
+
+import ErrorHandler from '../../core/components/ApolloErrorHandler';
+import { formatCurrency } from '../../utils/money';
+import queries from '../queries';
 
 
 const ValueHeader = ({ ticker }) => {
-  const { loading, error, data } = useQuery(queries.stockSummary, { variables: { ticker }});
+  const { data, error, loading } = useQuery(queries.stockSummary, { variables: { ticker }});
 
   if (error) return <ErrorHandler operation="stock summary">{error}</ErrorHandler>;
 

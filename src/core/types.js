@@ -1,4 +1,5 @@
 import { oneOf, string } from 'prop-types';
+
 import PERIODS from './constants/periods';
 
 export const tickerType = string;
