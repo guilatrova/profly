@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { hot } from "react-hot-loader";
 import StocksDashboard from '../containers/Dashboard';
-import SavingsDashboard from '../../savings/containers/Dashboard';
+import MainPage from '../../savings/containers/Main';
 import StockPage from '../../stocks/containers/StockPage';
 import AppWrapper from './AppWrapper';
 import AmplifyPage from '../../core/containers/AmplifyPage';
@@ -24,7 +24,7 @@ class App extends React.Component {
       <AppWrapper>
         <SnackbarProvider>
         <Switch>
-          <PrivateRoute exact path="/" component={SavingsDashboard} />
+          <PrivateRoute exact path="/" component={MainPage} />
           <PrivateRoute exact path="/stocks" component={StocksDashboard} />
           <PrivateRoute path="/stocks/:ticker" component={StockPage} />
 
