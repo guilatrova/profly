@@ -5,9 +5,9 @@ import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
-import SavingsCardsSummary from './SavingsCardsSummary'
+import SavingsCardsSummary from '../savings/containers/SavingsCardsSummary'
 // import RecentTransactions from '../../transactions/containers/RecentTransactions';
-import TotalSummary from './TotalSummary'
+import TotalSummary from '../savings/containers/TotalSummary'
 
 const useStyles = makeStyles((theme) => ({
   paper: {

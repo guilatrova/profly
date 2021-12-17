@@ -154,7 +154,9 @@ export default {
     alias: {
       assets: path.resolve(__dirname, 'src/assets'),
       core: path.resolve(__dirname, 'src/core'),
+      pages: path.resolve(__dirname, 'src/pages'),
       'react-dom': '@hot-loader/react-dom',
+      routes: path.resolve(__dirname, 'src/routes'),
       savings: path.resolve(__dirname, 'src/savings'),
       stocks: path.resolve(__dirname, 'src/stocks'),
     },

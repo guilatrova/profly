@@ -1,21 +1,22 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from 'react'
+import { Link } from 'react-router-dom'
 
-import AppBar from '@material-ui/core/AppBar';
-import Chip from '@material-ui/core/Chip';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import IconButton from '@material-ui/core/IconButton';
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import PersonIcon from '@material-ui/icons/GitHub';
-import MenuIcon from '@material-ui/icons/Menu';
-import clsx from 'clsx';
+import AppBar from '@material-ui/core/AppBar'
+import Chip from '@material-ui/core/Chip'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import IconButton from '@material-ui/core/IconButton'
+import { makeStyles } from '@material-ui/core/styles'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import GetAppIcon from '@material-ui/icons/GetApp'
+import PersonIcon from '@material-ui/icons/GitHub'
+import MenuIcon from '@material-ui/icons/Menu'
+import clsx from 'clsx'
+import paths from 'routes/paths'
 
-import { DownloadCSV } from '../../utils/downloader';
-import AppDrawer, { drawerEnabled,drawerWidth } from './AppDrawer';
-import LoggedUser from './LoggedUser';
+import { DownloadCSV } from '../../utils/downloader'
+import AppDrawer, { drawerEnabled, drawerWidth } from './AppDrawer'
+import LoggedUser from './LoggedUser'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   linkTitle: {
     color: 'inherit',
-    textDecoration: 'none'
+    textDecoration: 'none',
   },
   menuButton: {
     marginRight: 36,
@@ -51,16 +52,15 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-  }
-}));
+  },
+}))
 
 const HeaderBar = () => {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const toggleDrawer = () => setOpen(!open);
-  const handleAuthorLink = () =>
-    window.open('https://guilatrova.dev', '_blank');
-  const handleDownloadCSV = () => DownloadCSV();
+  const classes = useStyles()
+  const [open, setOpen] = React.useState(false)
+  const toggleDrawer = () => setOpen(!open)
+  const handleAuthorLink = () => window.open('https://guilatrova.dev', '_blank')
+  const handleDownloadCSV = () => DownloadCSV()
 
   return (
     <>
@@ -85,22 +85,22 @@ const HeaderBar = () => {
             </IconButton>
           )}
 
-            <Typography
-              noWrap
-              className={classes.title}
-              color="inherit"
-              component="h1"
-              variant="h6"
-            >
-              <Link className={classes.linkTitle} to="/">
-                profly
-              </Link>
-              <Chip
-                className={classes.betaChip}
-                color="secondary"
-                label="BETA"
-                size="small"
-              />
+          <Typography
+            noWrap
+            className={classes.title}
+            color="inherit"
+            component="h1"
+            variant="h6"
+          >
+            <Link className={classes.linkTitle} to={paths.MAIN}>
+              profly
+            </Link>
+            <Chip
+              className={classes.betaChip}
+              color="secondary"
+              label="BETA"
+              size="small"
+            />
           </Typography>
 
           <IconButton color="inherit" onClick={handleDownloadCSV}>
@@ -117,7 +117,7 @@ const HeaderBar = () => {
 
       <AppDrawer open={open} toggleDrawer={toggleDrawer} />
     </>
-  );
-};
+  )
+}
 
-export default HeaderBar;
+export default HeaderBar
