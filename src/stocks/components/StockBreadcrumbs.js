@@ -25,7 +25,9 @@ const StockBreadcrumbs = ({ location }) => {
         Profly
       </RouterLink>
 
-      <Typography color="textPrimary">Stocks</Typography>
+      <RouterLink className={classes.anchor} to="/stocks">
+        Stocks
+      </RouterLink>
 
       <RouterLink className={classes.anchor} to="#">
         {location}
