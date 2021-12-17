@@ -9,6 +9,30 @@ const defaultWallet = gql`
   }
 `
 
+const listTransactions = gql`
+  query listSavingsTransactions {
+    savingTransactions {
+      id
+      value
+      performedAt
+      notes
+      wallet {
+        currency
+      }
+    }
+  }
+`
+
+const deleteTransaction = gql`
+mutation deleteSavingTransaction($id: ID!) {
+    deleteSavingTransaction(id: $id) {
+      ok
+    }
+  }
+`;
+
 export default {
-  defaultWallet
+  defaultWallet,
+  listTransactions,
+  deleteTransaction
 }
