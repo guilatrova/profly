@@ -1,10 +1,10 @@
 import './config'
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { func } from 'prop-types'
 
 import { useApolloClient } from '@apollo/client'
 import Auth from '@aws-amplify/auth'
-import { func } from 'prop-types'
 
 import { setSessionToken } from '../../utils/localStorage'
 

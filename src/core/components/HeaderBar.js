@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography'
 import GetAppIcon from '@material-ui/icons/GetApp'
 import PersonIcon from '@material-ui/icons/GitHub'
 import MenuIcon from '@material-ui/icons/Menu'
+
 import clsx from 'clsx'
 import paths from 'routes/paths'
 

@@ -2,10 +2,10 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { Route, Switch } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { SnackbarProvider } from 'notistack'
 import MainPage from 'pages/Main'
-import PropTypes from 'prop-types'
 import PrivateRoute from 'routes/components/PrivateRoute'
 import paths from 'routes/paths'
 

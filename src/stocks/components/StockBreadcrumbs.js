@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Breadcrumbs from '@material-ui/core/Breadcrumbs'
 import { makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
+
 import paths from 'routes/paths'
 
 const useStyles = makeStyles((theme) => ({

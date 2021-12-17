@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { useQuery } from '@apollo/client'
 import { Box } from '@material-ui/core'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
@@ -10,6 +9,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Chip from '@material-ui/core/Chip'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+
+import { useQuery } from '@apollo/client'
 
 import BitcoinIcon from '../../assets/bitcoin.svg'
 import StocksIcon from '../../assets/stocks.svg'

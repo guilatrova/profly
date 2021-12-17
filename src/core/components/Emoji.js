@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Emoji } from 'emoji-mart'
-import PropTypes from 'prop-types';
 
 
 const EmojiWrapper = ({ emoji='neutral_face', size=24 }) => {

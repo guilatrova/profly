@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
 import PropTypes from 'prop-types'
+
 import { Cell, Label, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
 import { randomColor } from '../../utils/colors'

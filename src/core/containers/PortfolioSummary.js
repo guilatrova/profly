@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { useQuery } from '@apollo/client';
 import Typography from '@material-ui/core/Typography';
+
+import { useQuery } from '@apollo/client';
 
 import queries from '../../charts/queries';
 import ErrorHandler from '../../core/components/ApolloErrorHandler';

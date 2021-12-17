@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { useQuery } from '@apollo/client';
 import Grid from '@material-ui/core/Grid';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+
+import { useQuery } from '@apollo/client';
 
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import BuyIcon from '../../core/components/BuyIcon';

@@ -1,13 +1,14 @@
 import 'emoji-mart/css/emoji-mart.css';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
+
 import clsx from 'clsx';
 import { Emoji as EmojiDisplay, Picker } from 'emoji-mart';
-import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   disabled: {

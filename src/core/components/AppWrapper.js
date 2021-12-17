@@ -1,8 +1,9 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+
 import { SnackbarProvider } from 'notistack';
-import PropTypes from 'prop-types';
 
 import theme from '../constants/theme';
 import AppContent from './AppContent';

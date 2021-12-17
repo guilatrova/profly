@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { useQuery } from '@apollo/client';
-import PropTypes from 'prop-types';
 
 import queries from '../../queries';
 import { StockInfoContext } from './context';

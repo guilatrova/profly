@@ -64,9 +64,9 @@ module.exports = {
       {
         groups: [
           ['^\\u0000'],
-          ['^react'],
+          ['^react', '^prop-types'],
+          ['^@material-ui'],
           ['^assets'],
-          ['^components'],
           ['^@?\\w'],
           ['^[^.]'],
           ['^\\.'],

@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Badge from '@material-ui/core/Badge';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 
 import BuyIcon from '../../../core/components/BuyIcon';
 import Emoji from '../../../core/components/Emoji';

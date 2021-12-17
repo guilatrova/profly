@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { useQuery } from '@apollo/client';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
-import PropTypes from 'prop-types';
+
+import { useQuery } from '@apollo/client';
 
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import { formatCurrency } from '../../utils/money';

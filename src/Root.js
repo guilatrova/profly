@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import { ApolloProvider } from '@apollo/client';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { ConnectedRouter } from 'connected-react-router';
-import PropTypes from 'prop-types';
 
 import apolloClient from './core/apollo';
 import { AuthenticationProvider } from './core/authentication';

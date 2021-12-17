@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import { useQuery } from '@apollo/client';
-import Skeleton from '@material-ui/lab/Skeleton';
-import PropTypes from 'prop-types';
 
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import StockHistoryLineChart from '../components/StockHistoryLineChart';

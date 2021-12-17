@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { useQuery } from '@apollo/client';
 import Skeleton from '@material-ui/lab/Skeleton';
+
+import { useQuery } from '@apollo/client';
 
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
 import ValueSpreadPieChart from '../components/ValueSpreadPieChart';

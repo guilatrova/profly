@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { useMutation } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+
+import { useMutation } from '@apollo/client';
 import { Emoji } from 'emoji-mart'
-import PropTypes from 'prop-types';
 
 import TickerLink from '../../../core/components/TickerLink';
 import { formatDateTimeOutput } from '../../../utils/dates';

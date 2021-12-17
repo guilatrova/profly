@@ -1,10 +1,10 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 
 import StockLink from '../../../core/components/StockLink';
 import { formatCurrency } from '../../../utils/money';

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
@@ -6,7 +7,6 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { DateTimePicker } from '@material-ui/pickers'
-import PropTypes from 'prop-types'
 
 import ErrorHandler from '../../../core/components/ApolloErrorHandler'
 import DecimalTextField from '../../../core/components/DecimalTextField'

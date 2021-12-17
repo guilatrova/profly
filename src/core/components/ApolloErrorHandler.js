@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles'
+
 import { Emoji as EmojiDisplay } from 'emoji-mart'
 import { useSnackbar } from 'notistack'
-import PropTypes from 'prop-types'
 
 const useStyles = makeStyles((theme) => ({
   errorMessage: {

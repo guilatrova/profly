@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useQuery } from '@apollo/client';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
@@ -8,6 +7,8 @@ import Chip from '@material-ui/core/Chip';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import { useQuery } from '@apollo/client';
 
 import chartQueries from '../../charts/queries';
 import ErrorHandler from '../../core/components/ApolloErrorHandler';
