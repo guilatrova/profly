@@ -1,53 +1,24 @@
-import webpack from 'webpack';
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
-import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
+import webpack from 'webpack';
 
 export default {
-  resolve: {
-    extensions: ['*', '.js', '.jsx', '.json'],
-    // To support react-hot-loader
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-      'core': path.resolve(__dirname, 'src/core'),
-      'stocks': path.resolve(__dirname, 'src/stocks'),
-      'savings': path.resolve(__dirname, 'src/savings'),
-      'assets': path.resolve(__dirname, 'src/assets'),
-    }
-  },
-  devtool: 'cheap-module-eval-source-map', // more info:https://webpack.js.org/guides/development/#using-source-maps and https://webpack.js.org/configuration/devtool/
-  entry: [
+  devtool: 'cheap-module-eval-source-map',
+  // more info:https://webpack.js.org/guides/development/#using-source-maps and https://webpack.js.org/configuration/devtool/
+entry: [
     // must be first entry to properly set public path
     './src/webpack-public-path',
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
     path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
-  ],
-  target: 'web',
+  ], 
   mode: 'development',
-  output: {
-    path: path.resolve(__dirname, 'dist'), // Note: Physical files are only output by the production build task `npm run build`.
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-  plugins: [
-    new HardSourceWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
-      template: 'src/index.ejs',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
-      inject: true
-    })
-  ],
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
         exclude: /node_modules/,
+        test: /\.jsx?$/,
         use: ['babel-loader']
       },
       {
@@ -130,5 +101,39 @@ export default {
         ]
       }
     ]
-  }
+  },
+  output: {
+    filename: 'bundle.js', 
+    path: path.resolve(__dirname, 'dist'),
+    // Note: Physical files are only output by the production build task `npm run build`.
+publicPath: '/'
+  },
+  plugins: [
+    new HardSourceWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new HtmlWebpackPlugin({     
+      inject: true,
+      
+minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      },
+      // Create HTML file that includes references to bundled CSS and JS.
+template: 'src/index.ejs'
+    })
+  ],
+  resolve: {
+    // To support react-hot-loader
+alias: {
+      'assets': path.resolve(__dirname, 'src/assets'),
+      'core': path.resolve(__dirname, 'src/core'),
+      'react-dom': '@hot-loader/react-dom',
+      'savings': path.resolve(__dirname, 'src/savings'),
+      'stocks': path.resolve(__dirname, 'src/stocks'),
+    },
+    
+    extensions: ['*', '.js', '.jsx', '.json']
+  },
+  target: 'web'
 };

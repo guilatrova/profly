@@ -87,9 +87,15 @@
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.15.1",
     "eslint": "6.6.0",
+    "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-webpack": "0.13.2",
     "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-no-unsanitized": "4.0.1",
     "eslint-plugin-react": "7.16.0",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "eslint-plugin-sort-destructure-keys": "1.4.0",
+    "eslint-plugin-sort-keys-fix": "1.1.2",
     "eslint-watch": "6.0.1",
     "file-loader": "4.2.0",
     "hard-source-webpack-plugin": "0.13.1",
@@ -103,6 +109,7 @@
     "mockdate": "2.0.5",
     "open-cli": "5.0.0",
     "postcss-loader": "3.0.0",
+    "prettier": "2.5.1",
     "prompt": "1.0.0",
     "prop-types": "15.7.2",
     "raf": "3.4.1",
@@ -174,41 +181,5 @@
         ]
       }
     }
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "eslint:recommended",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "plugin:react/recommended"
-    ],
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "moduleDirectory": ["node_modules", "src/"]
-        }
-      }
-    },
-    "plugins": [
-      "react"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true,
-        "experimentalObjectRestSpread": true
-      }
-    },
-    "env": {
-      "es6": true,
-      "browser": true,
-      "node": true,
-      "jquery": true,
-      "jest": true
-    },
-    "globals": {}
   }
 }
