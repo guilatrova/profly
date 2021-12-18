@@ -8,9 +8,9 @@ import { SnackbarProvider } from 'notistack'
 import Login from 'pages/Login'
 import MainPage from 'pages/Main'
 import NotFoundPage from 'pages/NotFound'
-import SavingsMain from 'pages/SavingsMain'
 import StocksMain from 'pages/StocksMain'
 import StockTicker from 'pages/StockTicker'
+import WalletsMain from 'pages/WalletsMain'
 import PrivateRoute from 'routes/components/PrivateRoute'
 import paths from 'routes/paths'
 
@@ -35,7 +35,7 @@ class App extends React.Component {
             <PrivateRoute component={StockTicker} path={paths.STOCK_TICKER} />
             <PrivateRoute
               exact
-              component={SavingsMain}
+              component={WalletsMain}
               path={paths.SAVINGS_DASHBOARD}
             />
 
