@@ -3,9 +3,9 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 import ErrorHandler from 'core/components/ApolloErrorHandler'
 import { periodType, tickerType } from 'core/types'
+import Transactions from 'stocks/transactions/components/Transactions'
 import { subPeriod } from 'utils/dates'
 
-import Transactions from '../../transactions/components/Transactions'
 import queries from '../queries'
 
 const StockTransactions = ({ period, ticker }) => {

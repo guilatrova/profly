@@ -7,8 +7,7 @@ import Typography from '@material-ui/core/Typography'
 
 import PortfolioSummary from 'core/containers/PortfolioSummary'
 import StocksSummary from 'core/containers/StocksSummary'
-
-import RecentTransactions from '../transactions/containers/RecentTransactions'
+import RecentTransactions from 'stocks/transactions/containers/RecentTransactions'
 
 const useStyles = makeStyles((theme) => ({
   paper: {

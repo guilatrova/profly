@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
-import RecentTransactions from '../transactions/containers/RecentTransactions'
+import RecentTransactions from 'stocks/transactions/containers/RecentTransactions'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
