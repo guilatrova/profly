@@ -3,8 +3,8 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-import PortfolioSummary from 'core/containers/PortfolioSummary'
-import StocksSummary from 'core/containers/StocksSummary'
+import PortfolioSummary from 'stocks/containers/PortfolioSummary'
+import StocksSummary from 'stocks/containers/StocksSummary'
 import RecentTransactions from 'stocks/transactions/containers/RecentTransactions'
 
 const StocksMain = () => {
