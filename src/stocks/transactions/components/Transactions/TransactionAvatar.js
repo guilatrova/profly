@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import Badge from '@material-ui/core/Badge'
 import { makeStyles } from '@material-ui/core/styles'
 
+import Emoji from 'common/components/Emoji'
 import BuyIcon from 'core/components/BuyIcon'
-import Emoji from 'core/components/Emoji'
 import SellIcon from 'core/components/SellIcon'
 import StockAvatar from 'stocks/components/StockAvatar'
 

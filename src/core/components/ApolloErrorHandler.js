@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { Emoji as EmojiDisplay } from 'emoji-mart'
+import Emoji from 'common/components/Emoji'
 import { useSnackbar } from 'notistack'
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +43,7 @@ const ApolloErrorHandler = ({
       display="flex"
       justifyContent="center"
     >
-      <EmojiDisplay emoji="cry" set="twitter" size={24} />
+      <Emoji emoji="cry" />
       <p className={classes.errorMessage}>
         Sorry, something unexpected happened and we were unable to display this
         data
