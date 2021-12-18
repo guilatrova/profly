@@ -8,9 +8,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { DateTimePicker } from '@material-ui/pickers'
 
-import ErrorHandler from '../../../core/components/ApolloErrorHandler'
-import DecimalTextField from '../../../core/components/DecimalTextField'
-import { formatCurrency } from '../../../utils/money'
+import ErrorHandler from 'core/components/ApolloErrorHandler'
+import DecimalTextField from 'core/components/DecimalTextField'
+import { formatCurrency } from 'utils/money'
+
 import { useStockInfo } from '../StockInfoProvider/context'
 import Emotion from './Emotion'
 import StrikeActionToggle from './StrikeActionToggle'

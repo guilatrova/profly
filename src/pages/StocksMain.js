@@ -5,41 +5,52 @@ import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
-import SavingsCardsSummary from 'savings/containers/SavingsCardsSummary'
-import TotalSummary from 'savings/containers/TotalSummary'
+import PortfolioSummary from 'core/containers/PortfolioSummary'
+import StocksSummary from 'core/containers/StocksSummary'
+
+import RecentTransactions from '../transactions/containers/RecentTransactions'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     display: 'flex',
     flexDirection: 'column',
-    margin: theme.spacing(1),
     overflow: 'auto',
     padding: theme.spacing(2),
   },
 }))
 
-const Main = () => {
+const Dashboard = () => {
   const classes = useStyles()
 
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <Typography component="h1" variant="h3">
-          Your Savings
-        </Typography>
-
         <Paper className={classes.paper}>
           <Typography component="h2" variant="subtitle2">
-            Total
+            Portfolio
           </Typography>
 
-          <TotalSummary />
+          <PortfolioSummary />
         </Paper>
+      </Grid>
 
-        <SavingsCardsSummary />
+      <Grid item md={6} xs={12}>
+        <Typography component="h2" variant="h6">
+          🧺 Stocks
+        </Typography>
+
+        <StocksSummary />
+      </Grid>
+
+      <Grid item md={6} xs={12}>
+        <Typography component="h2" variant="h6">
+          🛒 Recent transactions
+        </Typography>
+
+        <RecentTransactions />
       </Grid>
     </Grid>
   )
 }
 
-export default Main
+export default Dashboard

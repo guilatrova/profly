@@ -1,26 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/lab/Skeleton';
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Skeleton from '@material-ui/lab/Skeleton'
 
-import { formatCurrency } from '../../utils/money';
-
+import { formatCurrency } from 'utils/money'
 
 const useStyles = makeStyles(() => ({
-  root: {
-  },
+  root: {},
   value: {
-    color: 'black'
+    color: 'black',
   },
-}));
+}))
 
-const ValueCard = ({ children = null, currency = 'BRL', icon, isMoney = false, loading = false, title}) => {
-  const classes = useStyles();
-  const displayValue = isMoney ? formatCurrency(children || 0, currency) : children;
+const ValueCard = ({
+  children = null,
+  currency = 'BRL',
+  icon,
+  isMoney = false,
+  loading = false,
+  title,
+}) => {
+  const classes = useStyles()
+  const displayValue = isMoney
+    ? formatCurrency(children || 0, currency)
+    : children
 
   return (
     <Card className={classes.root}>
@@ -31,12 +38,16 @@ const ValueCard = ({ children = null, currency = 'BRL', icon, isMoney = false, l
           {title}
         </Typography>
 
-        <Typography className={classes.value} component="h3" variant="subtitle2">
+        <Typography
+          className={classes.value}
+          component="h3"
+          variant="subtitle2"
+        >
           {loading ? <Skeleton /> : displayValue}
         </Typography>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 ValueCard.propTypes = {
@@ -45,7 +56,7 @@ ValueCard.propTypes = {
   icon: PropTypes.node,
   isMoney: PropTypes.bool,
   loading: PropTypes.bool,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 }
 
-export default ValueCard;
+export default ValueCard

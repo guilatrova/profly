@@ -1,7 +1,7 @@
 // import React from 'react';
 // import PropTypes from 'prop-types';
 // import { makeStyles } from '@material-ui/core/styles';
-// import { formatCurrency } from '../../utils/money';
+// import { formatCurrency } from 'utils/money';
 // import Actions from '../../transactions/components/Transactions/Actions';
 // import { useMutation } from '@apollo/client';
 // import queries from '../../queries';
@@ -11,7 +11,6 @@
 // import clsx from 'clsx'
 // import TransactionAvatar from './TransactionAvatar';
 // import { useSnackbar } from 'notistack';
-
 
 // const useStyles = makeStyles({
 //   headerTitle: {
@@ -43,7 +42,6 @@
 //     marginRight: 15
 //   }
 // });
-
 
 // const TransactionCard = ({ row }) => {
 //   const classes = useStyles();

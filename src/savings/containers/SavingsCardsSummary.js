@@ -10,14 +10,15 @@ import Chip from '@material-ui/core/Chip'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
+import StocksIcon from 'assets/stocks.svg'
+
 import { useQuery } from '@apollo/client'
+import ErrorHandler from 'core/components/ApolloErrorHandler'
+import chartQueries from 'stocks/charts/queries'
+import { formatCurrency } from 'utils/money'
 
 import BitcoinIcon from '../../assets/bitcoin.svg'
-import StocksIcon from '../../assets/stocks.svg'
 import WalletIcon from '../../assets/wallet.svg'
-import chartQueries from '../../charts/queries'
-import ErrorHandler from '../../core/components/ApolloErrorHandler'
-import { formatCurrency } from '../../utils/money'
 import savingsQueries from '../queries'
 
 const useStyles = makeStyles((theme) => ({

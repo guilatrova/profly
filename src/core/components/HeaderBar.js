@@ -14,8 +14,8 @@ import MenuIcon from '@material-ui/icons/Menu'
 
 import clsx from 'clsx'
 import paths from 'routes/paths'
+import { DownloadCSV } from 'utils/downloader'
 
-import { DownloadCSV } from '../../utils/downloader'
 import AppDrawer, { drawerEnabled, drawerWidth } from './AppDrawer'
 import LoggedUser from './LoggedUser'
 

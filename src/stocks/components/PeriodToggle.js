@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { makeStyles } from '@material-ui/core/styles'
+import ToggleButton from '@material-ui/lab/ToggleButton'
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 
-import PERIODS from '../../core/constants/periods';
+import PERIODS from 'core/constants/periods'
 
 const useStyles = makeStyles({
   root: {
     border: 'none',
-    fontWeight: 900
+    fontWeight: 900,
   },
   toggleContainer: {
-    textAlign: 'center'
-  }
-});
+    textAlign: 'center',
+  },
+})
 
 const PeriodToggle = ({ onChange }) => {
-  const classes = useStyles();
-  const [selectedPeriod, setSelectedPeriod] = useState('ytd');
+  const classes = useStyles()
+  const [selectedPeriod, setSelectedPeriod] = useState('ytd')
 
   const handleChange = (event, newAction) => {
     if (newAction) {
-      setSelectedPeriod(newAction);
+      setSelectedPeriod(newAction)
       if (onChange) {
-        onChange(newAction);
+        onChange(newAction)
       }
     }
-  };
+  }
 
   return (
     <div className={classes.toggleContainer}>
@@ -38,18 +38,18 @@ const PeriodToggle = ({ onChange }) => {
         value={selectedPeriod}
         onChange={handleChange}
       >
-        {PERIODS.map(({display: text, value: period}) => (
+        {PERIODS.map(({ display: text, value: period }) => (
           <ToggleButton key={period} className={classes.root} value={period}>
             {text}
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
     </div>
-  );
-};
+  )
+}
 
 PeriodToggle.propTypes = {
   onChange: PropTypes.func,
-};
+}
 
-export default PeriodToggle;
+export default PeriodToggle

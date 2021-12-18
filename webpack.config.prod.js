@@ -159,6 +159,7 @@ export default {
       routes: path.resolve(__dirname, 'src/routes'),
       savings: path.resolve(__dirname, 'src/savings'),
       stocks: path.resolve(__dirname, 'src/stocks'),
+      utils: path.resolve(__dirname, 'src/utils'),
     },
 
     extensions: ['*', '.js', '.jsx', '.json'],

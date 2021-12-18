@@ -1,20 +1,19 @@
-import React from 'react';
+import React from 'react'
 
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import Chip from '@material-ui/core/Chip';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MuiAccordion from '@material-ui/core/Accordion'
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
+import Chip from '@material-ui/core/Chip'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client'
+import ErrorHandler from 'core/components/ApolloErrorHandler'
+import chartQueries from 'stocks/charts/queries'
+import { formatCurrency } from 'utils/money'
 
-import chartQueries from '../../charts/queries';
-import ErrorHandler from '../../core/components/ApolloErrorHandler';
-import { formatCurrency } from '../../utils/money';
-import savingsQueries from '../queries';
-
+import savingsQueries from '../queries'
 
 const useStyles = makeStyles((theme) => ({
   soonChip: {
@@ -27,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
   summaryValue: {
     flexShrink: 0,
     fontWeight: '700',
-  }
-}));
+  },
+}))
 
 const Accordion = withStyles({
   expanded: {},
@@ -43,7 +42,7 @@ const Accordion = withStyles({
     border: 'none',
     boxShadow: 'none',
   },
-})(MuiAccordion);
+})(MuiAccordion)
 
 const AccordionSummary = withStyles({
   content: {
@@ -56,7 +55,6 @@ const AccordionSummary = withStyles({
     paddingBottom: 0,
     paddingRight: 0,
     paddingTop: 0,
-
   },
   expanded: {},
   root: {
@@ -67,42 +65,37 @@ const AccordionSummary = withStyles({
     minHeight: '24px',
     padding: 0,
   },
-})(MuiAccordionSummary);
+})(MuiAccordionSummary)
 
 const AccordionDetails = withStyles((theme) => ({
   root: {
     paddingLeft: theme.spacing(2),
   },
-}))(MuiAccordionDetails);
+}))(MuiAccordionDetails)
 
 const SavingsSummary = () => {
-  const classes = useStyles();
-  const { error, data = [] } = useQuery(chartQueries.chartStocksValues);
-  const { walletData, walletError } = useQuery(savingsQueries.defaultWallet);
-  const [expanded, setExpanded] = React.useState("");
+  const classes = useStyles()
+  const { error, data = [] } = useQuery(chartQueries.chartStocksValues)
+  const { walletData, walletError } = useQuery(savingsQueries.defaultWallet)
+  const [expanded, setExpanded] = React.useState('')
 
   const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
+    setExpanded(newExpanded ? panel : false)
+  }
 
   if (error)
-    return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>;
+    return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>
   if (walletError)
-    return (
-      <ErrorHandler operation="wallet summary">{walletError}</ErrorHandler>
-    );
+    return <ErrorHandler operation="wallet summary">{walletError}</ErrorHandler>
 
-  const chartData = data?.stocks || [];
-  const walletTotal = walletData?.value || 0;
+  const chartData = data?.stocks || []
+  const walletTotal = walletData?.value || 0
   // TODO: Consider different currencies
-  const stocksTotal = chartData.reduce((acc, cur) => acc + cur.value, 0);
+  const stocksTotal = chartData.reduce((acc, cur) => acc + cur.value, 0)
 
   return (
     <>
-      <Accordion
-        square
-        expanded={expanded === 'panel-savings'}
-      >
+      <Accordion square expanded={expanded === 'panel-savings'}>
         <AccordionSummary
           IconButtonProps={{
             disabled: true,
@@ -110,7 +103,9 @@ const SavingsSummary = () => {
           }}
         >
           <Typography className={classes.summaryTitle}>Wallet</Typography>
-          <Typography className={classes.summaryValue}>{formatCurrency(walletTotal)}</Typography>
+          <Typography className={classes.summaryValue}>
+            {formatCurrency(walletTotal)}
+          </Typography>
         </AccordionSummary>
       </Accordion>
       <Accordion
@@ -126,17 +121,16 @@ const SavingsSummary = () => {
           }}
         >
           <Typography className={classes.summaryTitle}>Stocks</Typography>
-          <Typography className={classes.summaryValue}>{formatCurrency(stocksTotal)}</Typography>
+          <Typography className={classes.summaryValue}>
+            {formatCurrency(stocksTotal)}
+          </Typography>
         </AccordionSummary>
       </Accordion>
-      <Accordion
-        square
-        expanded={expanded === 'panel-crypto'}
-      >
+      <Accordion square expanded={expanded === 'panel-crypto'}>
         <AccordionSummary
           IconButtonProps={{
             disabled: true,
-            edge: 'start'
+            edge: 'start',
           }}
         >
           <Typography className={classes.summaryTitle}>Crypto</Typography>
@@ -146,7 +140,7 @@ const SavingsSummary = () => {
         </AccordionSummary>
       </Accordion>
     </>
-  );
-};
+  )
+}
 
-export default SavingsSummary;
+export default SavingsSummary

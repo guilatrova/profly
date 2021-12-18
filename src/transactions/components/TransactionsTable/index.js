@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 
-import LoadingRows from '../../../core/components/LoadingRows';
-import { transactionsPropType } from '../../types';
-import ContentRow from './ContentRow';
+import LoadingRows from 'core/components/LoadingRows'
 
+import { transactionsPropType } from '../../types'
+import ContentRow from './ContentRow'
 
 // TODO: Use i18n
 // TODO: Implement pagination and order by
@@ -19,8 +19,8 @@ const TransactionsTable = ({
   loading = false,
   displayStock = true,
 }) => {
-  const alignUnits = displayStock ? 'right' : 'inherit';
-  const cellsCount = displayStock ? 7 : 6;
+  const alignUnits = displayStock ? 'right' : 'inherit'
+  const cellsCount = displayStock ? 7 : 6
 
   return (
     <Table size="small">
@@ -51,13 +51,13 @@ const TransactionsTable = ({
         )}
       </TableBody>
     </Table>
-  );
-};
+  )
+}
 
 TransactionsTable.propTypes = {
   data: transactionsPropType,
   displayStock: PropTypes.bool,
   loading: PropTypes.bool,
-};
+}
 
-export default TransactionsTable;
+export default TransactionsTable

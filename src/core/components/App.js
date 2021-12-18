@@ -5,16 +5,16 @@ import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { SnackbarProvider } from 'notistack'
+import Login from 'pages/Login'
 import MainPage from 'pages/Main'
+import NotFoundPage from 'pages/NotFound'
+import SavingsMain from 'pages/SavingsMain'
+import StocksMain from 'pages/StocksMain'
+import StockTicker from 'pages/StockTicker'
 import PrivateRoute from 'routes/components/PrivateRoute'
 import paths from 'routes/paths'
 
-import AmplifyPage from '../../core/containers/AmplifyPage'
-import SavingsDashboard from '../../savings/containers/Dashboard'
-import StockPage from '../../stocks/containers/StockPage'
-import StocksDashboard from '../containers/Dashboard'
 import AppWrapper from './AppWrapper'
-import NotFoundPage from './NotFoundPage'
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -29,17 +29,17 @@ class App extends React.Component {
             <PrivateRoute exact component={MainPage} path={paths.MAIN} />
             <PrivateRoute
               exact
-              component={StocksDashboard}
+              component={StocksMain}
               path={paths.STOCKS_DASHBOARD}
             />
-            <PrivateRoute component={StockPage} path={paths.STOCK_TICKER} />
+            <PrivateRoute component={StockTicker} path={paths.STOCK_TICKER} />
             <PrivateRoute
               exact
-              component={SavingsDashboard}
+              component={SavingsMain}
               path={paths.SAVINGS_DASHBOARD}
             />
 
-            <Route component={AmplifyPage} path={paths.LOGIN} />
+            <Route component={Login} path={paths.LOGIN} />
             <Route component={NotFoundPage} />
           </Switch>
         </SnackbarProvider>

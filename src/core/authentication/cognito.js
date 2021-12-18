@@ -5,8 +5,7 @@ import { func } from 'prop-types'
 
 import { useApolloClient } from '@apollo/client'
 import Auth from '@aws-amplify/auth'
-
-import { setSessionToken } from '../../utils/localStorage'
+import { setSessionToken } from 'utils/localStorage'
 
 const getToken = (session) => session.idToken.jwtToken
 
