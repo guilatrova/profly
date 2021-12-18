@@ -1,23 +1,25 @@
 import React from 'react'
 
-import Typography from '@material-ui/core/Typography'
-
 import { useQuery } from '@apollo/client'
-import ErrorHandler from 'core/components/ApolloErrorHandler'
+import ValueHeader from 'common/components/ValueHeader'
 import queries from 'stocks/charts/queries'
 import { formatCurrency } from 'utils/money'
 
 const PortfolioSummary = () => {
-  const { error, data = [] } = useQuery(queries.chartStocksValues)
-
-  if (error)
-    return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>
-
+  const { data, error, loading } = useQuery(queries.chartStocksValues)
   const chartData = data?.stocks || []
   // TODO: Consider different currencies
   const total = chartData.reduce((acc, cur) => acc + cur.value, 0)
 
-  return <Typography variant="h2">{formatCurrency(total)}</Typography>
+  return (
+    <ValueHeader
+      data={formatCurrency(total)}
+      error={error}
+      loading={loading}
+      operationName="portfolio summary"
+      title="Portfolio"
+    />
+  )
 }
 
 export default PortfolioSummary

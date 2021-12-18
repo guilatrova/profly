@@ -127,6 +127,7 @@ export default {
     // To support react-hot-loader
     alias: {
       assets: path.resolve(__dirname, 'src/assets'),
+      common: path.resolve(__dirname, 'src/common'),
       core: path.resolve(__dirname, 'src/core'),
       pages: path.resolve(__dirname, 'src/pages'),
       'react-dom': '@hot-loader/react-dom',

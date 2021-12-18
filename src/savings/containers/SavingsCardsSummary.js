@@ -10,15 +10,15 @@ import Chip from '@material-ui/core/Chip'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
+import BitcoinIcon from 'assets/bitcoin.svg'
 import StocksIcon from 'assets/stocks.svg'
+import WalletIcon from 'assets/wallet.svg'
 
 import { useQuery } from '@apollo/client'
 import ErrorHandler from 'core/components/ApolloErrorHandler'
 import chartQueries from 'stocks/charts/queries'
 import { formatCurrency } from 'utils/money'
 
-import BitcoinIcon from '../../assets/bitcoin.svg'
-import WalletIcon from '../../assets/wallet.svg'
 import savingsQueries from '../queries'
 
 const useStyles = makeStyles((theme) => ({
@@ -86,11 +86,6 @@ const SavingsSummary = () => {
   const classes = useStyles()
   const { error, data = [] } = useQuery(chartQueries.chartStocksValues)
   const { walletData, walletError } = useQuery(savingsQueries.defaultWallet)
-  const [expanded, setExpanded] = React.useState('')
-
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false)
-  }
 
   if (error)
     return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>
@@ -103,7 +98,7 @@ const SavingsSummary = () => {
   const stocksTotal = chartData.reduce((acc, cur) => acc + cur.value, 0)
 
   return (
-    <Box display="flex" justifyContent="center">
+    <Box display="flex">
       <CategorySummaryCard src={WalletIcon} title="Savings">
         {formatCurrency(walletTotal)}
       </CategorySummaryCard>
