@@ -60,7 +60,8 @@ const TransactionBody = ({
     if (stockInfo) {
       onPropChange({ strikePrice: stockInfo.currentPrice })
     }
-  }, [stockInfo, onPropChange])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stockInfo])
 
   const handleInputChange = (key) => (e) =>
     onPropChange({ [key]: e.target.value })
