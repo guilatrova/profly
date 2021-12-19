@@ -1,9 +1,9 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client'
 
 const defaultWallet = gql`
   query defaultWallet {
     wallet {
-      value,
+      value
       currency
     }
   }
@@ -23,16 +23,29 @@ const listTransactions = gql`
   }
 `
 
+const addTransaction = gql`
+  mutation addTransaction($entity: SavingTransactionMutationInput!) {
+    savingTransactions(input: $entity) {
+      id
+      errors {
+        field
+        messages
+      }
+    }
+  }
+`
+
 const deleteTransaction = gql`
-mutation deleteSavingTransaction($id: ID!) {
+  mutation deleteSavingTransaction($id: ID!) {
     deleteSavingTransaction(id: $id) {
       ok
     }
   }
-`;
+`
 
 export default {
+  addTransaction,
   defaultWallet,
   deleteTransaction,
-  listTransactions
+  listTransactions,
 }
