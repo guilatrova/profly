@@ -1,83 +1,87 @@
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import { makeStyles } from '@material-ui/core/styles';
-// import { formatCurrency } from 'utils/money';
-// import Actions from '../../transactions/components/Transactions/Actions';
-// import { useMutation } from '@apollo/client';
-// import queries from '../../queries';
-// import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import Typography from '@material-ui/core/Typography';
-// import clsx from 'clsx'
-// import TransactionAvatar from './TransactionAvatar';
-// import { useSnackbar } from 'notistack';
+import React from 'react'
 
-// const useStyles = makeStyles({
-//   headerTitle: {
-//     fontWeight: 900,
-//     fontSize: 16
-//   },
-//   card: {
-//     cursor: 'pointer',
-//     background: 'inherit',
-//     position: 'relative',
-//     padding: '10px 0',
-//     '&:hover': {
-//       background: '#eaeaea'
-//     },
-//     '&:before': {
-//       content: '""',
-//       display: 'block',
-//       position: 'absolute',
-//       left: '70px',
-//       right: '28px',
-//       bottom: 0,
-//       borderBottom: '1px solid #dadada',
-//     }
-//   },
-//   cardHeader: {
-//     paddingLeft: 5
-//   },
-//   cardAvatar: {
-//     marginRight: 15
-//   }
-// });
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 
-// const TransactionCard = ({ row }) => {
-//   const classes = useStyles();
-//   const { enqueueSnackbar } = useSnackbar();
+import { useMutation } from '@apollo/client'
+import clsx from 'clsx'
+import { useSnackbar } from 'notistack'
+import queries from 'savings/queries'
+import { walletTransactionPropType } from 'savings/types'
+import { formatCurrency } from 'utils/money'
 
-//   // const [deleteMutation] = useMutation(queries.deleteTransaction, { variables: { id: row.id }});
-//   const handleDelete = () => {
-//     // deleteMutation();
-//     enqueueSnackbar("Transaction deleted successfully", { variant: 'success' });
-//     // setTimeout(() => window.location.reload(false), 2000);
-//   };
-//   const title = "Deposit" || "Withdrawal";
+import Actions from './Actions'
+import TransactionAvatar from './TransactionAvatar'
 
-//   return (
-//     <Card elevation={0} className={classes.card}>
-//       <CardHeader
-//         className={classes.cardHeader}
-//         // avatar={
-//         //   <TransactionAvatar item={row} />
-//         // }
-//         title={<Typography className={classes.headerTitle}>{title}</Typography>}
-//         subheader={row.notes}
-//         action={
-//           <div>
-//             <span className={clsx(classes.headerTitle)}>{formatCurrency(row.value, row.wallet.currency)}</span>
-//             <Actions onDelete={handleDelete} />
-//           </div>
-//         }
-//       />
-//     </Card>
-//   );
-// };
+const useStyles = makeStyles({
+  card: {
+    '&:before': {
+      borderBottom: '1px solid #dadada',
+      bottom: 0,
+      content: '""',
+      display: 'block',
+      left: '70px',
+      position: 'absolute',
+      right: '28px',
+    },
+    '&:hover': {
+      background: '#eaeaea',
+    },
+    background: 'inherit',
+    cursor: 'pointer',
+    padding: '10px 0',
+    position: 'relative',
+  },
+  cardAvatar: {
+    marginRight: 15,
+  },
+  cardHeader: {
+    paddingLeft: 5,
+  },
+  headerTitle: {
+    fontSize: 16,
+    fontWeight: 900,
+  },
+})
 
-// TransactionCard.propTypes = {
-//   row: PropTypes.any,
-//   mode: PropTypes.oneOf(['ALL', 'STOCK']),
-// };
+const TransactionCard = ({ item }) => {
+  const classes = useStyles()
+  const { enqueueSnackbar } = useSnackbar()
 
-// export default TransactionCard;
+  const [deleteMutation] = useMutation(queries.deleteTransaction, {
+    variables: { id: item.id },
+  })
+  const handleDelete = () => {
+    deleteMutation()
+    enqueueSnackbar('Transaction deleted successfully', { variant: 'success' })
+    setTimeout(() => window.location.reload(false), 2000)
+  }
+  const title = item.value >= 0 ? 'Deposit' : 'Withdrawal'
+
+  return (
+    <Card className={classes.card} elevation={0}>
+      <CardHeader
+        action={
+          <div>
+            <span className={clsx(classes.headerTitle)}>
+              {formatCurrency(item.value, item.wallet.currency)}
+            </span>
+            <Actions onDelete={handleDelete} />
+          </div>
+        }
+        avatar={<TransactionAvatar item={item} />}
+        className={classes.cardHeader}
+        subheader={item.notes}
+        title={<Typography className={classes.headerTitle}>{title}</Typography>}
+      />
+    </Card>
+  )
+}
+
+TransactionCard.propTypes = {
+  item: walletTransactionPropType.isRequired,
+}
+
+export default TransactionCard

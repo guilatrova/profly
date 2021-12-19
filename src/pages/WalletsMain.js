@@ -3,8 +3,8 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
+import RecentTransactions from 'savings/containers/RecentTransactions'
 import WalletsSummary from 'savings/containers/WalletsSummary'
-import RecentTransactions from 'stocks/transactions/containers/RecentTransactions'
 
 const Dashboard = () => {
   return (

@@ -3,9 +3,8 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 // import TransactionForm from './TransactionFormDrawer';
 import ErrorHandler from 'core/components/ApolloErrorHandler'
-
-import Transactions from '../components/Transactions'
-import queries from '../queries'
+import Transactions from 'savings/components/Transactions'
+import queries from 'savings/queries'
 
 const RecentTransactions = () => {
   const {
@@ -19,7 +18,7 @@ const RecentTransactions = () => {
       <ErrorHandler operation="list savings transactions">{error}</ErrorHandler>
     )
 
-  const transactions = transactionsData?.transactions
+  const transactions = transactionsData?.savingTransactions
 
   return (
     <>
