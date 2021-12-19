@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import STOCK_ACTIONS from 'core/constants/stockActions'
+import STOCK_ACTIONS from 'stocks/stockActions'
 
 import StockInfoProvider from '../StockInfoProvider'
 import TransactionBody from './TransactionBody'

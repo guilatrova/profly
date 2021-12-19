@@ -1,4 +1,4 @@
-import STOCK_ACTIONS from 'core/constants/stockActions'
+import STOCK_ACTIONS from 'stocks/stockActions'
 
 export const prepareEntity = (entity) => {
   const prepared = { ...entity }

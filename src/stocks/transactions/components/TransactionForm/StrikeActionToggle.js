@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 
-import STOCK_ACTIONS from 'core/constants/stockActions'
+import STOCK_ACTIONS from 'stocks/stockActions'
 
 const useStyles = makeStyles((theme) => ({
   toggleContainer: {
