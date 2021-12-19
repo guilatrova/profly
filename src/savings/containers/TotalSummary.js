@@ -11,7 +11,9 @@ import savingsQueries from '../queries'
 
 const TotalSummary = () => {
   const { error, data = [] } = useQuery(chartQueries.chartStocksValues)
-  const { walletData, walletError } = useQuery(savingsQueries.defaultWallet)
+  const { data: walletData, error: walletError } = useQuery(
+    savingsQueries.defaultWallet
+  )
 
   if (error)
     return <ErrorHandler operation="portfolio summary">{error}</ErrorHandler>
@@ -19,7 +21,7 @@ const TotalSummary = () => {
     return <ErrorHandler operation="wallet summary">{walletError}</ErrorHandler>
 
   const chartData = data?.stocks || []
-  const walletTotal = walletData?.value || 0
+  const walletTotal = walletData?.wallet?.value || 0
   // TODO: Consider different currencies
   const stocksTotal = chartData.reduce((acc, cur) => acc + cur.value, 0)
   const finalValue = stocksTotal + walletTotal
