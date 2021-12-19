@@ -3,7 +3,7 @@ import { Redirect, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { useAuthentication } from 'core/authentication'
-import { LOGIN } from 'routes/paths'
+import paths from 'routes/paths'
 
 function PrivateRoute(props) {
   const { isAuthenticated, loading } = useAuthentication()
@@ -15,7 +15,7 @@ function PrivateRoute(props) {
     return (
       <Redirect
         to={{
-          pathname: LOGIN,
+          pathname: paths.LOGIN,
           state: { from: location },
         }}
       />

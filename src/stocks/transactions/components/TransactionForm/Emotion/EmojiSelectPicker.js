@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton'
 import { makeStyles } from '@material-ui/core/styles'
 
 import clsx from 'clsx'
-import Emoji from 'common/components/emoji'
+import Emoji from 'common/components/Emoji'
 import { Picker } from 'emoji-mart'
 
 const useStyles = makeStyles({
@@ -63,10 +63,13 @@ const EmojiSelectPicker = ({
 
 EmojiSelectPicker.propTypes = {
   disabled: PropTypes.bool,
-  emoji: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    native: PropTypes.string.isRequired,
-  }).isRequired,
+  emoji: PropTypes.oneOfType([
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      native: PropTypes.string.isRequired,
+    }),
+    PropTypes.string,
+  ]).isRequired,
 
   onEmojiSelect: PropTypes.func.isRequired,
   onPickerStateChange: PropTypes.func.isRequired,
