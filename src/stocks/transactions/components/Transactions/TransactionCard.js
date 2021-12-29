@@ -10,6 +10,7 @@ import { useMutation } from '@apollo/client'
 import clsx from 'clsx'
 import StockLink from 'core/components/StockLink'
 import { useSnackbar } from 'notistack'
+import { formatDateTimeOutput } from 'utils/dates'
 import { formatCurrency } from 'utils/money'
 
 import queries from '../../queries'
@@ -51,9 +52,10 @@ const useStyles = makeStyles({
 const unitsToDisplay = (row) =>
   row.units >= 0 ? `x${row.units}` : `x${row.units * -1}`
 const resolveToTicker = (row) => row.stock.ticker
-const resolveToStrikPrice = (row) =>
+const resolveToStrikePrice = (row) =>
   formatCurrency(row.strikePrice, row.stock.currency)
-const resolveToUnits = (row) => unitsToDisplay(row)
+const resolveToUnits = (row) =>
+  `${unitsToDisplay(row)} on ${formatDateTimeOutput(row.performedAt)}`
 
 const RESOLVER_MAP = {
   ALL: {
@@ -61,7 +63,7 @@ const RESOLVER_MAP = {
     resolveTitle: resolveToTicker,
   },
   STOCK: {
-    resolveSubheader: resolveToStrikPrice,
+    resolveSubheader: resolveToStrikePrice,
     resolveTitle: resolveToUnits,
   },
 }

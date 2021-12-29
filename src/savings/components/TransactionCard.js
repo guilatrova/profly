@@ -10,6 +10,7 @@ import clsx from 'clsx'
 import { useSnackbar } from 'notistack'
 import queries from 'savings/queries'
 import { walletTransactionPropType } from 'savings/types'
+import { formatDateTimeOutput } from 'utils/dates'
 import { formatCurrency } from 'utils/money'
 
 import Actions from './Actions'
@@ -59,6 +60,7 @@ const TransactionCard = ({ item }) => {
     setTimeout(() => window.location.reload(false), 2000)
   }
   const title = item.value >= 0 ? 'Deposit' : 'Withdrawal'
+  const dateOut = formatDateTimeOutput(item.performedAt)
 
   return (
     <Card className={classes.card} elevation={0}>
@@ -74,7 +76,11 @@ const TransactionCard = ({ item }) => {
         avatar={<TransactionAvatar item={item} />}
         className={classes.cardHeader}
         subheader={item.notes}
-        title={<Typography className={classes.headerTitle}>{title}</Typography>}
+        title={
+          <Typography className={classes.headerTitle}>
+            {title} on {dateOut}
+          </Typography>
+        }
       />
     </Card>
   )
