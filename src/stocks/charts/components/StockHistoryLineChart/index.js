@@ -26,7 +26,7 @@ export const COLORS = {
   unactiveLine: '#a9c8f5',
 }
 
-const StockHistoryLineChart = ({ chartData, currency = 'BRL' }) => {
+const StockHistoryLineChart = ({ chartData, currency = 'USD' }) => {
   const [cursorPos, setCursorPos] = useState(0)
   const [Xpos, setXpos] = useState(0)
 

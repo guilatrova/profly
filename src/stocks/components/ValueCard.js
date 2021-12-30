@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
 
 const ValueCard = ({
   children = null,
-  currency = 'BRL',
+  currency = 'USD',
   icon,
   isMoney = false,
   loading = false,
