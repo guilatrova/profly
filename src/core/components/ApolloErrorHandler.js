@@ -46,7 +46,7 @@ const ApolloErrorHandler = ({
       <Emoji emoji="cry" />
       <p className={classes.errorMessage}>
         Sorry, something unexpected happened and we were unable to display this
-        data
+        data. Try to refresh the page.
       </p>
     </Box>
   )
