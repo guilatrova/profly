@@ -6,9 +6,9 @@ import Button from '@material-ui/core/Button'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import { DateTimePicker } from '@material-ui/pickers'
 
 import ErrorHandler from 'core/components/ApolloErrorHandler'
+import DateTimePicker from 'core/components/DateTimePicker'
 import DecimalTextField from 'core/components/DecimalTextField'
 import { formatCurrency } from 'utils/money'
 
@@ -136,13 +136,10 @@ const TransactionBody = ({
 
         <FormRow>
           <DateTimePicker
-            ampm={false}
             disabled={isDisabled}
-            format="dd/MM/yyyy HH:mm"
             id="performedAt"
             label="Performed at"
             value={entity.performedAt}
-            variant="inline"
             onChange={handleChange('performedAt')}
           />
         </FormRow>
