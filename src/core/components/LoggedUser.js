@@ -9,6 +9,8 @@ import Paper from '@material-ui/core/Paper'
 import Popper from '@material-ui/core/Popper'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 
+import { downloadCSV } from 'utils/downloader'
+
 import { useAuthentication } from '../authentication'
 
 const LoggedUser = () => {
@@ -88,6 +90,7 @@ const LoggedUser = () => {
                   onKeyDown={handleListKeyDown}
                 >
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem onClick={downloadCSV}>Download data</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

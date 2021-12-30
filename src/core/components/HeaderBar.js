@@ -8,13 +8,10 @@ import IconButton from '@material-ui/core/IconButton'
 import { makeStyles } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import GetAppIcon from '@material-ui/icons/GetApp'
-import PersonIcon from '@material-ui/icons/GitHub'
 import MenuIcon from '@material-ui/icons/Menu'
 
 import clsx from 'clsx'
 import paths from 'routes/paths'
-import { DownloadCSV } from 'utils/downloader'
 
 import AppDrawer, { drawerEnabled, drawerWidth } from './AppDrawer'
 import LoggedUser from './LoggedUser'
@@ -60,8 +57,6 @@ const HeaderBar = () => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
   const toggleDrawer = () => setOpen(!open)
-  const handleAuthorLink = () => window.open('https://guilatrova.dev', '_blank')
-  const handleDownloadCSV = () => DownloadCSV()
 
   return (
     <>
@@ -103,14 +98,6 @@ const HeaderBar = () => {
               size="small"
             />
           </Typography>
-
-          <IconButton color="inherit" onClick={handleDownloadCSV}>
-            <GetAppIcon />
-          </IconButton>
-
-          <IconButton color="inherit" onClick={handleAuthorLink}>
-            <PersonIcon />
-          </IconButton>
 
           <LoggedUser />
         </Toolbar>
