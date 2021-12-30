@@ -35,3 +35,18 @@ export const downloadCSV = () => {
       link.remove()
     })
 }
+
+export const exportChart = (chartNode) => {
+  const chartSVG = chartNode.children[0]
+
+  const svgURL = new XMLSerializer().serializeToString(chartSVG)
+  const svgBlob = new Blob([svgURL], { type: 'image/svg+xml;charset=utf-8' })
+  const url = window.URL.createObjectURL(svgBlob)
+
+  // Open in a new tab
+  // window.open(url, '_blank', 'noopener,noreferrer')
+
+  const link = createDownloadLink(url, 'test.svg')
+  link.click()
+  link.remove()
+}
