@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import ErrorHandler from 'core/components/ApolloErrorHandler'
 import DateTimePicker from 'core/components/DateTimePicker'
 import DecimalTextField from 'core/components/DecimalTextField'
+import { isDayYesterdayOrBeforeRegardlessTime } from 'utils/dates'
 import { formatCurrency } from 'utils/money'
 
 import { useStockInfo } from '../StockInfoProvider/context'
@@ -67,6 +68,9 @@ const TransactionBody = ({
     onPropChange({ [key]: e.target.value })
   const handleChange = (key) => (value) => onPropChange({ [key]: value })
   const handleEmotionChange = (emoji) => onPropChange({ emotion: emoji.id })
+  const emojiQuestion = isDayYesterdayOrBeforeRegardlessTime(entity.performedAt)
+    ? 'How have you felt?'
+    : 'How do you feel?'
 
   return (
     <>
@@ -122,19 +126,6 @@ const TransactionBody = ({
         </FormRow>
 
         <FormRow>
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-around"
-          >
-            <Typography>
-              In emoji-words - <strong>How do you feel?</strong>
-            </Typography>
-            <Emotion disabled={isDisabled} onChange={handleEmotionChange} />
-          </Box>
-        </FormRow>
-
-        <FormRow>
           <DateTimePicker
             disabled={isDisabled}
             id="performedAt"
@@ -142,6 +133,19 @@ const TransactionBody = ({
             value={entity.performedAt}
             onChange={handleChange('performedAt')}
           />
+        </FormRow>
+
+        <FormRow>
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-around"
+          >
+            <Typography>
+              In emoji-words - <strong>{emojiQuestion}</strong>
+            </Typography>
+            <Emotion disabled={isDisabled} onChange={handleEmotionChange} />
+          </Box>
         </FormRow>
 
         <FormRow>

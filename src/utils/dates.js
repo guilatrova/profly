@@ -38,6 +38,20 @@ export function padLeadingZero(value) {
   return value > 9 ? value : `0${value}`
 }
 
+export const isDayYesterdayOrBeforeRegardlessTime = (inputDate) => {
+  if (!inputDate) {
+    return false
+  }
+
+  const compDate = new Date(inputDate)
+  compDate.setHours(0, 0, 0, 0)
+
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  return compDate < today
+}
+
 export const subPeriod = (period) => {
   const days = /^\d+d$/.test(period) ? period.replace('d', '') : 0
   const months = period.endsWith('mo') ? period.replace('mo', '') : 0
