@@ -1,3 +1,4 @@
+import CopyPlugin from 'copy-webpack-plugin'
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
@@ -128,6 +129,9 @@ export default {
       },
       // Create HTML file that includes references to bundled CSS and JS.
       template: 'src/index.ejs',
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'public', to: '.' }],
     }),
   ],
   resolve: {

@@ -1,0 +1,15 @@
+{
+  "short_name": "Profly",
+  "name": "Profly",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "display": "standalone",
+  "theme_color": "#272c34",
+  "background_color": "#1b6ae5"
+}
