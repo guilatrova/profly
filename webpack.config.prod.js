@@ -7,7 +7,11 @@ import webpack from 'webpack'
 
 const GLOBALS = {
   __DEV__: false,
-  'process.env.NODE_ENV': JSON.stringify('production'),
+  'process.env': {
+    API_HOST: JSON.stringify('https://api.profly.app'),
+    NODE_ENV: JSON.stringify('production'),
+    PUBLIC_URL: JSON.stringify('https://www.profly.app'),
+  },
 }
 
 export default {

@@ -112,6 +112,13 @@ export default {
     new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        API_HOST: JSON.stringify('http://localhost:8080'),
+        NODE_ENV: JSON.stringify('development'),
+        PUBLIC_URL: JSON.stringify('http://localhost:3000'),
+      },
+    }),
     new HtmlWebpackPlugin({
       inject: true,
 
