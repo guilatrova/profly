@@ -37,9 +37,7 @@ export const downloadCSV = () => {
 }
 
 export const exportChart = (chartNode) => {
-  const chartSVG = chartNode.children[0]
-
-  const svgURL = new XMLSerializer().serializeToString(chartSVG)
+  const svgURL = new XMLSerializer().serializeToString(chartNode)
   const svgBlob = new Blob([svgURL], { type: 'image/svg+xml;charset=utf-8' })
   const url = window.URL.createObjectURL(svgBlob)
 
