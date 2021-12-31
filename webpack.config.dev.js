@@ -2,6 +2,7 @@ import CopyPlugin from 'copy-webpack-plugin'
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
+import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin'
 import webpack from 'webpack'
 
 export default {
@@ -134,6 +135,10 @@ export default {
     }),
     new CopyPlugin({
       patterns: [{ from: 'public', to: '.' }],
+    }),
+
+    new ServiceWorkerWebpackPlugin({
+      entry: path.join(__dirname, 'src/sw.js'),
     }),
   ],
   resolve: {

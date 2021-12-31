@@ -154,6 +154,8 @@ export default {
       publicURL: PUBLIC_URL,
 
       template: 'src/index.ejs',
+
+      trackGAnalyticsToken: 'G-D8CS09CZ2V',
       // Note that you can add custom options here if you need to handle other custom logic in index.html
       // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
       trackJSToken: '',
@@ -165,7 +167,6 @@ export default {
 
     new ServiceWorkerWebpackPlugin({
       entry: path.join(__dirname, 'src/sw.js'),
-      // publicPath: PUBLIC_URL,
     }),
   ],
   resolve: {

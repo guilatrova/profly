@@ -39,6 +39,20 @@
       <link rel="icon" href="<%= htmlWebpackPlugin.options.publicURL %>/favicon.svg">
       <link rel="shortcut icon" href="<%= htmlWebpackPlugin.options.publicURL %>/favicon.svg">
       <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.options.publicURL %>/favicon.svg">
+
+      <!-- Analytics -->
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <% if (htmlWebpackPlugin.options.trackGAnalyticsToken) { %>
+        <script async
+          src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.trackGAnalyticsToken %>"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+
+          gtag('config', '<%= htmlWebpackPlugin.options.trackGAnalyticsToken %>');
+        </script>
+        <% } %>
 </head>
 
 <body>
