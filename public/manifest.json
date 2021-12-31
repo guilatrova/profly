@@ -4,13 +4,15 @@
   "description": "The effortless finance tracker for busy people",
   "categories": [
     "finance",
-    "money"
+    "money",
+    "stocks"
   ],
   "icons": [
     {
-      "src": "favicon.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
     }
   ],
   "start_url": "/?utm_source=homescreen",
