@@ -67,28 +67,36 @@ self.addEventListener('activate', (event) => {
   )
 })
 
-self.addEventListener('fetch', (event) => {
-  const request = event.request
-
-  // Ignore not GET request.
-  if (request.method !== 'GET') {
-    if (DEBUG) {
-      console.log(`[SW] Ignore non GET request ${request.method}`)
-    }
-    return
-  }
-
+const shouldCacheRequest = (request) => {
   const requestUrl = new URL(request.url)
 
-  // Ignore difference origin.
+  if (request.method !== 'GET') {
+    if (DEBUG) {
+      console.debug(`[SW] Ignore non GET request: ${request.method}`)
+    }
+    return false
+  }
+
   if (requestUrl.origin !== location.origin) {
     if (DEBUG) {
-      console.log(`[SW] Ignore difference origin ${requestUrl.origin}`)
+      console.warn(`[SW] Ignore different origin: ${requestUrl.origin}`)
     }
+    return false
+  }
+
+  return true
+}
+
+self.addEventListener('fetch', (event) => {
+  const request = event.request
+  const requestUrl = new URL(request.url)
+
+  if (!shouldCacheRequest(request)) {
     return
   }
 
   const resource = global.caches.match(request).then((response) => {
+    // Found in cache
     if (response) {
       if (DEBUG) {
         console.log(`[SW] fetch URL ${requestUrl.href} from cache`)
@@ -97,7 +105,7 @@ self.addEventListener('fetch', (event) => {
       return response
     }
 
-    // Load and cache known assets.
+    // Perform request and cache known assets.
     return fetch(request)
       .then((responseNetwork) => {
         if (!responseNetwork || !responseNetwork.ok) {
