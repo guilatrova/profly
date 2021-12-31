@@ -4,14 +4,17 @@ import CopyPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
+import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin'
 import webpack from 'webpack'
+
+const PUBLIC_URL = 'https://www.profly.app'
 
 const GLOBALS = {
   __DEV__: false,
   'process.env': {
     API_HOST: JSON.stringify('https://api.profly.app'),
     NODE_ENV: JSON.stringify('production'),
-    PUBLIC_URL: JSON.stringify('https://www.profly.app'),
+    PUBLIC_URL: JSON.stringify(PUBLIC_URL),
   },
 }
 
@@ -148,7 +151,7 @@ export default {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true,
       },
-      publicURL: 'https://www.profly.app',
+      publicURL: PUBLIC_URL,
 
       template: 'src/index.ejs',
       // Note that you can add custom options here if you need to handle other custom logic in index.html
@@ -158,6 +161,11 @@ export default {
 
     new CopyPlugin({
       patterns: [{ from: 'public', to: '.' }],
+    }),
+
+    new ServiceWorkerWebpackPlugin({
+      entry: path.join(__dirname, 'src/sw.js'),
+      // publicPath: PUBLIC_URL,
     }),
   ],
   resolve: {
