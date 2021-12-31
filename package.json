@@ -1,7 +1,7 @@
 {
-  "name": "saveio",
+  "name": "profly",
   "version": "0.1.0",
-  "description": "",
+  "description": "The effortless finance tracker for busy people",
   "engines": {
     "node": ">=14 <15",
     "npm": ">=8"

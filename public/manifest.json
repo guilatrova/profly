@@ -1,6 +1,11 @@
 {
   "short_name": "Profly",
   "name": "Profly",
+  "description": "The effortless finance tracker for busy people",
+  "categories": [
+    "finance",
+    "money"
+  ],
   "icons": [
     {
       "src": "favicon.png",
