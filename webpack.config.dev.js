@@ -127,6 +127,8 @@ export default {
         collapseWhitespace: true,
         removeComments: true,
       },
+
+      publicURL: 'http://localhost:3000',
       // Create HTML file that includes references to bundled CSS and JS.
       template: 'src/index.ejs',
     }),
