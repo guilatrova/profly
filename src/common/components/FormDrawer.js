@@ -39,7 +39,6 @@ const FormDrawer = ({ children }) => {
   const handlePostSubmit = () => {
     enqueueSnackbar('Transaction successfully added!', { variant: 'success' })
     setOpen(false)
-    setTimeout(() => window.location.reload(false), 2000)
   }
 
   const toggleDrawer = (open) => () => {

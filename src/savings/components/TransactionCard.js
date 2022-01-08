@@ -52,12 +52,12 @@ const TransactionCard = ({ item }) => {
   const { enqueueSnackbar } = useSnackbar()
 
   const [deleteMutation] = useMutation(queries.deleteTransaction, {
+    refetchQueries: queries.REFETCH_WHEN_CHANGE,
     variables: { id: item.id },
   })
   const handleDelete = () => {
     deleteMutation()
     enqueueSnackbar('Transaction deleted successfully', { variant: 'success' })
-    setTimeout(() => window.location.reload(false), 2000)
   }
   const title = item.value >= 0 ? 'Deposit' : 'Withdrawal'
   const dateOut = formatDateTimeOutput(item.performedAt)

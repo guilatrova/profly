@@ -1,27 +1,37 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client'
+import globalStockQueries from 'stocks/queries'
 
-import TransactionForm from "../components/TransactionForm";
-import queries from "../queries";
+import TransactionForm from '../components/TransactionForm'
+import transactionQueries from '../queries'
 
 const Container = ({ onPostSubmit }) => {
-  const [addTransaction, addTransactionResponse] = useMutation(queries.addTransaction)
-  const onSubmit = entity => {
-    addTransaction({ variables: { entity }});
+  const [addTransaction] = useMutation(transactionQueries.addTransaction)
+
+  const onSubmit = (entity) => {
+    addTransaction({
+      refetchQueries: [
+        {
+          query: globalStockQueries.chartStocksValues,
+        },
+        {
+          query: transactionQueries.listTransactions,
+        },
+      ],
+      variables: { entity },
+    })
     if (onPostSubmit) {
-      onPostSubmit();
+      onPostSubmit()
     }
   }
 
-  return (
-    <>
-      <TransactionForm onSubmit={onSubmit} />
-      <pre>
-        {JSON.stringify(addTransactionResponse.data)}
-      </pre>
-    </>
-  )
+  return <TransactionForm onSubmit={onSubmit} />
 }
 
-export default Container;
+Container.propTypes = {
+  onPostSubmit: PropTypes.func,
+}
+
+export default Container

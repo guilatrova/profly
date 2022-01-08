@@ -29,6 +29,7 @@ const DEFAULT_EMOTION = 'neutral_face'
 const ContentRow = ({ alignUnits, displayStock, row }) => {
   const classes = useStyles()
   const [handleDelete] = useMutation(queries.deleteTransaction, {
+    refetchQueries: queries.REFETCH_WHEN_CHANGE,
     variables: { id: row.id },
   })
 

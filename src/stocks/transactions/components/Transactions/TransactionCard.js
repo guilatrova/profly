@@ -10,11 +10,12 @@ import { useMutation } from '@apollo/client'
 import clsx from 'clsx'
 import StockLink from 'core/components/StockLink'
 import { useSnackbar } from 'notistack'
+import globalStockQueries from 'stocks/queries'
+import transactionQueries from 'stocks/transactions/queries'
+import { transactionPropType } from 'stocks/transactions/types'
 import { formatDateTimeOutput } from 'utils/dates'
 import { formatCurrency } from 'utils/money'
 
-import queries from '../../queries'
-import { transactionPropType } from '../../types'
 import Actions from './Actions'
 import TransactionAvatar from './TransactionAvatar'
 
@@ -72,13 +73,20 @@ const TransactionCard = ({ mode = 'ALL', row }) => {
   const classes = useStyles()
   const { enqueueSnackbar } = useSnackbar()
 
-  const [deleteMutation] = useMutation(queries.deleteTransaction, {
+  const [deleteMutation] = useMutation(transactionQueries.deleteTransaction, {
+    refetchQueries: [
+      {
+        query: globalStockQueries.chartStocksValues,
+      },
+      {
+        query: transactionQueries.listTransactions,
+      },
+    ],
     variables: { id: row.id },
   })
   const handleDelete = () => {
     deleteMutation()
     enqueueSnackbar('Transaction deleted successfully', { variant: 'success' })
-    setTimeout(() => window.location.reload(false), 2000)
   }
   const resolver = RESOLVER_MAP[mode]
 

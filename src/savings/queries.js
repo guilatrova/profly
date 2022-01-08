@@ -43,7 +43,13 @@ const deleteTransaction = gql`
   }
 `
 
+const REFETCH_WHEN_CHANGE = [
+  { query: defaultWallet },
+  { query: listTransactions },
+]
+
 export default {
+  REFETCH_WHEN_CHANGE,
   addTransaction,
   defaultWallet,
   deleteTransaction,
