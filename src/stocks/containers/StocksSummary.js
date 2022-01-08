@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid'
 
 import { useQuery } from '@apollo/client'
 import ErrorHandler from 'core/components/ApolloErrorHandler'
-import queries from 'stocks/charts/queries'
 import StocksTable from 'stocks/components/StocksTable'
+import queries from 'stocks/queries'
 
 const StocksSummary = () => {
   const { loading, error, data = [] } = useQuery(queries.chartStocksValues)

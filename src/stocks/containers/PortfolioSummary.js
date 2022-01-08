@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useQuery } from '@apollo/client'
 import ValueHeader from 'common/components/ValueHeader'
-import queries from 'stocks/charts/queries'
+import queries from 'stocks/queries'
 import { formatCurrency } from 'utils/money'
 
 const PortfolioSummary = () => {

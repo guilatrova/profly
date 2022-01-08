@@ -1,21 +1,12 @@
-import {gql} from '@apollo/client';
-
-const chartStocksValues = gql`
-  query chartStocksValues {
-    stocks: stocksUnitsCurrentValue {
-      ticker,
-      name,
-      currency,
-      units: totalUnits
-      value: totalValue
-      logoUrl
-    }
-  }
-`
+import { gql } from '@apollo/client'
 
 const stockLineChart = gql`
   query stockLineChart($ticker: String!, $period: String!, $interval: String!) {
-    stockHistory: stockTransactionsValueHistory(ticker: $ticker, period: $period, interval: $interval) {
+    stockHistory: stockTransactionsValueHistory(
+      ticker: $ticker
+      period: $period
+      interval: $interval
+    ) {
       currency
       history {
         date
@@ -34,10 +25,7 @@ const stockLineChart = gql`
 `
 
 const currencyRate = gql`
-  query (
-    $from: String!,
-    $to: String!
-  ) {
+  query ($from: String!, $to: String!) {
     currencyRate(fromCurrency: $from, toCurrency: $to) {
       fromCurrency
       toCurrency
@@ -47,7 +35,6 @@ const currencyRate = gql`
 `
 
 export default {
-  chartStocksValues,
   currencyRate,
-  stockLineChart
+  stockLineChart,
 }

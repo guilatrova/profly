@@ -4,13 +4,13 @@ import Typography from '@material-ui/core/Typography'
 
 import { useQuery } from '@apollo/client'
 import ErrorHandler from 'core/components/ApolloErrorHandler'
-import chartQueries from 'stocks/charts/queries'
+import queries from 'stocks/queries'
 import { formatCurrency } from 'utils/money'
 
 import savingsQueries from '../queries'
 
 const TotalSummary = () => {
-  const { error, data = [] } = useQuery(chartQueries.chartStocksValues)
+  const { error, data = [] } = useQuery(queries.chartStocksValues)
   const { data: walletData, error: walletError } = useQuery(
     savingsQueries.defaultWallet
   )

@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 import { useQuery } from '@apollo/client'
 import ErrorHandler from 'core/components/ApolloErrorHandler'
-import chartQueries from 'stocks/charts/queries'
+import stocksQueries from 'stocks/queries'
 import { formatCurrency } from 'utils/money'
 
 import savingsQueries from '../queries'
@@ -75,7 +75,7 @@ const AccordionDetails = withStyles((theme) => ({
 
 const SavingsSummary = () => {
   const classes = useStyles()
-  const { error, data = [] } = useQuery(chartQueries.chartStocksValues)
+  const { error, data = [] } = useQuery(stocksQueries.chartStocksValues)
   const { walletData, walletError } = useQuery(savingsQueries.defaultWallet)
   const [expanded, setExpanded] = React.useState('')
 

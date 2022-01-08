@@ -4,9 +4,8 @@ import Skeleton from '@material-ui/lab/Skeleton'
 
 import { useQuery } from '@apollo/client'
 import ErrorHandler from 'core/components/ApolloErrorHandler'
-
-import ValueSpreadPieChart from '../components/ValueSpreadPieChart'
-import queries from '../queries'
+import ValueSpreadPieChart from 'stocks/charts/components/ValueSpreadPieChart'
+import queries from 'stocks/queries'
 
 const unifyCurrency = (data, rate) => {
   return data.reduce((acc, cur) => {

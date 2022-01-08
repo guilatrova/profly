@@ -18,7 +18,7 @@ import { useQuery } from '@apollo/client'
 import ErrorHandler from 'core/components/ApolloErrorHandler'
 import paths from 'routes/paths'
 import savingsQueries from 'savings/queries'
-import chartQueries from 'stocks/charts/queries'
+import stocksQueries from 'stocks/queries'
 import { formatCurrency } from 'utils/money'
 
 const useStyles = makeStyles((theme) => ({
@@ -84,7 +84,7 @@ const CategorySummaryCard = ({
 
 const SavingsSummary = () => {
   const classes = useStyles()
-  const { error, data = [] } = useQuery(chartQueries.chartStocksValues)
+  const { error, data = [] } = useQuery(stocksQueries.chartStocksValues)
   const { data: walletData, error: walletError } = useQuery(
     savingsQueries.defaultWallet
   )

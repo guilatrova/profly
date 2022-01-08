@@ -1,5 +1,18 @@
 import { gql } from '@apollo/client'
 
+const chartStocksValues = gql`
+  query chartStocksValues {
+    stocks: stocksUnitsCurrentValue {
+      ticker
+      name
+      currency
+      units: totalUnits
+      value: totalValue
+      logoUrl
+    }
+  }
+`
+
 const stockSummary = gql`
   query stockSummary($ticker: String!) {
     summary: ownedStockSummary(ticker: $ticker) {
@@ -38,10 +51,8 @@ const transactionsFromStock = gql`
   }
 `
 
-const REFETCH_WHEN_CHANGE = [stockSummary, transactionsFromStock]
-
 export default {
-  REFETCH_WHEN_CHANGE,
+  chartStocksValues,
   stockSummary,
   transactionsFromStock,
 }
