@@ -18,14 +18,16 @@ render(
   document.getElementById('app')
 )
 
-if ('serviceWorker' in navigator) {
-  try {
-    runtime.register()
-    // eslint-disable-next-line no-console
-    console.log('[SW] Registered!')
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('[SW]', err)
+if (process.env.NODE_ENV == 'production') {
+  if ('serviceWorker' in navigator) {
+    try {
+      runtime.register()
+      // eslint-disable-next-line no-console
+      console.log('[SW] Registered!')
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('[SW]', err)
+    }
   }
 }
 
