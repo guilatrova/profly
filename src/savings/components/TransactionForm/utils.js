@@ -8,6 +8,10 @@ export const prepareEntity = (entity) => {
     prepared.value = -entity.value
   }
 
+  if (entity.notes === '') {
+    entity.notes = null
+  }
+
   return prepared
 }
 

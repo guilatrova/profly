@@ -5,7 +5,7 @@ import TransactionBody from './TransactionBody'
 import { isSubmitEnabled, prepareEntity } from './utils'
 
 const emptyEntity = {
-  notes: '',
+  notes: null,
   performedAt: new Date(),
   value: '',
 }

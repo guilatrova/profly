@@ -7,7 +7,7 @@ export const walletPropType = shape({
 
 export const walletTransactionPropType = shape({
   id: string.isRequired,
-  notes: string.isRequired,
+  notes: string,
   performedAt: string,
   value: number.isRequired,
   wallet: walletPropType,
