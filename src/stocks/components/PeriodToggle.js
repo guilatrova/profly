@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 const PeriodToggle = ({ onChange }) => {
   const classes = useStyles()
-  const [selectedPeriod, setSelectedPeriod] = useState('ytd')
+  const [selectedPeriod, setSelectedPeriod] = useState('1y')
 
   const handleChange = (event, newAction) => {
     if (newAction) {
