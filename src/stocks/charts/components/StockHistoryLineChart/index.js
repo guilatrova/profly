@@ -22,8 +22,11 @@ export const COLORS = {
   activeLine: '#fff',
   background: '#1b6ae5',
   tooltipCursor: '#fff',
-  unactiveArea: '#3079e7',
-  unactiveLine: '#a9c8f5',
+  // TODO: different colors is not working properly, so keeping the same
+  // unactiveArea: '#3079e7',
+  // unactiveLine: '#a9c8f5',
+  unactiveArea: '#649bed',
+  unactiveLine: '#fff',
 }
 
 const StockHistoryLineChart = ({ chartData, currency = 'USD' }) => {
