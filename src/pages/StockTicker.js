@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const StockPage = () => {
   const classes = useStyles()
   const { ticker } = useParams()
-  const [period, setPeriod] = useState('ytd')
+  const [period, setPeriod] = useState('1y')
   const interval = period == '1d' ? '1h' : '1d'
 
   return (
